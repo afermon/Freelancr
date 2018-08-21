@@ -1,0 +1,19 @@
+/* after changing this file run 'yarn run webpack:build' */
+$fa-font-path: '~font-awesome/fonts';
+
+/***************************
+put Sass variables here:
+eg $input-color: red;
+****************************/
+
+@import '~font-awesome/scss/font-awesome';
+@import '../../content/fonts/feather/style.min.css';
+@import '../../content/fonts/simple-line-icons/style.css';
+@import '../../content/css/prism.min.css';
+@import '~sweetalert2/dist/sweetalert2.min.css';
+@import '../../content/css/quill.snow.css';
+@import '../../content/css/quill.bubble.css';
+@import '../../content/css/hopscotch.css';
+@import "~dragula/dist/dragula.css";
+@import "../../content/css/wizard.css";
+/* jhipster-needle-scss-add-vendor JHipster will add new css style */

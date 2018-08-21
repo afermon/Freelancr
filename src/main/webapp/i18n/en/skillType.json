@@ -1,0 +1,24 @@
+
+{
+    "freelancrApp": {
+        "skillType" : {
+            "home": {
+                "title": "Skill Types",
+                "createLabel": "Create a new Skill Type",
+                "createOrEditLabel": "Create or edit a Skill Type",
+                "search": "Search for Skill Type"
+            },
+            "created": "A new Skill Type is created with identifier {{ param }}",
+            "updated": "A Skill Type is updated with identifier {{ param }}",
+            "deleted": "A Skill Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Skill Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Skill Type"
+            },
+            "name": "Name",
+            "logo": "Logo"
+        }
+    }
+}

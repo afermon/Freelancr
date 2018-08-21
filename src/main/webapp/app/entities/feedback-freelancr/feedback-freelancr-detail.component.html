@@ -1,0 +1,45 @@
+<div class="content-wrapper">
+    <div class="container-fluid" *ngIf="feedback">
+        <h2><span jhiTranslate="freelancrApp.feedback.detail.title">Feedback</span> {{feedback.id}}</h2>
+        <hr>
+        <jhi-alert-error></jhi-alert-error>
+        <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="freelancrApp.feedback.timeStamp">Time Stamp</span></dt>
+            <dd>
+                <span>{{feedback.timeStamp | date:'medium'}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.feedback.rating">Rating</span></dt>
+            <dd>
+                <span>{{feedback.rating}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.feedback.comments">Comments</span></dt>
+            <dd>
+                <span>{{feedback.comments}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.feedback.user">User</span></dt>
+            <dd>
+                {{feedback.userLogin}}
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.feedback.project">Project</span></dt>
+            <dd>
+                <div *ngIf="feedback.projectId">
+                    <a [routerLink]="['/project-freelancr', feedback.projectId]">{{feedback.projectTitle}}</a>
+                </div>
+            </dd>
+        </dl>
+
+        <button type="submit"
+                (click)="previousState()"
+                class="btn btn-info btn-raised">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        </button>
+
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'cms/feedback-freelancr/'+ feedback.id + '/edit'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge"
+                class="btn btn-primary btn-raised">
+            <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
+    </div>
+</div>

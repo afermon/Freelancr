@@ -1,0 +1,26 @@
+{
+    "apply": {
+        "info1": "Applying to the position",
+        "info2": "from the project",
+        "bid": "Your offer",
+        "bidplaceholder": "How much you expect to get paid for this position",
+        "bidrequired": "The offer is required",
+        "msgplaceholder": "Additional information for your application",
+        "msg": "Message",
+        "msgreq": "The message is required",
+        "short": "Your message is required to be at least 4 characters",
+        "long": "Your message cannot be longer than 250 characters",
+        "btn": "Send",
+        "success": "<h4><strong>Success!</strong></h4> Your application has been sent for evaluation. Good Luck!",
+        "applied": "<h4><strong>Warning!</strong></h4> You already applied to this position",
+        "owner":"<h4><strong>Warning!</strong></h4> You can't apply to a position from your project",
+        "finished":"<h4><strong>Warning!</strong></h4> You can't apply to finished projects",
+        "title":"My active applications and offers",
+        "canceltitle":"Cancel Application",
+        "cancelconf":"Are you sure you want to cancel the application: ",
+        "btnconfrim":"Confirm",
+        "status":"Status: ",
+        "bid2": "Your offer: "
+
+    }
+}

@@ -1,0 +1,58 @@
+
+<div *ngIf="position">
+    <h2><span jhiTranslate="freelancrApp.position.detail.title">Position</span> {{position.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.position.title">Title</span></dt>
+        <dd>
+            <span>{{position.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.description">Description</span></dt>
+        <dd>
+            <span>{{position.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{position.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.type">Type</span></dt>
+        <dd>
+            <div *ngIf="position.typeId">
+                <a [routerLink]="['/position-type-freelancr', position.typeId]">{{position.typeName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.skill">Skill</span></dt>
+        <dd>
+            <span *ngFor="let skill of position.skills; let last = last">
+                <a [routerLink]="['/skill-type-freelancr', skill?.id ]">{{skill.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.hiredUsers">Hired Users</span></dt>
+        <dd>
+            <span *ngFor="let hiredUsers of position.hiredUsers; let last = last">
+                {{hiredUsers.login}}{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.position.project">Project</span></dt>
+        <dd>
+            <div *ngIf="position.projectId">
+                <a [routerLink]="['/project-freelancr', position.projectId]">{{position.projectTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'position-freelancr/'+ position.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

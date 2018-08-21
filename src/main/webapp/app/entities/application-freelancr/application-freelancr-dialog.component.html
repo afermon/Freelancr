@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myApplicationLabel" jhiTranslate="freelancrApp.application.home.createOrEditLabel">Create or edit a Application</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!application.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="application.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.application.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="application.status" id="field_status"  required>
+                <option value="APPLIED">{{'freelancrApp.ApplicationStatus.APPLIED' | translate}}</option>
+                <option value="ACCEPTED">{{'freelancrApp.ApplicationStatus.ACCEPTED' | translate}}</option>
+                <option value="REJECTED">{{'freelancrApp.ApplicationStatus.REJECTED' | translate}}</option>
+                <option value="CANCELLED">{{'freelancrApp.ApplicationStatus.CANCELLED' | translate}}</option>
+                <option value="OFFERED">{{'freelancrApp.ApplicationStatus.OFFERED' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.application.bid" for="field_bid">Bid</label>
+            <input type="number" class="form-control" name="bid" id="field_bid"
+                [(ngModel)]="application.bid" required min="0"/>
+            <div [hidden]="!(editForm.controls.bid?.dirty && editForm.controls.bid?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.bid?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.bid?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.bid?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.application.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="application.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.application.position" for="field_position">Position</label>
+            <select class="form-control" id="field_position" name="position" [(ngModel)]="application.positionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="positionOption.id" *ngFor="let positionOption of positions; trackBy: trackPositionById">{{positionOption.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

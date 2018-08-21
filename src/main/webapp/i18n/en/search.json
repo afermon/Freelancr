@@ -1,0 +1,18 @@
+{
+    "freelancrApp": {
+        "search" : {
+            "search": "Search",
+            "title": "Search, Lets get to work!",
+            "searchPlaceholder": "Enter Skills, technologies or names and then hit enter.",
+            "projects": "Projects",
+            "xtime": "How much time do you have?",
+            "xskills": "Are you looking for the best fit for you?",
+            "results": "About {{ count }} results.",
+            "noResultsA": "Ops! Your query did not return any results.",
+            "noResultsB": "We do not have any records that match your query, please try again with a different search term.",
+            "positions": "Positions",
+            "followers": "Followers",
+            "owner": "Owner"
+        }
+    }
+}

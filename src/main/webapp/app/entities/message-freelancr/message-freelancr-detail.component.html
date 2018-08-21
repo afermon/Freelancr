@@ -1,0 +1,52 @@
+
+<div *ngIf="message">
+    <h2><span jhiTranslate="freelancrApp.message.detail.title">Message</span> {{message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.message.timestamp">Timestamp</span></dt>
+        <dd>
+            <span>{{message.timestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.topic">Topic</span></dt>
+        <dd>
+            <span>{{message.topic}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.message">Message</span></dt>
+        <dd>
+            <span>{{message.message}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'freelancrApp.MessageStatus.' + message.status}}">{{message.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.reply">Reply</span></dt>
+        <dd>
+            <div *ngIf="message.replyId">
+                <a [routerLink]="['/message-freelancr', message.replyId]">{{message.replyId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.sender">Sender</span></dt>
+        <dd>
+            {{message.senderLogin}}
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.message.receiver">Receiver</span></dt>
+        <dd>
+            {{message.receiverLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'message-freelancr/'+ message.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

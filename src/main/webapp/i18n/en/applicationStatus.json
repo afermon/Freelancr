@@ -1,0 +1,12 @@
+{
+    "freelancrApp": {
+        "ApplicationStatus" : {
+            "null": "",
+            "APPLIED": "Applied",
+            "ACCEPTED": "Accepted",
+            "REJECTED": "Rejected",
+            "CANCELLED": "Canceled",
+            "OFFERED": "Offered"
+        }
+    }
+}

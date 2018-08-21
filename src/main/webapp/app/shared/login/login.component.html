@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="login.title">Sign in</h4>
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication">
+                <strong>Failed to sign in!</strong> Please check your credentials and try again.
+            </div>
+        </div>
+        <div class="col-md-8">
+            <form class="form text-center" role="form" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="username" jhiTranslate="global.form.username">Login</label>
+                    <input type="text" class="form-control round" name="username" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
+                    [(ngModel)]="username">
+                </div>
+                <div class="form-group">
+                    <label for="password" jhiTranslate="login.form.password">Password</label>
+                    <input type="password" class="form-control round" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
+                           [(ngModel)]="password">
+                </div>
+                <div class="form-check mt-2">
+                    <label class="form-check-label" for="rememberMe">
+                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe" checked>
+                        <span jhiTranslate="login.form.rememberme">Remember me</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-raised btn-round mt-2" jhiTranslate="login.form.button">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row text-center full-width">
+        <div class="col-md-6"><a class="text-warning" (click)="requestResetPassword()" jhiTranslate="login.password.forgot">Recover password?</a></div>
+        <div class="col-md-6"><a class="text-primary" (click)="register()" jhiTranslate="global.messages.info.register.link">New User?</a></div>
+    </div>
+</div>

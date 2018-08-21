@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <section class="card overflow-hidden" id="search-website">
+            <div class="card-header">
+                <h4 class="card-title" jhiTranslate="freelancrApp.search.title">Search, Lets get to work!</h4>
+
+            </div>
+            <div class="card-body">
+                <div class="card-block pb-0">
+                    <form action="#" novalidate="" class="ng-untouched ng-pristine ng-valid">
+                        <fieldset class="form-group position-relative has-icon-right mb-0">
+                            <input class="form-control form-control-lg input-lg" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'freelancrApp.search.searchPlaceholder' | translate }}" type="text" (keydown)="keyDownFunction($event)" [ngbTypeahead]="typeaheadSearch">
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="card-block" id="search-nav">
+                    <ul class="nav nav-inline">
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': searchType === 'project'}" (click)="changeSearchType('project')"><i class="ft-briefcase"></i> <span jhiTranslate="freelancrApp.search.projects">Projects</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': searchType === 'freelancr'}" (click)="changeSearchType('freelancr')"><i class="ft-user"></i> <span>Freelancrs</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block" *ngIf="!queryCount || queryCount < 1">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <p class="text-center text-bold-300 font-large-2 pt-3 mt-5" jhiTranslate="freelancrApp.search.noResultsA">Ops! Your query did not return any results.</p>
+                            <p class="text-center" jhiTranslate="freelancrApp.search.noResultsB">We do not have any records that match your query, please try again with a different search term.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="../../../content/images/pages/robot-error.png" alt="Ops!" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="queryCount && queryCount > 0">
+                    <div class="col-lg-12">
+                        <p class="text-muted font-small-2 pb-0 mb-0 pl-3" jhiTranslate="freelancrApp.search.results" translateValues="{count: '{{ queryCount }}'}">About 0 results.</p>
+                    </div>
+                </div>
+                <div class="card-block" id="search-results" *ngIf="projects && projects.length > 0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="media-list media-bordered row">
+                                <li class="media col-md-12" *ngFor="let project of projects ;trackBy: trackId">
+                                    <div class="media-body" >
+                                        <p class="lead mb-0"><a class="teal darken-1" [routerLink]="['../project-info', project.id ]"><span class="text-bold-600"><i class="ft-calendar"></i> {{project.deadline | date:'mediumDate'}}</span> -  {{project.title}}</a> <span class="text-muted font-small-3" jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}"></span></p>
+                                        <p class="text-muted pb-0 mb-0">
+                                            <a class="text-danger" [routerLink]="['../public-profile', project.userId ]" ngbTooltip="{{'freelancrApp.search.owner' | translate}}"><i class="ft-user"></i> {{project.userLogin}}</a>
+                                            <span class="text-secondary" *ngIf="project.positionCount > 0" ngbTooltip="{{'freelancrApp.search.positions' | translate}}"><i class="ft-users"></i> {{ project.positionCount }}</span>
+                                        </p>
+                                        <p>{{project.description | slice:0:100}}...</p>
+                                        <p *ngIf="project.skills && project.skills.length > 0">
+                                            <span *ngFor="let skill of project.skills" class="badge badge-pill ml-1 badge-warning text-white" placement="bottom">{{skill.name}}</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div *ngIf="projects && projects.length > 0">
+                                <div class="row justify-content-center">
+                                    <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block" id="search-results-freelancrs" *ngIf="freelancrs && freelancrs.length > 0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="media-list media-bordered row">
+                                <li class="media col-md-12" *ngFor="let freelancr of freelancrs ;trackBy: trackIdFreelancr">
+                                    <div class="media-body" *ngIf="freelancr">
+                                        <p class="lead mb-0"><a class="teal darken-1" [routerLink]="['../public-profile', freelancr.userId ]"><i class="ft-user"></i> {{ freelancr.user.firstName }} {{ freelancr.user.lastName }}</a></p>
+                                        <ul class="list-inline list-inline-pipe text-muted">
+                                            <li><a class="teal darken-1" ><i class="ft-github"></i> {{freelancr.gitUser}}</a></li>
+                                        </ul>
+                                        <p class="mb-0">{{freelancr.description | slice:0:100}}...</p>
+                                        <p *ngIf="freelancr.skills && freelancr.skills.length > 0">
+                                            <span *ngFor="let skill of freelancr.skills" class="badge badge-pill ml-1 badge-{{skill.level | lowercase}}" placement="bottom" ngbTooltip="{{'freelancrApp.SkillLevel.' + skill.level | translate}}">{{skill.typeName}}</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div *ngIf="freelancrs && freelancrs.length > 0">
+                                <div class="row justify-content-center">
+                                    <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

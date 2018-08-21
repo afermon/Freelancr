@@ -1,0 +1,234 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row" matchHeight ="card">
+            <div class="col-md-6 offset-md-3 col-sm-12">
+                <div class="card card-inverse bg-primary text-center">
+                    <div class="card-body">
+                        <div class="card-block pt-3">
+                            <div class="row d-flex">
+                                <div class="col align-self-center">
+                                    <img src="../../../content/images/pages/robot-happy.png" alt="Hey!" width="190">
+                                </div>
+                                <div class="col align-self-center" *ngIf="account">
+                                    <h4 class="card-title mt-3"jhiTranslate="dashboard.welcome" translateValues="{username: '{{ account.firstName }}'}">Welcome {{account.firstName}}!</h4>
+                                    <p class="card-text" jhiTranslate="dashboard.question">What would you like to do today?</p>
+                                    <button routerLink="/search" class="btn btn-raised btn-primary btn-darken-3 btn-round" jhiTranslate="dashboard.search">Search work!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Minimal statistics section start -->
+        <section id="minimal-statistics">
+            <div class="row" matchHeight="card">
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="media">
+                                    <div class="media-body text-left">
+                                        <h3 class="mb-1 danger">{{projectsAvailable}}</h3>
+                                        <span jhiTranslate="dashboard.stats.projects">Active Projects</span>
+                                    </div>
+                                    <div class="media-right align-self-center">
+                                        <i class="icon-rocket danger font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="media">
+                                    <div class="media-body text-left">
+                                        <h3 class="mb-1 warning">{{userMessages}}</h3>
+                                        <span jhiTranslate="dashboard.stats.messages">Messages</span>
+                                    </div>
+                                    <div class="media-right align-self-center">
+                                        <i class="icon-envelope warning font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="media">
+                                    <div class="media-body text-left">
+                                        <h3 class="mb-1 primary">{{userAssinedCards}}</h3>
+                                        <span jhiTranslate="dashboard.stats.cards">Assigned cards</span>
+                                    </div>
+                                    <div class="media-right align-self-center">
+                                        <i class="icon-note primary font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="media">
+                                    <div class="media-body text-left">
+                                        <h3 class="mb-1 success">{{userFeedbacks}}</h3>
+                                        <span jhiTranslate="dashboard.stats.feedback">Feedback received</span>
+                                    </div>
+                                    <div class="media-right align-self-center">
+                                        <i class="icon-bubble success font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- // Minimal statistics section end -->
+        <!-- Content types section start -->
+        <section id="content-types">
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <div class="content-header" jhiTranslate="dashboard.daily.title">What's on your list?</div>
+                </div>
+            </div>
+            <div class="row" matchHeight ="card">
+                <div class="col-lg-8 col-md-6 col-sm-12" *ngIf="currentProjects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" jhiTranslate="dashboard.daily.project.header">Project assignments</h4>
+                            <p class="card-text" jhiTranslate="dashboard.daily.project.desc">This are the projects in which you are an active member.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <table class="table">
+                                    <thead>
+                                    <tr class="text-warning">
+                                        <th>ID</th>
+                                        <th jhiTranslate="freelancrApp.project.title">Title</th>
+                                        <th jhiTranslate="freelancrApp.project.startDate">startDate</th>
+                                        <th jhiTranslate="freelancrApp.project.deadline">Deadline</th>
+                                        <th jhiTranslate="freelancrApp.project.status">Status</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr jhiTranslate="dashboard.daily.project.no" *ngIf="currentProjects.length<1">
+                                        No projects at this point. Use our search and get to work.
+                                    </tr>
+                                    <tr *ngFor="let project of currentProjects">
+                                        <th scope="row">{{ project.id }}</th>
+                                        <td>{{ project.title }}</td>
+                                        <td>{{ project.startDate | date }}</td>
+                                        <td>{{ project.deadline | date }}</td>
+                                        <td jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}">{{ project.status }}</td>
+                                        <td>
+                                            <a [routerLink]="['../project-info', project.id ]" class="text-warning" ngbTooltip="{{'dashboard.more' | translate}}"><i class="fa fa-eye fa-lg"></i></a>
+                                            <a [routerLink]="['../board', project.id ]" class="text-warning" ngbTooltip="{{'dashboard.stats.cards' | translate}}"><i class="fa fa-address-card-o fa-lg"></i></a>
+                                            <a *ngIf="project.status.toString() != 'PUBLISHED'" href="https://github.com/afermon/{{project.gitRepo}}" target="_blank" class="text-warning" ngbTooltip="{{'freelancrApp.project.gitRepo' | translate}}"><i class="fa fa-github fa-lg"></i></a>
+                                            <a *ngIf="project.status.toString() != 'PUBLISHED'" href="https://freelancr-prod.slack.com/messages/{{project.slackChannel}}" target="_blank" class="text-warning" ngbTooltip="{{'freelancrApp.project.slackChannel' | translate}}"><i class="fa fa-slack fa-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card box-shadow-0 text-center">
+                        <div class="card-body">
+                            <div class="card-block pt-3">
+                                <div class="row d-flex">
+                                    <div class="col align-self-center">
+                                        <h4 class="card-title mt-3" jhiTranslate="dashboard.daily.support.header">Is there anything we can help with?</h4>
+                                        <p class="card-text" jhiTranslate="dashboard.daily.support.desc">Drop us a message any time you have an issue or would like to provide feedback!</p>
+                                        <a href="mailto:support@freelancr.me" class="btn btn-outline-warning btn-round" jhiTranslate="dashboard.daily.support.button">Send email</a>
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <img src="../../../content/images/pages/robot-love.png" alt="Contact" alt="element 01" width="190">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" matchHeight ="card">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card box-shadow-0 text-center">
+                        <div class="card-body">
+                            <div class="card-block pt-3">
+                                <div class="row d-flex">
+                                    <div class="col align-self-center">
+                                        <img src="../../../content/images/pages/robot-idea.png" alt="New project" alt="element 01" width="190">
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <h4 class="card-title mt-3" jhiTranslate="dashboard.daily.new.header">Did you get an idea?</h4>
+                                        <p class="card-text" jhiTranslate="dashboard.daily.new.desc">Make it a reality easily.</p>
+                                        <a routerLink="/new-project" class="btn btn-outline-success btn-round" jhiTranslate="dashboard.daily.new.button">New project</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12" *ngIf="yourProjects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" jhiTranslate="dashboard.daily.project.headerOwn">Your projects</h4>
+                            <p class="card-text" jhiTranslate="dashboard.daily.project.descOwn">Projects in which you are the administrator.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <table class="table">
+                                    <thead>
+                                    <tr class="text-success">
+                                        <th>ID</th>
+                                        <th jhiTranslate="freelancrApp.project.title">Title</th>
+                                        <th jhiTranslate="freelancrApp.project.startDate">Start Date</th>
+                                        <th jhiTranslate="freelancrApp.project.deadline">Deadline</th>
+                                        <th jhiTranslate="freelancrApp.project.endDate"> End date</th>
+                                        <th jhiTranslate="freelancrApp.project.status">Status</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr jhiTranslate="dashboard.daily.project.no" *ngIf="yourProjects.length<1">
+                                        No projects at this point. Use our search and get to work.
+                                    </tr>
+                                    <tr *ngFor="let project of yourProjects">
+                                        <th scope="row">{{ project.id }}</th>
+                                        <td>{{ project.title }}</td>
+                                        <td>{{ project.startDate | date }}</td>
+                                        <td>{{ project.deadline | date }}</td>
+                                        <td>{{ project.endDate | date }}</td>
+                                        <td jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}">{{ project.status }}</td>
+                                        <td>
+                                            <a [routerLink]="['../project-info', project.id ]" class="text-success" ngbTooltip="{{'dashboard.more' | translate}}"><i class="fa fa-eye fa-lg"></i></a>
+                                            <a [routerLink]="['../board', project.id ]" class="text-success" ngbTooltip="{{'dashboard.stats.cards' | translate}}"><i class="fa fa-address-card-o fa-lg"></i></a>
+                                            <a *ngIf="project.status.toString() != 'PUBLISHED'" href="https://github.com/afermon/{{project.gitRepo}}" target="_blank" class="text-success" ngbTooltip="{{'freelancrApp.project.gitRepo' | translate}}"><i class="fa fa-github fa-lg"></i></a>
+                                            <a *ngIf="project.status.toString() != 'PUBLISHED'" href="https://freelancr-prod.slack.com/messages/{{project.slackChannel}}" target="_blank" class="text-success" ngbTooltip="{{'freelancrApp.project.slackChannel' | translate}}"><i class="fa fa-slack fa-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Content types section end -->
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "projectProfile":{
+        "projects":"Projects",
+        "viewbtn":"View",
+        "noprojects": "This user has no projects",
+        "deadline": "Deadline",
+        "notimeline":"This user hasn't participated in any project",
+        "nofeed":"This user has no feedback"
+
+    }
+}

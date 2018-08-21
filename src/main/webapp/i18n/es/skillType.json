@@ -1,0 +1,24 @@
+
+{
+    "freelancrApp": {
+        "skillType" : {
+            "home": {
+                "title": "Tipos de habilidades",
+                "createLabel": "Crear nuevo tipo de habilidad",
+                "createOrEditLabel": "Crear o editar tipo de habilidad",
+                "search": "Buscar tipos de habilidades"
+            },
+            "created": "Un nuevo tipo de habilidad ha sido creado con el identificador {{ param }}",
+            "updated": "Un tipo de habilidad ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un tipo de habilidad ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el tipo de habilidad {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo de habilidad"
+            },
+            "name": "Nombre",
+            "logo": "Logo"
+        }
+    }
+}

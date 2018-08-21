@@ -1,0 +1,107 @@
+/* HeroSearch private styles */
+.search-result li {
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    width:195px;
+    height: 16px;
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.search-result li:hover {
+    background-color: #607D8B;
+}
+
+.search-result li a {
+    color: #888;
+    display: block;
+    text-decoration: none;
+}
+
+.search-result li a:hover {
+    color: white;
+}
+.search-result li a:active {
+    color: white;
+}
+#search-box {
+    width: 500px;
+    height: 100px;
+}
+
+
+ul.search-result {
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.skill-search-block{
+    width: 1770px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+}
+.skill-set-block{
+    width: 200px;
+    margin-bottom: 30px;
+    float: left;
+    margin-right: 0px;
+}
+
+.skill-name{
+    width: 150px;
+    margin-right: 0px;
+}
+
+ h5{
+     width: 140px;
+     margin-right: 5px;
+ }
+
+
+#field_level{
+    width: 200px;
+}
+//.card{
+//    width: 1788px;
+//}
+//.skill-card-block{
+//    width: 1785px;
+//
+//}
+#btnAdd{
+    margin-left: 30px;
+}
+
+:host /deep/ ngb-rating span {
+    font-size: 1.5rem;
+}
+// For Star
+:host /deep/ .star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+    // Filled Star
+    &.filled {
+        color: #FF8D60;
+    }
+    // Full Star
+    &.full {
+        color: #FF586B;
+    }
+    // Half Star
+    .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: #FF586B;
+        font-size: 2rem;
+    }
+}
+:host /deep/ .star {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    color: #d3d3d3;
+}

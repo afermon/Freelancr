@@ -1,0 +1,15 @@
+<jhi-page-ribbon></jhi-page-ribbon>
+<div class="wrapper nav-collapsed menu-collapsed sidebar-lg">
+    <div class="app-sidebar" data-active-color="white" data-background-color="primary" data-image="/content/images/sidebar-bg.jpg">
+        <jhi-sidebar></jhi-sidebar>
+        <div class="sidebar-background"></div>
+    </div>
+    <div class="main-panel">
+        <router-outlet name="navbar"></router-outlet>
+        <div class="main-content">
+            <router-outlet></router-outlet>
+            <router-outlet name="popup"></router-outlet>
+        </div>
+        <jhi-footer></jhi-footer>
+    </div>
+</div>

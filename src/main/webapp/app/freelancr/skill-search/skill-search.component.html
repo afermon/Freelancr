@@ -1,0 +1,124 @@
+<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="content-header" jhiTranslate="skillsearch.technical">Skills</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <ngb-alert *ngIf="isLimit" type="danger" [dismissible]="false">
+                            <span jhiTranslate="skillsearch.limit"></span>
+                        </ngb-alert>
+
+                        <ngb-alert *ngIf="isEq" [dismissible]="false">
+                            <span jhiTranslate="skillsearch.duplicated"></span> {{selectedSkill.typeName}}
+                        </ngb-alert>
+
+                        <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header px-4">
+                                <h4 class="modal-title"
+                                    jhiTranslate="projecttinfo.deleteconf">Delete
+                                    confirmation</h4>
+                                <button type="button" class="close" aria-label="Close"
+                                        (click)="d('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body px-4">
+                                <form role="form" class="form form-horizontal">
+                                    <div class="form-group row">
+                                        <div class="col-md-10">
+                                            <span
+                                                jhiTranslate="skillsearch.deleteconf"></span>
+                                            <span>{{delSkill.typeName}}</span> ?
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer px-4">
+                                <button jhiTranslate="projecttinfo.btncancel"
+                                        type="button" class="btn btn-outline-dark"
+                                        (click)="c('Close click')">Cancel
+                                </button>
+                                <button jhiTranslate="projecttinfo.btndelete"
+                                        type="button" class="btn btn-raised btn-danger"
+                                        (click)="c('Close click'); deleteSkill(delSkill)">
+                                    Delete
+                                </button>
+                            </div>
+                        </ng-template>
+                        <div class="row justify-content-md-center">
+                            <div class="text-center col-md-10 mt-4">
+                                <div class="col-md-5" style="display: inline-block">
+                                    <div class="form-group row">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend" style="width: 100%">
+                                                <span class="input-group-text"><i class="ft-search"></i></span>
+                                                <input class="form-control" type="text" #searchBox="ngModel"
+                                                       name="search" id="search"
+                                                       (keyup)="search(searchBox.value)" [(ngModel)]="addValue"
+                                                       placeholder="{{'skillsearch.searchskill' | translate}}">
+                                            </div>
+                                        </div>
+                                        <ul *ngIf="searchSkills" class="overflow-auto">
+                                            <button *ngFor="let searchSkill of searchSkills | slice:0:5"
+                                                    (click)="assignSkill(searchSkill)"
+                                                    class="btn btn-raised btn-round btn-info"
+                                                    style="display: inline-block; margin-left: 4px; margin-right: 4px">
+                                                {{ searchSkill.name }} +
+                                            </button>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 text-center" *ngIf="selectedSkillType">
+                                <div class="text-center display-inline-block col-md-3">
+                                    <h6 class="display-block" jhiTranslate="skillsearch.skill">Skill</h6>
+                                    <a href="javascript:void(0)"
+                                       class="display-block btn btn-raised btn-round btn-warning">{{
+                                        selectedSkill.typeName }}</a>
+                                </div>
+                                <div class="display-inline-block col-md-4">
+                                    <h6 class="display-block" jhiTranslate="skillsearch.rate">Rate your knowledge</h6>
+                                    <ngb-rating class="display-block" [(rate)]="currentRate" max="5">
+                                        <ng-template let-fill="fill">
+                                            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                        </ng-template>
+                                    </ngb-rating>
+                                </div>
+                                <button style="margin: 0px" class="btn btn-raised btn-round btn-warning"
+                                        [disabled]="!selectedSkill"
+                                        (click)="validateEqSkill()" id="btnAdd" jhiTranslate="skillsearch.add">Add
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div *ngIf="!(allSkills?.length > 0)">
+                            <h4 jhiTranslate="skillsearch.noskills">No tiene habilidades asignados</h4>
+                        </div>
+
+                        <div *ngIf="allSkills?.length > 0">
+                            <div class="display-inline-block col-md-2 text-center" *ngFor="let skill of allSkills">
+                                <div class="btn-group btn-group-justified btn-group-raised btn-group-lg">
+                                    <a href="javascript:void(0)" class="btn btn-raised btn-primary">{{skill.typeName}}</a>
+                                    <a class="btn btn-raised btn-danger" (click)="open(content, skill)"><i class="icon-trash"></i></a>
+                                </div>
+                                <ngb-rating [readonly]="true" class="display-block text-center" [rate]="toStars(skill)" max="5">
+                                    <ng-template let-fill="fill">
+                                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                    </ng-template>
+                                </ngb-rating>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

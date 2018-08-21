@@ -1,0 +1,30 @@
+
+{
+    "freelancrApp": {
+        "position" : {
+            "home": {
+                "title": "Puestos",
+                "createLabel": "Crear nuevo puesto",
+                "createOrEditLabel": "Crear o editar puesto",
+                "search": "Buscar puestos"
+            },
+            "created": "Un nuevo puesto ha sido creado con el identificador {{ param }}",
+            "updated": "Un puesto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un puesto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el puesto {{ id }}?"
+            },
+            "detail": {
+                "title": "Puesto"
+            },
+            "title": "Título",
+            "description": "Descripción",
+            "application": "Aplicación",
+            "card": "Tarjeta",
+            "type": "Tipo",
+            "skill": "Habilidad",
+            "hiredUsers": "Hired Users",
+            "project": "Proyecto"
+        }
+    }
+}

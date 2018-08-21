@@ -1,0 +1,27 @@
+
+{
+    "freelancrApp": {
+        "applicationMessage" : {
+            "home": {
+                "title": "Mensaje de aplicación",
+                "createLabel": "Crear un nuevo mensaje de aplicación",
+                "createOrEditLabel": "Crear o editar un mensaje de aplicación",
+                "search": "Buscar por mensajes de aplicación"
+            },
+            "created": "Un nuevo mensaje de aplicación ha sido creado con el identificador {{ param }}",
+            "updated": "Un mensaje de aplicación ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un mensaje de aplicación ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el mensaje de aplicación {{ id }}?"
+            },
+            "detail": {
+                "title": "Mensaje de aplicación"
+            },
+            "message": "Mensaje",
+            "status": "Estado",
+            "application": "Aplicación",
+            "sender": "Remitente",
+            "receiver": "Destinatario"
+        }
+    }
+}

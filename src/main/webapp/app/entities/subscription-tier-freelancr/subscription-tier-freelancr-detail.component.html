@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+    <div class="container-fluid" *ngIf="subscriptionTier">
+        <h2><span jhiTranslate="freelancrApp.subscriptionTier.detail.title">Subscription Tier</span> {{subscriptionTier.id}}</h2>
+        <hr>
+        <jhi-alert-error></jhi-alert-error>
+        <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="freelancrApp.subscriptionTier.name">Name</span></dt>
+            <dd>
+                <span>{{subscriptionTier.name}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.subscriptionTier.description">Description</span></dt>
+            <dd>
+                <span>{{subscriptionTier.description}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.subscriptionTier.price">Price</span></dt>
+            <dd>
+                <span>{{subscriptionTier.price}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.subscriptionTier.user">User</span></dt>
+            <dd>
+                <span *ngFor="let user of subscriptionTier.users; let last = last">
+                    {{user.login}}{{last ? '' : ', '}}
+                </span>
+            </dd>
+        </dl>
+
+        <button type="submit"
+                (click)="previousState()"
+                class="btn btn-info btn-raised">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        </button>
+
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'cms/subscription-tier-freelancr/'+ subscriptionTier.id + '/edit'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge"
+                class="btn btn-primary btn-raised">
+            <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
+    </div>
+</div>

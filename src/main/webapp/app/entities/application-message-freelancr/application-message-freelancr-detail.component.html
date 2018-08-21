@@ -1,0 +1,44 @@
+
+<div *ngIf="applicationMessage">
+    <h2><span jhiTranslate="freelancrApp.applicationMessage.detail.title">Application Message</span> {{applicationMessage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.applicationMessage.message">Message</span></dt>
+        <dd>
+            <span>{{applicationMessage.message}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.applicationMessage.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'freelancrApp.MessageStatus.' + applicationMessage.status}}">{{applicationMessage.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.applicationMessage.application">Application</span></dt>
+        <dd>
+            <div *ngIf="applicationMessage.applicationId">
+                <a [routerLink]="['/application-freelancr', applicationMessage.applicationId]">{{applicationMessage.applicationId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.applicationMessage.sender">Sender</span></dt>
+        <dd>
+            {{applicationMessage.senderLogin}}
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.applicationMessage.receiver">Receiver</span></dt>
+        <dd>
+            {{applicationMessage.receiverLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'application-message-freelancr/'+ applicationMessage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

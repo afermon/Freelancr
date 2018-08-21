@@ -1,0 +1,32 @@
+{
+    "ProjectStart" : {
+        "title": "Project status",
+        "start": {
+            "question": "Would you like to start this project?",
+            "description": "This project has not been started. The process below will create a GitHub repository and Slack channel for the team. All current hired users will be added to them as well.",
+            "link": "Start Project"
+        },
+        "finish": {
+            "question": "Would you like to finish this project?",
+            "description": "This will remove collaborators access from Slack and GitHub repositories. Please perform this action only when the project is completely finished.",
+            "link": "Finish Project"
+        },
+        "workspace": {
+            "title": "Workspace",
+            "slack": "Slack Channel",
+            "github": "Github Repository"
+        },
+        "working": "Working..",
+        "slackMessages": "Latest Slack Messages",
+        "repoEmpty": "Repo is empty.",
+        "slackEmpty": "Channel is empty.",
+        "Feedback" : "Feedback",
+        "GiveFeedback" : "Give Feedback",
+        "requiredFeedback":"The feedback is required.",
+        "shortFeedback":"Your feedback is required to be at least 4 character.",
+        "longFeedback":"Your feedback cannot be longer than 250 characters.",
+        "feedbackInfo":"Give feedback to the users that worked on this project, you can rate them from one to five stars and send a comment with your opinion on how he or she worked.",
+        "feedbackSuccess":"<strong>Success!</strong> Feedback was sent.",
+        "send":"Send"
+    }
+}

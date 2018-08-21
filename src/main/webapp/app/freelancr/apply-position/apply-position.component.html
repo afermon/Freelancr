@@ -1,0 +1,155 @@
+<section *ngIf="!success && !applied && !owner && !(currentProject?.status.toString() === 'FINISHED')">
+    <div class="row match-height justify-content-md-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center card-title" id="basic-layout-form-center"><span
+                        jhiTranslate="apply.info1"></span>
+                        <strong placement="top"
+                                ngbTooltip="{{currentPosition.description}}">{{currentPosition.title}}</strong>
+                        <span jhiTranslate="apply.info2"></span> {{currentProject.title}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form name="form" role="form" (ngSubmit)="sendApplication()" #applicationformValidate="ngForm">
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-8">
+                                    <div class="form-body">
+
+                                        <label for="bid" jhiTranslate="apply.bid">Bid</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input currencyMask
+                                                   [(ngModel)]="application.bid"
+                                                   [options]="{ prefix: ' ', thousands: '.', decimal: ',', align: 'left' }"
+                                                   class="form-control border-primary" id="bid" autocomplete="off"
+                                                   name="bid" #bid="ngModel" required
+                                                   placeholder="{{'apply.bidplaceholder' | translate}}">
+                                        </div>
+                                        <div *ngIf="bid.dirty && bid.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="bid.errors.required"
+                                                   jhiTranslate="apply.bidrequired">
+                                            </small>
+                                        </div>
+                                        <div *ngIf="!userFreelancr.resumeLink">
+                                            <label jhiTranslate="registerForm.upload">Your resume</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ft-file"></i></span>
+                                                </div>
+                                            <input type="file"
+                                                   class="form-control border-primary"
+                                                   (change)="selectFile($event)">
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!userFreelancr.personalLink">
+                                            <label for="personal" jhiTranslate="registerForm.wevbsite">Link</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ft-link"></i></span>
+                                                </div>
+                                            <input type="text"
+                                                   class="form-control border-primary"
+                                                   name="personal"
+                                                   id="personal"
+                                                   #personal="ngModel" minlength="4"
+                                                   pattern="[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+                                                   placeholder="{{'registerForm.websiteph' | translate}}"
+                                                   [(ngModel)]="pLink">
+                                            </div>
+                                            <div *ngIf="personal.dirty && personal.invalid">
+                                                <small class="form-text text-danger"
+                                                       jhiTranslate="registerForm.weberror1"
+                                                       *ngIf="personal.errors.minlength">
+                                                    The link is required to be at least 4 characters long
+                                                </small>
+                                                <small class="form-text text-danger"
+                                                       jhiTranslate="registerForm.weberror2"
+                                                       *ngIf="personal.errors.pattern">
+                                                    The link you entered is invalid
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label jhiTranslate="apply.msg">Message</label>
+                                            <quill-editor [(ngModel)]="applicationMessage.message"
+                                                          [style]="{height: '200px'}"
+                                                          [ngModelOptions]="{standalone: true}"></quill-editor>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions right">
+                                <button type="submit" class="btn btn btn-outline-primary"
+                                        [disabled]="applicationformValidate.form.invalid || !applicationMessage.message"
+                                        jhiTranslate="apply.btn">
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="success" class="col-md-7" style="margin: auto">
+    <div class="card bg-success">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center" jhiTranslate="apply.success">
+                        <h4><strong>Success!</strong></h4> Your application has been sent for evaluation. Good Luck!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="applied" class="col-md-7" style="margin: auto">
+    <div class="card bg-warning">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center" jhiTranslate="apply.applied">
+                        <h4><strong>Warning!</strong></h4> You already applied to this position
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="owner" class="col-md-7" style="margin: auto">
+    <div class="card bg-warning">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center" jhiTranslate="apply.owner">
+                        <h4><strong>Warning!</strong></h4> You can't apply to a position from your project
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="currentProject?.status.toString() === 'FINISHED'" class="col-md-7" style="margin: auto">
+    <div class="card bg-warning">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center" jhiTranslate="apply.finished">
+                        <h4><strong>Warning!</strong></h4> You can't apply to a position from your project
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

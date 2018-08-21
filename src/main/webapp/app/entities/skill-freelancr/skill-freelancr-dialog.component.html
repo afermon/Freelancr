@@ -1,0 +1,54 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySkillLabel" jhiTranslate="freelancrApp.skill.home.createOrEditLabel">Create or edit a Skill</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!skill.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="skill.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.skill.level" for="field_level">Level</label>
+            <select class="form-control" name="level" [(ngModel)]="skill.level" id="field_level"  required>
+            <option value="JUNIOR">{{'freelancrApp.SkillLevel.JUNIOR' | translate}}</option>
+            <option value="MID_LEVEL">{{'freelancrApp.SkillLevel.MID_LEVEL' | translate}}</option>
+            <option value="SENIOR">{{'freelancrApp.SkillLevel.SENIOR' | translate}}</option>
+            <option value="SME">{{'freelancrApp.SkillLevel.SME' | translate}}</option>
+            <option value="NO_EXPERIENCE">{{'freelancrApp.SkillLevel.NO_EXPERIENCE' | translate}}</option>
+        </select>
+            <div [hidden]="!(editForm.controls.level?.dirty && editForm.controls.level?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.level?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.skill.type" for="field_type">Type</label>
+            <select class="form-control" id="field_type" name="type" [(ngModel)]="skill.typeId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="skillTypeOption.id" *ngFor="let skillTypeOption of skilltypes; trackBy: trackSkillTypeById">{{skillTypeOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="freelancrApp.skill.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" multiple name="user" [(ngModel)]="skill.users">
+                <option [ngValue]="getSelected(skill.users, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

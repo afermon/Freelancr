@@ -1,0 +1,24 @@
+{
+    "skillsearch":{
+        "noskills":"You don't have any skills assigned",
+        "addskills":"Add a skill",
+        "technical":"Technical skills",
+        "info":"Add or change your skills",
+        "limit":"<strong>Limit reached!</strong> 20 is the max of skills you can add.",
+        "JUNIOR":"Junior",
+        "MID_LEVEL":"Mid",
+        "SENIOR":"Senior",
+        "SME":"SME",
+        "NO_EXPERIENCE":"No experience",
+        "addchangeskill":"Add or change your skills",
+        "add": "Add",
+        "searchskill": "Search for skill types",
+        "skilltype": "Skill type",
+        "duplicated": "<strong>Skill duplicated!</strong> You already have: ",
+        "deleteconf":"Are you sure you want to delete the skill: ",
+        "select":"Select your skill level",
+        "levelreq":"You have to choose a skill level",
+        "skill":"Skill",
+        "rate":"Rate your knowledge"
+    }
+}

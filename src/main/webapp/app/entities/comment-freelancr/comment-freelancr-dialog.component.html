@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCommentLabel" jhiTranslate="freelancrApp.comment.home.createOrEditLabel">Create or edit a Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!comment.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="comment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.comment.timestamp" for="field_timestamp">Timestamp</label>
+            <div class="d-flex">
+                <input id="field_timestamp" type="datetime-local" class="form-control" name="timestamp" [(ngModel)]="comment.timestamp"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.comment.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                [(ngModel)]="comment.comment" required minlength="4" maxlength="250"/>
+            <div [hidden]="!(editForm.controls.comment?.dirty && editForm.controls.comment?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comment?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comment?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comment?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 250 }">
+                   This field cannot be longer than 250 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.comment.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="comment.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.comment.project" for="field_project">Project</label>
+            <select class="form-control" id="field_project" name="project" [(ngModel)]="comment.projectId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="projectOption.id" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

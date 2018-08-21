@@ -1,0 +1,27 @@
+
+{
+    "freelancrApp": {
+        "application" : {
+            "home": {
+                "title": "Aplicaciones",
+                "createLabel": "Crear una nueva aplicación",
+                "createOrEditLabel": "Crear o editar una aplicación",
+                "search": "Buscar aplicaciones"
+            },
+            "created": "Una nueva aplicación ha sido creada con el identificador {{ param }}",
+            "updated": "Una aplicación ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una aplicación ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar la aplicación {{ id }}?"
+            },
+            "detail": {
+                "title": "Aplicación"
+            },
+            "status": "Estado",
+            "bid": "Oferta",
+            "messages": "Mensaje",
+            "user": "Usuario",
+            "position": "Posición"
+        }
+    }
+}

@@ -1,0 +1,78 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myApplicationMessageLabel" jhiTranslate="freelancrApp.applicationMessage.home.createOrEditLabel">Create or edit a Application Message</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!applicationMessage.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="applicationMessage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.applicationMessage.message" for="field_message">Message</label>
+            <input type="text" class="form-control" name="message" id="field_message"
+                [(ngModel)]="applicationMessage.message" required minlength="4" maxlength="2000"/>
+            <div [hidden]="!(editForm.controls.message?.dirty && editForm.controls.message?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.message?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.message?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.message?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 2000 }">
+                   This field cannot be longer than 2000 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.applicationMessage.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="applicationMessage.status" id="field_status"  required>
+                <option value="NEW">{{'freelancrApp.MessageStatus.NEW' | translate}}</option>
+                <option value="READ">{{'freelancrApp.MessageStatus.READ' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.applicationMessage.application" for="field_application">Application</label>
+            <select class="form-control" id="field_application" name="application" [(ngModel)]="applicationMessage.applicationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="applicationOption.id" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.applicationMessage.sender" for="field_sender">Sender</label>
+            <select class="form-control" id="field_sender" name="sender" [(ngModel)]="applicationMessage.senderId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.applicationMessage.receiver" for="field_receiver">Receiver</label>
+            <select class="form-control" id="field_receiver" name="receiver" [(ngModel)]="applicationMessage.receiverId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

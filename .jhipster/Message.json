@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "reply",
+            "otherEntityName": "message",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "message"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sender",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "receiver",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "timestamp",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "topic",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 4,
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 4,
+            "fieldValidateRulesMaxlength": 2000
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "MessageStatus",
+            "fieldValues": "NEW,READ",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180619235047",
+    "entityTableName": "message",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "freelancr"
+}

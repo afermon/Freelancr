@@ -1,0 +1,35 @@
+{
+    "dashboard": {
+        "title": "Welcome to Freelancr, all you need in a single place!",
+        "welcome": "Welcome {{username}}!",
+        "question": "What would you like to do today?",
+        "search": "Search work!",
+        "stats": {
+            "projects": "Active Projects",
+            "messages": "Messages",
+            "cards": "Assigned cards",
+            "feedback": "Feedback received"
+        },
+        "daily": {
+            "title": "What's on your list?",
+            "new": {
+                "header": "Did you get an idea?",
+                "desc": "Make it a reality easily.",
+                "button": "New project"
+            },
+            "project": {
+                "header": "Project assignments",
+                "headerOwn": "Your projects",
+                "desc": "This are the projects in which you are an active member.",
+                "descOwn": "Projects in which you are the administrator.",
+                "no": "No projects at this point. Use our search and get to work."
+            },
+            "support": {
+                "header": "Is there anything we can help with?",
+                "desc": "Drop us a message any time you have an issue or would like to provide feedback!",
+                "button": "Send email"
+            }
+        },
+        "more":"See more."
+    }
+}

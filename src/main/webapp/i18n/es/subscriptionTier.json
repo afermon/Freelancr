@@ -1,0 +1,26 @@
+
+{
+    "freelancrApp": {
+        "subscriptionTier" : {
+            "home": {
+                "title": "Niveles de suscripción",
+                "createLabel": "Crear nuevo nivel de suscipción",
+                "createOrEditLabel": "Crear o editar nivel de suscipción",
+                "search": "Buscar niveles de suscipción"
+            },
+            "created": "Un nuevo nivel de suscipción ha sido creado con el identificador {{ param }}",
+            "updated": "Un nivel de suscipción ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un nivel de suscipción ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el nivel de suscipción {{ id }}?"
+            },
+            "detail": {
+                "title": "Nivel de suscipción"
+            },
+            "name": "Nombre",
+            "description": "Descripción",
+            "price": "Precio",
+            "user": "Usuario"
+        }
+    }
+}

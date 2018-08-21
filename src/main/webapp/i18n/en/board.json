@@ -1,0 +1,32 @@
+{
+    "board": {
+        "title": "Task Board ",
+        "filter": "Filter (by prefix)",
+        "table": {
+            "prefix": "Prefix",
+            "properties": "Properties"
+        },
+        "adminmsg": "This is the project task board where you can manage all the tasks that need to be completed for your project. <br> The cards can be dragged over to other lists when the conditions are met. <br>Hover over each individual list for more information.",
+        "usermsg": "This is the project task board where you can see all the tasks that need to be completed for the project. <br>Here you can move to other lists the cards that the project administrator has assigned to you. <br>Hover over each individual list for more information.",
+        "created": "<strong>Success!</strong> A new card has been created.",
+        "edited": "<strong>Success!</strong> The card has been changed.",
+        "deleted": "<strong>Success!</strong> The card has been deleted.",
+        "todo":"To Do",
+        "tooltip1":"This list is where all the new cards are placed, all the cards that are not in development should be placed here",
+        "progress":"In Progress",
+        "tooltip2":"Any card being worked on goes here. The freelancr assigned to work on it moves it over when he or she is ready to start the task",
+        "verify":"To Verify",
+        "tooltip3":"All the cards that are finished but require checking of completion should be placed here",
+        "resolved":"Resolved",
+        "tooltip4":"All the cards that have been verified of being completed go here. Only the project administrators are allowed to move cards on this list",
+        "adminerror":"Only project administrators are allowed to move cards here",
+        "modaltitle":"Create or edit a card. All fields are required",
+        "confirmcard":"Are you sure you want to delete the card: ",
+        "ptitle":"Card title",
+        "pdesc":"Card description",
+        "pdeadline":"Card deadline",
+        "assigned":"Assigned position",
+        "usertitle":"Assigned user"
+    }
+
+}

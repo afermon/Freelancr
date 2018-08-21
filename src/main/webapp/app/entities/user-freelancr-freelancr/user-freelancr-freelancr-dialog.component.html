@@ -1,0 +1,215 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserFreelancrLabel" jhiTranslate="freelancrApp.userFreelancr.home.createOrEditLabel">Create or edit a User Freelancr</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!userFreelancr.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="userFreelancr.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="userFreelancr.description" minlength="4" maxlength="500"/>
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.phone" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                [(ngModel)]="userFreelancr.phone" minlength="4" maxlength="25" pattern="^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$"/>
+            <div [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.phone?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.phone?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 25 }">
+                   This field cannot be longer than 25 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.phone?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Phone' }">
+                    This field should follow pattern for "Phone".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="userFreelancr.address" minlength="4" maxlength="150"/>
+            <div [hidden]="!(editForm.controls.address?.dirty && editForm.controls.address?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.address?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.address?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 150 }">
+                   This field cannot be longer than 150 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.birthDate" for="field_birthDate">Birth Date</label>
+            <div class="input-group">
+                <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker  #birthDateDp="ngbDatepicker" [(ngModel)]="userFreelancr.birthDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.weeklyAvailability" for="field_weeklyAvailability">Weekly Availability</label>
+            <input type="number" class="form-control" name="weeklyAvailability" id="field_weeklyAvailability"
+                [(ngModel)]="userFreelancr.weeklyAvailability" min="0" max="168"/>
+            <div [hidden]="!(editForm.controls.weeklyAvailability?.dirty && editForm.controls.weeklyAvailability?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.weeklyAvailability?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.weeklyAvailability?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 168 }">
+                    This field cannot be more than 168.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.weeklyAvailability?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.ranking" for="field_ranking">Ranking</label>
+            <input type="number" class="form-control" name="ranking" id="field_ranking"
+                [(ngModel)]="userFreelancr.ranking" min="0"/>
+            <div [hidden]="!(editForm.controls.ranking?.dirty && editForm.controls.ranking?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.ranking?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.ranking?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="userFreelancr.status" id="field_status" >
+                <option value="ACTIVE">{{'freelancrApp.UserStatus.ACTIVE' | translate}}</option>
+                <option value="BANNED">{{'freelancrApp.UserStatus.BANNED' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.linkedInUser" for="field_linkedInUser">Linked In User</label>
+            <input type="text" class="form-control" name="linkedInUser" id="field_linkedInUser"
+                [(ngModel)]="userFreelancr.linkedInUser" minlength="4" maxlength="50" pattern="^\S*$"/>
+            <div [hidden]="!(editForm.controls.linkedInUser?.dirty && editForm.controls.linkedInUser?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.linkedInUser?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.linkedInUser?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 50 }">
+                   This field cannot be longer than 50 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.linkedInUser?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Linked In User' }">
+                    This field should follow pattern for "Linked In User".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.gitUser" for="field_gitUser">Git User</label>
+            <input type="text" class="form-control" name="gitUser" id="field_gitUser"
+                [(ngModel)]="userFreelancr.gitUser" maxlength="50" pattern="^\S*$"/>
+            <div [hidden]="!(editForm.controls.gitUser?.dirty && editForm.controls.gitUser?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.gitUser?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 50 }">
+                   This field cannot be longer than 50 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.gitUser?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Git User' }">
+                    This field should follow pattern for "Git User".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.paypalAccount" for="field_paypalAccount">Paypal Account</label>
+            <input type="text" class="form-control" name="paypalAccount" id="field_paypalAccount"
+                [(ngModel)]="userFreelancr.paypalAccount" minlength="4" maxlength="150" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}"/>
+            <div [hidden]="!(editForm.controls.paypalAccount?.dirty && editForm.controls.paypalAccount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.paypalAccount?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.paypalAccount?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 150 }">
+                   This field cannot be longer than 150 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.paypalAccount?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Paypal Account' }">
+                    This field should follow pattern for "Paypal Account".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.personalLink" for="field_personalLink">Personal Link</label>
+            <input type="text" class="form-control" name="personalLink" id="field_personalLink"
+                [(ngModel)]="userFreelancr.personalLink" minlength="4" maxlength="1000"/>
+            <div [hidden]="!(editForm.controls.personalLink?.dirty && editForm.controls.personalLink?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.personalLink?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.personalLink?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
+                   This field cannot be longer than 1000 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.resumeLink" for="field_resumeLink">Resume Link</label>
+            <input type="text" class="form-control" name="resumeLink" id="field_resumeLink"
+                [(ngModel)]="userFreelancr.resumeLink" minlength="4" maxlength="1000"/>
+            <div [hidden]="!(editForm.controls.resumeLink?.dirty && editForm.controls.resumeLink?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.resumeLink?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.resumeLink?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
+                   This field cannot be longer than 1000 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.userFreelancr.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="userFreelancr.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

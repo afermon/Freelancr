@@ -1,0 +1,522 @@
+<section id="horizontal-form-layouts">
+    <div class="container">
+        <div class="row full-height-vh">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-colored-controls"
+                            jhiTranslate="projectform.title"></h4>
+                        <p class="mb-0" jhiTranslate="projectform.registerInfo"></p>
+                    </div>
+                    <div class="board-inner" id="status-buttons">
+                        <ul class="nav nav-tabs nav-fill" id="myTab">
+                            <div class="liner"></div>
+                            <li class="active nav-item">
+                                <a [ngClass]="(page==='Basic')?'nav-link active':'nav-link'" uiSrefActive="active"
+                                   uiSref="personal" data-toggle="tab"
+                                   title="personal">
+                <span class="round-tabs one">
+                    <i class="ft-info"></i>
+                </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a [ngClass]="(page==='Objectives')?'nav-link active':'nav-link'" uiSrefActive="active"
+                                   uiSref="work" data-toggle="tab" title="work">
+                <span class="round-tabs two">
+                    <i class="ft-check-circle"></i>
+                </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a [ngClass]="(page==='Positions')?'nav-link active':'nav-link'" uiSrefActive="active"
+                                   uiSref="address" data-toggle="tab" title="address">
+                <span class="round-tabs three">
+                    <i class="ft-briefcase"></i>
+                </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a [ngClass]="(page==='Confirmation')?'nav-link active':'nav-link'"
+                                   uiSrefActive="active"
+                                   uiSref="result" data-toggle="tab" title="completed">
+                <span class="round-tabs four">
+                    <i class="ft-thumbs-up"></i>
+                </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            <form name="form" role="form" (ngSubmit)="register()" #projectformValidate="ngForm">
+                                <div class="form-body">
+                                    <h4 *ngIf="basicstep" class="form-section" jhiTranslate="projectform.info"></h4>
+                                    <div class="row justify-content-center">
+                                        <div name="page-top" class="col-8">
+
+                                            <div class="alert alert-danger" *ngIf="invalidDate"
+                                                 jhiTranslate="projectform.validate.errors.invaliddate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="basicstep" class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group row">
+                                                <label class="col-md-5 form-control-label" for="title"
+                                                       jhiTranslate="projectform.labels.title">
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="title"
+                                                           autocomplete="off"
+                                                           class="form-control border-primary"
+                                                           [(ngModel)]="project.title"
+                                                           name="title" #title="ngModel"
+                                                           placeholder="{{'projectform.placeholders.title' | translate}}"
+                                                           required minlength="4" maxlength="100">
+                                                    <div *ngIf="title.dirty && title.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="title.errors.required"
+                                                               jhiTranslate="projectform.validate.title.required">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="title.errors.minlength"
+                                                               jhiTranslate="projectform.validate.title.short">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="title.errors.maxlength"
+                                                               jhiTranslate="projectform.validate.title.long">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-5 form-control-label" for="deadline"
+                                                       jhiTranslate="projectform.labels.deadline">
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="date" id="deadline"
+                                                           autocomplete="off"
+                                                           class="form-control border-primary"
+                                                           [(ngModel)]="project.deadline"
+                                                           name="deadline" #deadline="ngModel"
+                                                           required>
+                                                    <div *ngIf="deadline.dirty && deadline.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="deadline.errors.required"
+                                                               jhiTranslate="projectform.validate.deadline.required">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-5 label-control" for="description"
+                                                       jhiTranslate="projectform.labels.description"></label>
+                                                <div class="col-md-12">
+                                                            <textarea id="description" rows="5"
+                                                                      class="form-control col-md-12 border-primary"
+                                                                      name="description"
+                                                                      [(ngModel)]="project.description"
+                                                                      #description="ngModel"
+                                                                      required minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.description' | translate}}">
+                                                            </textarea>
+                                                    <div *ngIf="description.dirty && description.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="description.errors.required"
+                                                               jhiTranslate="projectform.validate.description.required">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="description.errors.minlength"
+                                                               jhiTranslate="projectform.validate.description.short">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="description.errors.maxlength"
+                                                               jhiTranslate="projectform.validate.description.long">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 *ngIf="objectivestep" class="form-section"
+                                        jhiTranslate="projectform.objetctives"></h4>
+                                    <div class="row justify-content-center">
+                                        <div name="page-top" class="col-8">
+                                            <div class="alert alert-danger" *ngIf="noGoals"
+                                                 jhiTranslate="projectform.validate.errors.nogoals">
+                                                <strong>You have no goals!</strong> You need to assign at least one goal
+                                                to your
+                                                project
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="objectivestep" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-5 form-control-label" for="goaltitle"
+                                                       jhiTranslate="projectform.labels.goaltitle"></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="goaltitle"
+                                                           autocomplete="off"
+                                                           class="form-control border-primary"
+                                                           [(ngModel)]="goal.title"
+                                                           name="goaltitle" #goaltitle="ngModel"
+                                                           placeholder="{{'projectform.placeholders.goaltitle' | translate}}"
+                                                           minlength="4" maxlength="100">
+                                                    <div *ngIf="goaltitle.dirty && goaltitle.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaltitle.errors.required"
+                                                               jhiTranslate="projectform.validate.goaltitle.required">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaltitle.errors.minlength"
+                                                               jhiTranslate="projectform.validate.goaltitle.short">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaltitle.errors.maxlength"
+                                                               jhiTranslate="projectform.validate.goaltitle.long">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-5 label-control" for="goaldescription"
+                                                       jhiTranslate="projectform.labels.goaldescription"></label>
+                                                <div class="col-md-9">
+                                                            <textarea id="goaldescription" rows="5"
+                                                                      class="form-control border-primary"
+                                                                      name="goaldescription"
+                                                                      [(ngModel)]="goal.description"
+                                                                      #goaldescription="ngModel"
+                                                                      minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.goaldescription' | translate}}">
+                                                            </textarea>
+                                                    <div
+                                                        *ngIf="goaldescription.dirty && goaldescription.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaldescription.errors.required"
+                                                               jhiTranslate="projectform.validate.goaldescription.required">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaldescription.errors.minlength"
+                                                               jhiTranslate="projectform.validate.goaldescription.short">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="goaldescription.errors.maxlength"
+                                                               jhiTranslate="projectform.validate.goaldescription.long">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" (click)="assignGoal()"
+                                                    jhiTranslate="projectform.validate.buttons.assigngoal"
+                                                    [disabled]="(!goaltitle.value || !goaldescription.value || goaltitle.invalid || goaldescription.invalid)"
+                                                    class="btn btn-outline-primary">
+                                            </button>
+
+                                        </div>
+                                        <div *ngIf="!isEmpty(goals)" class="col-lg-5 col-md-7 col-sm-11">
+                                            <div class="card">
+                                                <div class="card-body border border-primary rounded">
+                                                    <div style="padding-top: 8px">
+                                                        <h6 style="text-align: center"
+                                                            jhiTranslate="projectform.assignedgoals"></h6>
+                                                        <small style="text-align: center"
+                                                               jhiTranslate="projectform.validate.errors.maxgoals"
+                                                               class="form-text text-danger"
+                                                               *ngIf="maxGoals">
+                                                        </small>
+                                                    </div>
+                                                    <div *ngIf="!isEmpty(goals)">
+                                                        <ul *ngFor="let g of goals" class="list-group">
+                                                            <li class="list-group-item">
+                                                                <button type="button" (click)="removeGoal(g)"
+                                                                        class="btn btn-sm btn-danger btn-raised float-right">
+                                                                    <i class="icon-trash"></i>
+                                                                </button>
+                                                                <h6 style="margin: 0px; font-size: 15px">
+                                                                    {{g.title}}</h6>
+                                                                <p style="margin: 0px; font-size: 14px">
+                                                                    {{g.description}}</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 *ngIf="positionstep" class="form-section"
+                                        jhiTranslate="projectform.position"></h4>
+                                    <div class="row justify-content-center">
+                                        <div name="page-top" class="col-8">
+                                            <div class="alert alert-danger" *ngIf="noPositions"
+                                                 jhiTranslate="projectform.validate.errors.nopositions">
+                                                <strong>You have no positions!</strong> You need to assign at least one
+                                                position
+                                                to your project
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="positionstep" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-8 label-control" for="possearch"
+                                                       jhiTranslate="projectform.labels.possearch">Search for
+                                                    position types</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" id="possearch"
+                                                           autocomplete="off"
+                                                           type="text" #possearch
+                                                           (keyup)="searchPosition(possearch.value)"
+                                                           placeholder="{{'projectform.placeholders.possearch' | translate}}"
+                                                           style="margin-bottom: 10px">
+                                                    <ul *ngIf="searchPositions" class="list-group" style="position: absolute; z-index: 9999;">
+                                                        <li class="list-group-item"
+                                                            *ngFor="let searchPosition of searchPositions | slice:0:4"
+                                                            (click)="assignPositionType(searchPosition);possearch.value=''">
+                                                            {{ searchPosition.name }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-5 label-control" for="posdesc"
+                                                       jhiTranslate="projectform.labels.posdesc"></label>
+                                                <div class="col-md-9">
+                                                            <textarea id="posdesc" rows="5"
+                                                                      class="form-control border-primary"
+                                                                      name="posdesc"
+                                                                      [(ngModel)]="position.description"
+                                                                      #posdesc="ngModel"
+                                                                      minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.posdesc' | translate}}">
+                                                            </textarea>
+                                                    <div
+                                                        *ngIf="posdesc.dirty && posdesc.invalid">
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="posdesc.errors.required"
+                                                               jhiTranslate="projectform.validate.posdesc.required">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="posdesc.errors.minlength"
+                                                               jhiTranslate="projectform.validate.posdesc.short">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="posdesc.errors.maxlength"
+                                                               jhiTranslate="projectform.validate.posdesc.long">
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-5 form-control-label" for="goaltitle"
+                                                       jhiTranslate="projectform.labels.postitle">
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="postitle"
+                                                           autocomplete="off"
+                                                           class="form-control border-primary"
+                                                           [(ngModel)]="position.title"
+                                                           readonly #postitle
+                                                           name="postitle"
+                                                           placeholder="{{'projectform.placeholders.postitle' | translate}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-8 label-control" for="skillsearch"
+                                                       jhiTranslate="projectform.labels.skillsearch"></label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" id="skillsearch"
+                                                           autocomplete="off"
+                                                           type="text" #skillsearch
+                                                           (keyup)="searchSkillTypes(skillsearch.value)"
+                                                           placeholder="{{'projectform.placeholders.skillsearch' | translate}}"
+                                                           style="margin-bottom: 10px">
+                                                    <ul *ngIf="searchSkills" class="list-group" container="body" style="position: absolute; z-index: 9999;">
+                                                        <li class="list-group-item" style="padding-top: 5px; padding-bottom: 4px"
+                                                            *ngFor="let searchSkill of searchSkills | slice:0:4"
+                                                            (click)="assignPosSkill(searchSkill); skillsearch.value=''">
+                                                            {{ searchSkill.name }}
+                                                        </li>
+                                                    </ul>
+                                                    <div class="col-md-9" *ngIf="position.skills">
+                                                        <div style="display: inline-block; margin: 4px"
+                                                             *ngFor="let skill of position.skills">
+                                                                <span type="button"
+                                                                      class="badge badge-primary" style="color: white">{{skill.name}}<span
+                                                                    (click)="removeSkill(skill)"> X</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <small class="form-text text-danger"
+                                                           jhiTranslate="projectform.validate.errors.maxskills"
+                                                           *ngIf="maxSkills">
+                                                    </small>
+                                                    <small class="form-text text-danger"
+                                                           *ngIf="isEq">
+                                                        <span
+                                                            jhiTranslate="projectform.validate.errors.iseq"></span><span> {{isEq}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-5 form-control-label" for="amount" jhiTranslate="projectform.labels.amount">
+                                                    Amount
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="amount"
+                                                           autocomplete="off"
+                                                           class="form-control border-primary"
+                                                           [(ngModel)]="position.quantity"
+                                                           #amount="ngModel"
+                                                           name="amount"
+                                                           pattern="^[1-9][0-9]*$"
+                                                           placeholder="{{'projectform.placeholders.hired' | translate}}">
+                                                    <div
+                                                        *ngIf="amount.dirty && amount.invalid">
+                                                        <small class="form-text text-danger"
+                                                               jhiTranslate="projectform.hirederror"
+                                                               *ngIf="amount.errors.pattern">
+                                                            You need at least 1 user for this position
+                                                        </small>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" (click)="assignPosition()"
+                                                    [disabled]="(!postitle.value || !posdesc.value) || isEmpty(position.skills)  || amount.invalid || !amount.value"
+                                                    jhiTranslate="projectform.validate.buttons.assignposition"
+                                                    class="btn btn-outline-primary">
+                                            </button>
+                                            <small class="form-text text-danger"
+                                                   jhiTranslate="projectform.validate.errors.maxpositions"
+                                                   *ngIf="maxPositions">
+                                            </small>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h4 *ngIf="!isEmpty(positions)" class="form-section"
+                                                jhiTranslate="projectform.assignedpositions"></h4>
+                                            <div *ngIf="!isEmpty(positions)" class="row">
+                                                <div *ngFor="let pos of positions" class="col-lg-4 col-md-12">
+                                                    <div class="card">
+                                                        <div class="border border-primary rounded card-body">
+                                                            <div class="card-block">
+                                                                <button type="button" (click)="removePosition(pos)"
+                                                                        class="btn btn-sm btn-danger btn-raised float-right">
+                                                                    <i class="icon-trash"></i>
+                                                                </button>
+                                                                <h4 class="card-title info">{{pos.title}}</h4>
+                                                                <div class="col-md-12" *ngIf="pos.skills">
+                                                                    <div style="display: inline-block; margin: 4px;"
+                                                                         *ngFor="let skill of pos.skills">
+                                                                    <span
+                                                                        class="badge badge-primary"
+                                                                        style="color: white">{{skill.name}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="mb-1 float-right">{{pos.quantity}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <h4 *ngIf="successstep" class="form-section" jhiTranslate="projectform.confirm">
+                                        Confirm information</h4>
+                                    <div *ngIf="successstep" class="row justify-content-md-center">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <dl>
+                                                    <dt jhiTranslate="projectform.labels.title"></dt>
+                                                    <dd>{{project.title}}</dd>
+                                                    <dt jhiTranslate="projectform.labels.deadline"></dt>
+                                                    <dd>{{project.deadline}}</dd>
+                                                    <dt jhiTranslate="projectform.labels.description"></dt>
+                                                    <dd>{{project.description}}</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <dt jhiTranslate="projectform.assignedgoals"></dt>
+                                                <dl *ngFor="let goal of goals">
+                                                    <dd>{{goal.title}}</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <dt jhiTranslate="projectform.assignedpositions"></dt>
+                                                <ul *ngFor="let pos of positions" class="list-unstyled">
+                                                    <li>{{pos.title}}</li>
+                                                    <ul class="list-inline">
+                                                        <li *ngFor="let skill of pos.skills" class="list-inline-item">
+                                                            {{skill.name}}
+                                                        </li>
+                                                    </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions right">
+                                    <button type="button" *ngIf="basicstep" (click)="nextBasic()"
+                                            jhiTranslate="projectform.validate.buttons.next"
+                                            [disabled]="projectformValidate.form.invalid"
+                                            class="btn btn-outline-primary">
+                                        Next
+                                    </button>
+                                    <button type="button" *ngIf="objectivestep"
+                                            (click)="basicstep = true; objectivestep = false; page='Basic'"
+                                            jhiTranslate="projectform.validate.buttons.previous"
+                                            class="btn btn-outline-primary">
+                                        Previous
+                                    </button>
+                                    <button type="button" *ngIf="objectivestep" (click)="nextObjective()"
+                                            jhiTranslate="projectform.validate.buttons.next"
+                                            class="btn btn-outline-primary">
+                                        Next
+                                    </button>
+                                    <button type="button" *ngIf="positionstep"
+                                            (click)="objectivestep = true; positionstep = false; page='Objectives'"
+                                            jhiTranslate="projectform.validate.buttons.previous"
+
+                                            class="btn btn-outline-primary">
+                                        Previous
+                                    </button>
+                                    <button type="button" *ngIf="positionstep"
+                                            (click)="nextPosition()"
+                                            jhiTranslate="projectform.validate.buttons.next"
+                                            class="btn btn-outline-primary">
+                                        Next
+                                    </button>
+                                    <button type="button" *ngIf="successstep"
+                                            (click)="positionstep = true; successstep = false; page='Positions'"
+                                            jhiTranslate="projectform.validate.buttons.previous"
+                                            class="btn btn-outline-primary">
+                                        Previous
+                                    </button>
+                                    <button *ngIf="successstep" type="submit"
+                                            [disabled]="projectformValidate.form.invalid"
+                                            class="btn btn-outline-primary"
+                                            jhiTranslate="projectform.validate.buttons.register">Register
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

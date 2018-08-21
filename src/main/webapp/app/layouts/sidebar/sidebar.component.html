@@ -1,0 +1,235 @@
+<!-- Sidebar Header starts -->
+<div class="sidebar-header">
+    <div class="logo">
+        <a [routerLink]="['/']" class="logo-text">
+            <div class="logo-img">
+                <img height="30px" width="30px" src="../../../content/images/logo.png" />
+            </div>
+            <span class="text align-middle">Freelancr</span>
+        </a>
+        <a class="nav-toggle hidden-sm hidden-xs" href="javascript:;">
+            <i class="ft-toggle-left toggle-icon" data-toggle="collapsed"></i>
+        </a>
+    </div>
+</div>
+<!-- Sidebar Header Ends -->
+<!-- Sidebar Content starts -->
+<div class="sidebar-content">
+    <div class="nav-container">
+        <ul class="navigation" [ngSwitch]="isAuthenticated()" >
+            <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/">
+                    <i class="ft-home"></i>
+                    <span class="menu-title" >Home</span>
+                </a>
+            </li>
+            <!-- Freelancr -->
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a routerLink="search">
+                    <i class="ft-search"></i>
+                    <span class="menu-title" jhiTranslate="freelancrApp.search.search">Search</span>
+                </a>
+            </li>
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="inbox">
+                    <i class="ft-message-circle"></i>
+                    <span class="menu-title" >Inbox</span>
+                </a>
+            </li>
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="has-sub" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a>
+                    <i class="ft-briefcase"></i>
+                    <span class="menu-title">Project</span>
+                </a>
+                <ul class="menu-content">
+                    <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">-->
+                        <!--<a routerLink="board">-->
+                            <!--<span jhiTranslate="board.title">Board</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="new-project">
+                            <span >New</span>
+                        </a>
+                    </li>
+                    <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">-->
+                        <!--<a routerLink="profile">-->
+                            <!--<span >Profile Test</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                </ul>
+            </li>
+            <!-- CMS -->
+            <li *jhiHasAnyAuthority="'ROLE_FREELANCR_ADMIN'" class="has-sub" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a>
+                    <i class="ft-list"></i>
+                    <span class="menu-title" jhiTranslate="global.menu.entities.main">Entities</span>
+                </a>
+                <ul class="menu-content">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/user-freelancr-freelancr">
+                            <span jhiTranslate="global.menu.entities.userFreelancrFreelancr">User Freelancr Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/skill-freelancr">
+                            <span jhiTranslate="global.menu.entities.skillFreelancr">Skill Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/skill-type-freelancr">
+                            <span jhiTranslate="global.menu.entities.skillTypeFreelancr">Skill Type Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/language-freelancr">
+                            <span jhiTranslate="global.menu.entities.languageFreelancr">Language Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/project-freelancr">
+                            <span jhiTranslate="global.menu.entities.projectFreelancr">Project Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/goal-freelancr">
+                            <span jhiTranslate="global.menu.entities.goalFreelancr">Goal Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/feedback-freelancr">
+                            <span jhiTranslate="global.menu.entities.feedbackFreelancr">Feedback Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/card-freelancr">
+                            <span jhiTranslate="global.menu.entities.cardFreelancr">Card Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/position-freelancr">
+                            <span jhiTranslate="global.menu.entities.positionFreelancr">Position Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/position-type-freelancr">
+                            <span jhiTranslate="global.menu.entities.positionTypeFreelancr">Position Type Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/application-freelancr">
+                            <span jhiTranslate="global.menu.entities.applicationFreelancr">Application Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/application-message-freelancr">
+                            <span jhiTranslate="global.menu.entities.applicationMessageFreelancr">Application Message Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/comment-freelancr">
+                            <span jhiTranslate="global.menu.entities.commentFreelancr">Comment Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/message-freelancr">
+                            <span jhiTranslate="global.menu.entities.messageFreelancr">Message Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/notification-freelancr">
+                            <span jhiTranslate="global.menu.entities.notificationFreelancr">Notification Freelancr</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a routerLink="cms/subscription-tier-freelancr">
+                            <span jhiTranslate="global.menu.entities.subscriptionTierFreelancr">Subscription Tier Freelancr</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End CMS -->
+            <!-- Admin -->
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="has-sub" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a>
+                    <i class="ft-life-buoy"></i>
+                    <span class="menu-title" jhiTranslate="global.menu.admin.main">Administration</span>
+                </a>
+                <ul class="menu-content">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/elasticsearch-reindex">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.elasticsearch-reindex">Elasticsearch Reindex</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/user-management">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.userManagement">User management</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/jhi-tracker">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.tracker">User tracker</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/jhi-metrics">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.metrics">Metrics</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/jhi-health">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.health">Health</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/jhi-configuration">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.configuration">Configuration</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/audits">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.audits">Audits</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/logs">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.logs">Logs</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a routerLink="admin/docs">
+                            <span class="menu-title" jhiTranslate="global.menu.admin.apidocs">API</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li *ngSwitchCase="true">
+                <a  (click)="logout()" id="logout">
+                    <i class="ft-log-out mr-2"></i>
+                    <span class="menu-title" jhiTranslate="global.menu.account.logout">Sign out</span>
+                </a>
+            </li>
+            <li *ngSwitchCase="false">
+                <a (click)="login()" id="login">
+                    <i class="ft-log-in mr-2"></i>
+                    <span class="menu-title" jhiTranslate="global.menu.account.login">Sign in</span>
+                </a>
+            </li>
+            <!-- End Admin -->
+            <li *ngSwitchCase="false" class="has-sub">
+                <a *ngIf="languages">
+                    <i class="ft-globe"></i>
+                    <span class="menu-title" jhiTranslate="global.menu.language">Language</span>
+                </a>
+                <ul class="menu-content" *ngIf="languages && languages.length > 1">
+                    <li *ngFor="let language of languages">
+                        <a [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);">
+                            <span class="menu-title">{{language | findLanguageFromKey}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Sidebar Content ends -->

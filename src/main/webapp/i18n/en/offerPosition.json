@@ -1,0 +1,15 @@
+{
+    "offerposition": {
+        "offerpositionto": "Offer position to: ",
+        "project": "Project",
+        "selectproject": "Select a project",
+        "noprojectnfound": "You do not have any project at the moment",
+        "position": "Position",
+        "selectposition": "Select a position to offer",
+        "amoutoffer": "Amount to offer",
+        "amount": "Amount",
+        "message": "Message",
+        "sendoffer": "Send offer",
+        "cancel": "Cancel"
+    }
+}

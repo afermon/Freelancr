@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+    <base href="./" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Freelancr - Loading...</title>
+    <meta name="description" content="Freelancr, all the resources you need in a single place!">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#51cbce">
+    <meta name="msapplication-TileColor" content="#51cbce">
+    <meta name="theme-color" content="#51cbce">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .pace-inactive {
+            display: none;
+        }
+
+        .pace .pace-progress {
+            background: #51cbce;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px;
+        }
+
+        .pace .pace-progress-inner {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #51cbce, 0 0 5px #51cbce;
+            opacity: 1.0;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -moz-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            -o-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+        }
+
+        .pace .pace-activity {
+            display: block;
+            position: fixed;
+            z-index: 2000;
+            top: 15px;
+            right: 15px;
+            width: 14px;
+            height: 14px;
+            border: solid 2px transparent;
+            border-top-color: #51cbce;
+            border-left-color: #51cbce;
+            border-radius: 10px;
+            -webkit-animation: pace-spinner 400ms linear infinite;
+            -moz-animation: pace-spinner 400ms linear infinite;
+            -ms-animation: pace-spinner 400ms linear infinite;
+            -o-animation: pace-spinner 400ms linear infinite;
+            animation: pace-spinner 400ms linear infinite;
+        }
+
+        @-webkit-keyframes pace-spinner {
+            0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-moz-keyframes pace-spinner {
+            0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+            100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-o-keyframes pace-spinner {
+            0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+            100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-ms-keyframes pace-spinner {
+            0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+            100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @keyframes pace-spinner {
+            0% { transform: rotate(0deg); transform: rotate(0deg); }
+            100% { transform: rotate(360deg); transform: rotate(360deg); }
+        }
+
+        .pace .pace-activity {
+            top: 19px;
+            right: 19px;
+            display: none;
+        }
+        .page-loading {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+            background: rgba(102, 197, 200, 1.00);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: -1;
+        }
+        .loading-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 38px;
+            height: 38px;
+            margin-left: -19px;
+            margin-top: -19px;
+        }
+        jhi-main:empty ~ .page-loading {
+            opacity: 1;
+            z-index: 1;
+        }
+    </style>
+    <script src="/content/pace.min.js"></script>
+    <script type="text/javascript">
+        (function (window) {
+            // Polyfills DOM4 MouseEvent only on IE11
+            // Fixes ngx-charts line-chart hover
+            // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/MouseEvent#Polyfill
+            if (!!window.MSInputMethodContext && !!document.documentMode || document.documentMode === 10) {
+                function MouseEvent(eventType, params) {
+                    params = params || { bubbles: false, cancelable: false };
+                    var mouseEvent = document.createEvent('MouseEvent');
+                    mouseEvent.initMouseEvent(eventType, params.bubbles, params.cancelable, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+
+                    return mouseEvent;
+                }
+
+                MouseEvent.prototype = Event.prototype;
+
+                window.MouseEvent = MouseEvent;
+            }
+
+            // Initialize PACE
+            window.paceOptions = {
+                document: true,
+                eventLag: true,
+                restartOnPushState: true,
+                restartOnRequestAfter: true,
+                ajax: {
+                    trackMethods: [ 'POST','GET']
+                }
+            };
+        })(window);
+    </script>
+    <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
+</head>
+<body>
+    <!--[if lt IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <jhi-main></jhi-main>
+    <noscript>
+        <h1>You must enable javascript to view this page.</h1>
+    </noscript>
+    <div class="page-loading">
+        <img src="./content/images/oval.svg" class="loading-icon" alt="loading.." />
+    </div>
+    <!-- uncomment this for adding service worker
+        <script>
+            if ('serviceWorker' in navigator) {
+            if ('serviceWorker' in navigator) {
+                 navigator.serviceWorker
+                    .register('./sw.js')
+                    .then(function() { console.log('Service Worker Registered'); });
+            }
+        </script>
+    -->
+</body>
+</html>

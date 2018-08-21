@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SubscriptionTier.
+    -->
+    <changeSet id="20180619235049-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="subscription_tiers_id"
+                                 baseTableName="subscription_tier_user"
+                                 constraintName="fk_subscription_tier_user_subscription_tiers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subscription_tier"/>
+        <addForeignKeyConstraint baseColumnNames="users_id"
+                                 baseTableName="subscription_tier_user"
+                                 constraintName="fk_subscription_tier_user_users_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+    </changeSet>
+</databaseChangeLog>

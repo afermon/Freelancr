@@ -1,0 +1,24 @@
+
+{
+    "freelancrApp": {
+        "language" : {
+            "home": {
+                "title": "Idiomas",
+                "createLabel": "Crear nuevo idioma",
+                "createOrEditLabel": "Crear o editar idioma",
+                "search": "Buscar idiomas"
+            },
+            "created": "Un nuevo idioma ha sido creado con el identificador {{ param }}",
+            "updated": "Un idioma ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un idioma ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el idioma {{ id }}?"
+            },
+            "detail": {
+                "title": "Idioma"
+            },
+            "name": "Nombre",
+            "user": "Usuario"
+        }
+    }
+}

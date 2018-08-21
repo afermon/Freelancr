@@ -1,0 +1,25 @@
+
+{
+    "freelancrApp": {
+        "skill" : {
+            "home": {
+                "title": "Habilidades",
+                "createLabel": "Crear nueva habilidad",
+                "createOrEditLabel": "Crear o editar habilidad",
+                "search": "Buscar habilidades"
+            },
+            "created": "Una nueva habilidad ha sido creada con el identificador {{ param }}",
+            "updated": "Una habilidad ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una habilidad ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar la habilidad {{ id }}?"
+            },
+            "detail": {
+                "title": "Habilidad"
+            },
+            "level": "Nivel",
+            "type": "Tipo",
+            "user": "Usuario"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "inbox": {
+        "title": "My messages",
+        "filter": "Filter (by prefix)",
+        "compose": "Compose",
+        "messages": "Messages",
+        "projects": "Projects",
+        "feedback": "Feedback",
+        "direct": "Directs",
+        "tome": "to me",
+        "to": "To",
+        "subject": "Subject",
+        "message": "Message",
+        "sent": "Sent",
+        "reply": "Reply",
+        "refresh": "Refresh",
+        "requiredSubject":"The subject is required.",
+        "shortSubject":"Your subject is required to be at least 4 character.",
+        "longSubject":"Your subject cannot be longer than 100 characters.",
+        "requiredMessageBody":"The message is required.",
+        "shortMessageBody":"Your message is required to be at least 4 character.",
+        "longMessageBody":"Your message cannot be longer than 500 characters.",
+        "composeEmail": "Compose message",
+        "table": {
+            "prefix": "Prefix",
+            "properties": "Properties"
+        }
+    }
+}

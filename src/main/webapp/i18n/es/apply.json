@@ -1,0 +1,25 @@
+{
+    "apply": {
+        "info1": "Aplicando al puesto",
+        "info2": "del proyecto",
+        "bid": "Tu oferta",
+        "bidplaceholder": "Cuánto esperas que te paguen por este puesto",
+        "bidrequired": "La oferta es requerida",
+        "msgplaceholder": "Información adicional para tu aplicación",
+        "msg": "Mensaje",
+        "msgreq": "El mensaje es requerido",
+        "short": "Se requiere que el mensaje tenga por lo menos 4 caracteres",
+        "long": "El mensaje no puede tener más de 250 caracteres",
+        "btn": "Enviar",
+        "success": "<h4><strong>Éxito!</strong></h4> Tu aplicación se ha enviado para ser evaluada. Buena Suerte!",
+        "applied": "<h4><strong>Advertencia!</strong></h4> Ya aplicaste a este puesto",
+        "owner":"<h4><strong>Advertencia!</strong></h4> No puedes aplicar a un puesto de tu proyecto",
+        "finished":"<h4><strong>Advertencia!</strong></h4> No puedes aplicar a proyectos terminados",
+        "title":"Aplicaciones activas y ofertas",
+        "canceltitle":"Cancelar Aplicación",
+        "cancelconf":"Estas seguro/a que quieres cancelar la aplicación: ",
+        "btnconfrim":"Confirmar",
+        "status":"Estado: ",
+        "bid2":"Tu oferta: "
+    }
+}

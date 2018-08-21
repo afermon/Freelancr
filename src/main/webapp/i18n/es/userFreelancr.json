@@ -1,0 +1,35 @@
+
+{
+    "freelancrApp": {
+        "userFreelancr" : {
+            "home": {
+                "title": "Usuarios Freelancr",
+                "createLabel": "Crear nuevo usuario Freelancr",
+                "createOrEditLabel": "Crear o editar usuario Freelancr",
+                "search": "Buscar por usuarios Freelancr"
+            },
+            "created": "Un nuevo usuario Freelancr ha sido creado con el identificador {{ param }}",
+            "updated": "Un usuario Freelancr ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un usuario Freelancr ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el usuario Freelancr {{ id }}?"
+            },
+            "detail": {
+                "title": "Usuario Freelancr"
+            },
+            "description": "Descripción",
+            "phone": "Teléfono",
+            "address": "Dirección",
+            "birthDate": "Fecha de nacimiento",
+            "weeklyAvailability": "Disponibilidad semanal",
+            "ranking": "Calsificación",
+            "status": "Estado",
+            "linkedInUser": "Usuario LinkedIn",
+            "gitUser": "Usuario Git",
+            "paypalAccount": "Cuenta PayPal",
+            "personalLink": "Personal Link",
+            "resumeLink": "Resume Link",
+            "user": "User"
+        }
+    }
+}

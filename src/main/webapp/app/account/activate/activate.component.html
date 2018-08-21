@@ -1,0 +1,31 @@
+<div *ngIf="error" class="col-md-7" style="margin: auto">
+    <div class="card bg-danger">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center">
+                        <h4><strong jhiTranslate="activate.title"></strong></h4><span
+                        jhiTranslate="activate.messages.error"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="success" class="col-md-7" style="margin: auto">
+    <div class="card bg-success">
+        <div class="card-body">
+            <div class="px-3 py-3">
+                <div class="media">
+                    <div class="media-body white text-center">
+                        <h4><strong jhiTranslate="activate.title"></strong></h4><span
+                        jhiTranslate="activate.messages.success"></span>
+                        <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign
+                            in</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

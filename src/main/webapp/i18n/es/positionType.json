@@ -1,0 +1,23 @@
+
+{
+    "freelancrApp": {
+        "positionType" : {
+            "home": {
+                "title": "Tipos de puesto",
+                "createLabel": "Crear nuevo tipo de puesto",
+                "createOrEditLabel": "Crear o editar tipo de puesto",
+                "search": "Buscar tipos de puestos"
+            },
+            "created": "Un nuevo tipo de puesto ha sido creado con el identificador {{ param }}",
+            "updated": "Un tipo de puesto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un tipo de puesto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el tipo de puesto {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo de puesto"
+            },
+            "name": "Nombre"
+        }
+    }
+}

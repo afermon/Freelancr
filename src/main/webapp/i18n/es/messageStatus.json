@@ -1,0 +1,9 @@
+{
+    "freelancrApp": {
+        "MessageStatus" : {
+            "null": "",
+            "NEW": "NUEVO",
+            "READ": "LEÍDO"
+        }
+    }
+}

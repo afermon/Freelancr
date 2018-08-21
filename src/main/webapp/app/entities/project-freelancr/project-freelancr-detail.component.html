@@ -1,0 +1,64 @@
+
+<div *ngIf="project">
+    <h2><span jhiTranslate="freelancrApp.project.detail.title">Project</span> {{project.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.project.title">Title</span></dt>
+        <dd>
+            <span>{{project.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.description">Description</span></dt>
+        <dd>
+            <span>{{project.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}">{{project.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.deadline">Deadline</span></dt>
+        <dd>
+            <span>{{project.deadline | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{project.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.endDate">End Date</span></dt>
+        <dd>
+            <span>{{project.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.gitRepo">Git Repo</span></dt>
+        <dd>
+            <span>{{project.gitRepo}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.slackChannel">Slack Channel</span></dt>
+        <dd>
+            <span>{{project.slackChannel}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.user">User</span></dt>
+        <dd>
+            {{project.userLogin}}
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.project.followers">Followers</span></dt>
+        <dd>
+            <span *ngFor="let followers of project.followers; let last = last">
+                {{followers.login}}{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'project-freelancr/'+ project.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

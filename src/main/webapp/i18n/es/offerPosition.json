@@ -1,0 +1,15 @@
+{
+    "offerposition": {
+        "offerpositionto": "Ofrecer posición a: ",
+        "project": "Projecto",
+        "selectproject": "Selecciona un proyecto",
+        "noprojectnfound": "No tiene ningún proyecto por el momento",
+        "position": "Posición",
+        "selectposition": "Seleccione una posicióon para ofrecer",
+        "amoutoffer": "Monto para ofrecer",
+        "amount": "Monto",
+        "message": "Mensaje",
+        "sendoffer": "Enviar oferta",
+        "cancel": "Cancelar"
+    }
+}

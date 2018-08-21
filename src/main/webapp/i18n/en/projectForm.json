@@ -1,0 +1,95 @@
+{
+    "projectform": {
+        "info":"Basic information",
+        "title": "Publish a new project",
+        "registerInfo": "Publish your project idea, assign the goals you want to achieve and describe the type of people you want to hire. All information is required",
+        "objetctives":"Goals you want to achieve with your project (at least 1 required)",
+        "position":"Positions for your project (at least 1 required)",
+        "assignedgoals":"Your assigned goals",
+        "assignedpositions":"Your assigned positions",
+        "confirm":"Are you sure you want to register a project with the following information?",
+        "hirederror":"You need at least 1 user for this position",
+        "removeconf1":"Are you sure you want to remove the user ",
+        "removeconf2":" from the position ",
+        "labels":{
+            "title":"Title",
+            "deadline":"Deadline",
+            "description":"Description",
+            "goaltitle":"Goal title",
+            "goaldescription":"Goal description",
+            "postitle":"Position",
+            "posdesc":"Position description",
+            "possearch":"Search for position types",
+            "skillsearch":"Search for technical skills",
+            "amount":"Amount",
+            "hired":"Hired users",
+            "available":"Available"
+        },
+        "placeholders":{
+            "title":"Project title",
+            "description":"Describe your project idea",
+            "goaltitle":"Goal title",
+            "goaldescription":"Describe what you want to achieve",
+            "postitle":"Position title",
+            "posdesc":"Describe the type of people you are looking for this position",
+            "possearch":"e.g. Front End, Back End, Full Stack",
+            "skillsearch":"e.g. Java, Angular, Node, Mongo ",
+            "hired":"How many users for this position?"
+
+        },
+        "validate":{
+            "title":{
+                "required":"The title is required.",
+                "short":"Your title is required to be at least 4 characters.",
+                "long":"Your title cannot be longer than 100 characters."
+            },
+            "deadline":{
+                "required":"The project deadline is required"
+            },
+            "description":{
+                "required":"The description is required.",
+                "short":"Your description is required to be at least 4 characters.",
+                "long":"Your description cannot be longer than 500 characters."
+            },
+            "goaltitle":{
+                "required":"The title is required.",
+                "short":"Your title is required to be at least 4 characters.",
+                "long":"Your title cannot be longer than 100 characters.",
+                "maxGoals":"You can't assign more than 4 objectives"
+            },
+            "goaldescription":{
+                "required":"The description is required.",
+                "short":"Your description is required to be at least 4 characters.",
+                "long":"Your description cannot be longer than 500 characters."
+            },
+            "postitle":{
+                "required":"The title is required.",
+                "short":"Your title is required to be at least 4 characters.",
+                "long":"Your title cannot be longer than 100 characters."
+            },
+            "posdesc":{
+                "required":"The description is required.",
+                "short":"Your description is required to be at least 4 characters.",
+                "long":"Your description cannot be longer than 500 characters."
+            },
+            "buttons":{
+                "assigngoal":"Assign goal",
+                "assignposition":"Assign position",
+                "register":"Register project",
+                "next":"Next",
+                "previous":"Previous",
+                "remove":"Remove"
+            },
+            "errors":{
+                "invaliddate":"<strong>Invalid date!</strong> Your deadline must be at least one week from today",
+                "nogoals":"<strong>You have no goals!</strong> You need to assign at least one goal to your project",
+                "nopositions":"<strong>You have no positions!</strong> You need to assign at least one position to your project",
+                "maxgoals":"You can only have a maximum of 4 goals assigned",
+                "maxskills":"You can only have a maximum of 10 skills assigned",
+                "maxpositions":"You can only have a maximum of 5 positions assigned",
+                "iseq":"You already assigned"
+
+            }
+        }
+    }
+}

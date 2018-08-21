@@ -1,0 +1,49 @@
+{
+    "profilepage":{
+        "about":"Información",
+        "timelinea":"Línea de tiempo",
+        "feedback":"Calificaciones",
+        "projects":"Proyectos",
+        "message":"Enviar mensaje",
+        "offerposition":"Ofrecer puesto",
+        "participated":"Proyectos en los que ha participado",
+        "asadmin":"Proyectos publicados",
+        "start":"Fecha de inicio:",
+        "finished":"Fecha de finalización:",
+        "applications":"Aplicaciones",
+        "deadline":"Fecha límite",
+        "feed":"Retroalimentación recibida",
+        "noapps":"Sin aplicaciones activas a puestos",
+        "profileinfo":{
+            "title":"Información personal",
+            "aboutme":"Sobre mi:",
+            "user":"Nombre de usuario:",
+            "joined":"Creación de la cuenta:",
+            "address":"Dirección:",
+            "phonenumber":"Número teléfonico:",
+            "weekly":"Disponibilidad de tiempo:",
+            "ranking":"Promedio de calificaciones",
+            "git": "Cuenta de GitHub:",
+            "birthday":"Fecha de nacimiento:",
+            "email":"Correo electrónico:",
+            "hours":" horas por semana"
+        },
+        "errors":{
+            "nodes":"Este usuario no tiene descripción :(",
+            "norank":"Este usuario no tiene clasificación",
+            "notfound":"El perfil del usuario no se encontró :("
+
+        },
+        "offertitle":"Ofertas recibidas",
+        "offered":"Ofertado",
+        "viewproject":"Ver proyecto",
+        "project":"Proyecto",
+        "resume":"Currículum",
+        "link": "Sitio personal",
+        "download":"Descargar",
+        "view":"Ver"
+
+
+
+    }
+}

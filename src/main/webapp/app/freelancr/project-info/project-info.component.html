@@ -1,0 +1,1044 @@
+<div class="content-wrapper" *ngIf="currentProject.status">
+    <div class="container-fluid">
+        <section id="user-profile">
+            <div class="row justify-content-md-center">
+                <div class="col-9">
+                    <div class="card gradient-indigo-dark-blue white text-center p-4 height-250">
+                        <div _ngcontent-c6="" class="card-header">
+                            <h1 _ngcontent-c6="">{{currentProject.title | uppercase}}</h1>
+                            <p _ngcontent-c6=""><em _ngcontent-c6=""><span jhiTranslate="projecttinfo.published"></span><span>{{fullName | uppercase}}</span></em>
+                            </p>
+                        </div>
+                        <div class="media profil-cover-details row">
+                            <div class="col-5">
+                                <div class="align-self-start halfway-fab pl-3 pt-2">
+                                    <div class="text-left">
+                                        <h3 class="card-title white"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="isUserAdmin" class="profile-section">
+                            <div class="row">
+                                <div class="col-lg-11 col-md-11" style="text-align: center; margin: 0px auto">
+                                    <ul class="profile-menu no-list-style col-md-9" style="margin: 0px auto">
+                                        <li>
+                                            <a (click)="showPage('About')"
+                                               [ngClass]="currentPage === 'About' ? 'font-medium-2 font-weight-600 active' : ' font-medium-2 font-weight-600'"
+                                               jhiTranslate="projecttinfo.info">About</a>
+                                        </li>
+                                        <li *ngIf="!(currentProject.status.toString() === 'FINISHED')">
+                                            <a (click)="showPage('TimeLine')"
+                                               [ngClass]="currentPage === 'TimeLine' ? ' font-medium-2 font-weight-600 active' : ' font-medium-2 font-weight-600'"
+                                               jhiTranslate="projecttinfo.apps">Timeline</a>
+                                        </li>
+                                        <li>
+                                            <a (click)="showPage('Status')"
+                                               [ngClass]="currentPage === 'Status' ? ' font-medium-2 font-weight-600 active' : ' font-medium-2 font-weight-600'"
+                                               jhiTranslate="projecttinfo.status">Status</a>
+                                        </li>
+                                        <li *ngIf="!(currentProject.status.toString() === 'FINISHED')">
+                                            <a (click)="showPage('Friends')"
+                                               [ngClass]="currentPage === 'Friends' ? ' font-medium-2 font-weight-600 active' : ' font-medium-2 font-weight-600'"
+                                               jhiTranslate="projecttinfo.config">Feedback</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2 col-md-2 text-center">
+                                    <span class="font-medium-2 text-uppercase"></span>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <ul class="profile-menu no-list-style">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" *ngIf="currentPage === 'About'">
+            <div class="row justify-content-md-center">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                            <h4 style="text-align: center;" jhiTranslate="projecttinfo.basic">
+                                Personal
+                                Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="row justify-content-md-center ml-1">
+                                    <p style="font-size: 18px" class="text-center display-block overflow-hidden">{{currentProject.description}}</p>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-md-center mt-2 overflow-hidden">
+                                    <div style="width: 240px" class="mr-1 mt-2 text-center float-left"> <i
+                                        class="icon-calendar primary font-large-2 active"></i> <span class="display-block mt-2" jhiTranslate="projecttinfo.deadline">Project Deadline</span>{{currentProject.deadline}}</div>
+                                    <div style="width: 240px" class="mr-1 mt-2 text-center float-left"> <i
+                                        class="icon-user primary font-large-2"></i> <span
+                                        class="display-block mt-2" jhiTranslate="projecttinfo.admin">Project Administrator</span><a
+                                        routerLink="/public-profile/{{currentProject.userId}}">{{currentProject.userLogin}}</a></div>
+                                    <div *ngIf="!(currentProject.status.toString() === 'FINISHED')" style="width: 240px" class="mr-1 mt-2 text-center float-left"> <i
+                                        class="icon-briefcase primary font-large-2"></i> <span class="display-block mt-2"
+                                                                                              jhiTranslate="projecttinfo.openpos">Open positions</span>{{getCount()}}</div>
+                                    <div style="width: 240px" class="mt-2 text-center float-left"> <i
+                                        class="icon-graph primary font-large-2"></i> <span
+                                        class="display-block mt-2" jhiTranslate="projecttinfo.status">Status</span><span
+                                        jhiTranslate="{{'freelancrApp.ProjectStatus.' + currentProject.status}}"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9" style="margin: auto;">
+                    <div class="card text-center">
+                        <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                            <h4 style="text-align: center; margin-bottom: 0px" jhiTranslate="projecttinfo.goals">
+                                Personal
+                                Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="col-sm-6" style="vertical-align:top; display: inline-block"
+                                     *ngFor="let goal of goals">
+                                    <h5 style="text-align: center">{{goal.title | uppercase}}</h5>
+                                    <hr>
+                                    <p style="text-align: justify; text-align-last: center;">
+                                        {{goal.description}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9" style="margin: auto;">
+                    <div class="card text-center">
+                        <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                            <h4 style="text-align: center; margin-bottom: 0px" jhiTranslate="projecttinfo.positions">
+                                Personal
+                                Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="col-sm-6" style="display: inline-block; vertical-align: top"
+                                     *ngFor="let position of positions">
+                                    <h5 style="text-align: center">{{position.title | uppercase}}</h5>
+                                    <hr>
+                                    <p style="text-align: justify;  text-align-last: center;">
+                                        {{position.description}}</p>
+                                    <p *ngIf="!(position.hiredUsers?.length === position.quantity) && !(currentProject.status.toString() === 'FINISHED')">
+                                        <span jhiTranslate="projectform.labels.available">Available</span>
+                                        {{getAvailable(position)}}</p>
+
+                                    <h6 style="text-align: center" jhiTranslate="projecttinfo.desired">Desired
+                                        skills</h6>
+                                    <div style="margin: 0 auto">
+                                        <div style="display: inline-block;" *ngFor="let skill of position.skills">
+                                        <span style="margin: 4px; color: white;"
+                                              class="badge badge-primary">{{skill.name}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!isUserAdmin && !(currentProject.status.toString() === 'FINISHED')" style="margin-top: 10px">
+                                        <button
+                                            *ngIf="!checkIfApplied(position.id) && !(position.hiredUsers?.length === position.quantity)"
+                                            routerLink="/position/{{currentProject.id}}/{{position.id}}"
+                                            jhiTranslate="projecttinfo.apply"
+                                            class="btn btn-primary btn-raised">Apply
+                                        </button>
+                                        <span *ngIf="position.hiredUsers?.length === position.quantity"
+                                              jhiTranslate="projecttinfo.occupied">This position is occupied</span>
+                                        <span *ngIf="checkIfApplied(position.id) && !position.hiredUserId"
+                                              jhiTranslate="projecttinfo.applied">You already applied to this position</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<jhi-project-comment [project]="currentProject"></jhi-project-comment>-->
+            <!--seccion de comentarios-->
+            <div class="row" jhiLoadScript [script]="'/content/comment.js'">
+                <div class="col-sm-9" style="margin: auto;">
+                    <div class="card">
+                        <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                            <h4 style="text-align: center; margin-bottom: 0px" jhiTranslate="projecttinfo.comments">
+                                Comments</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block px-3">
+                                <form class="form" #commentValidate="ngForm" (ngSubmit)="sendComment()">
+                                    <div class="form-group">
+                                        <label for="commentProject">Comment</label>
+                                        <textarea id="commentProject" rows="5"
+                                                  class="form-control border-primary col-sm-12"
+                                                  name="comment"
+                                                  [(ngModel)]="newComment.comment"
+                                                  #commentProject="ngModel"
+                                                  required minlength="4" maxlength="250">
+                                        </textarea>
+                                        <div *ngIf="commentProject.dirty && commentProject.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="commentProject.errors.required"
+                                                   jhiTranslate="apply.msgreq">
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   *ngIf="commentProject.errors.minlength"
+                                                   jhiTranslate="apply.short">
+                                                Min length
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   *ngIf="commentProject.errors.maxlength"
+                                                   jhiTranslate="apply.long">
+                                                Max length
+                                            </small>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <button type="submit" class="btn btn btn-outline-primary"
+                                                    [disabled]="commentValidate.form.invalid">
+                                                Comment
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12 comment-content">
+                                        <div class="media-list media-bordered ">
+                                            <div class="media" *ngFor="let comment of comments">
+                                                <div *ngIf="comments.length>0">
+                                                    <div class="media-body" >
+                                                        <h4 class="media-heading" (click)="redirectUserProfile(comment.userId)">{{comment.userLogin}}</h4>
+                                                        <p>{{comment.comment}}</p>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="comments.length==0">
+                                                    <h4 *ngIf="currentProject.userId === currentAccount.id"> Your
+                                                        project doesn't have any comments</h4>
+                                                    <h4 *ngIf="currentProject.userId !== currentAccount.id"> This
+                                                        project doesn't have any comments</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!--Seccion de applications-->
+        <section *ngIf="currentPage === 'TimeLine'">
+            <div class="row">
+                <div class="col-12">
+                </div>
+            </div>
+        </section>
+
+        <section id="friends" *ngIf="currentPage === 'Friends'">
+            <div class="row">
+                <div class="col-9" style="margin: auto;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"
+                                jhiTranslate="projecttinfo.editbasic"></h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div name="page-top" class="col-7">
+
+                                <div class="alert alert-danger" *ngIf="invalidDate"
+                                     jhiTranslate="projectform.validate.errors.invaliddate">
+                                </div>
+
+                                <div class="alert alert-success" *ngIf="success"
+                                     jhiTranslate="projecttinfo.success">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="px-3">
+                                <form name="form" role="form" (ngSubmit)="updateBasic()" #editBasicValidate="ngForm">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 form-control-label" for="deadline"
+                                                           jhiTranslate="projectform.labels.deadline">
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <input type="date" id="deadline"
+                                                               autocomplete="off"
+                                                               class="form-control border-primary"
+                                                               [(ngModel)]="currentProject.deadline"
+                                                               name="deadline" #deadline="ngModel"
+                                                               required>
+                                                        <div *ngIf="deadline.dirty && deadline.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="deadline.errors.required"
+                                                                   jhiTranslate="projectform.validate.deadline.required">
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 label-control" for="description"
+                                                           jhiTranslate="projectform.labels.description"></label>
+                                                    <div class="col-md-12">
+                                                            <textarea id="description" rows="5"
+                                                                      class="form-control col-md-12 border-primary"
+                                                                      name="description"
+                                                                      [(ngModel)]="currentProject.description"
+                                                                      #description="ngModel"
+                                                                      required minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.description' | translate}}">
+                                                            </textarea>
+                                                        <div *ngIf="description.dirty && description.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="description.errors.required"
+                                                                   jhiTranslate="projectform.validate.description.required">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="description.errors.minlength"
+                                                                   jhiTranslate="projectform.validate.description.short">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="description.errors.maxlength"
+                                                                   jhiTranslate="projectform.validate.description.long">
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button
+                                                [disabled]="editBasicValidate.form.invalid"
+                                                class="btn btn-outline-primary"
+                                                jhiTranslate="projecttinfo.save">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9" style="margin: auto;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"
+                                jhiTranslate="projecttinfo.goalinfo"></h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div name="page-top" class="col-7">
+
+                                <div class="alert alert-success" *ngIf="gsuccess"
+                                     jhiTranslate="projecttinfo.goalsuccess">
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="noGoals"
+                                     jhiTranslate="projectform.validate.errors.nogoals">
+                                    <strong>You have no goals!</strong> You need to assign at least one goal to your
+                                    project
+                                </div>
+
+                                <div class="alert alert-success" *ngIf="gsaved"
+                                     jhiTranslate="projecttinfo.goalsaved">
+                                    Goal saved
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="maxGoals"
+                                     jhiTranslate="projecttinfo.maxgoals">
+                                    You can't have more than 4 goals assigned
+                                </div>
+
+                                <div class="alert alert-success" *ngIf="delSuccess"
+                                     jhiTranslate="projecttinfo.deletedgoal">
+                                    The goal has been deleted
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="minGoals"
+                                     jhiTranslate="projecttinfo.mingoals">
+                                    You need at least 1 goal
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="px-3">
+                                <form name="form" role="form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 form-control-label" for="goaltitle"
+                                                           jhiTranslate="projectform.labels.goaltitle"></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="goaltitle"
+                                                               autocomplete="off"
+                                                               class="form-control border-primary"
+                                                               [(ngModel)]="goal.title"
+                                                               name="goaltitle" #goaltitle="ngModel"
+                                                               placeholder="{{'projectform.placeholders.goaltitle' | translate}}"
+                                                               minlength="4" maxlength="100">
+                                                        <div *ngIf="goaltitle.dirty && goaltitle.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaltitle.errors.required"
+                                                                   jhiTranslate="projectform.validate.goaltitle.required">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaltitle.errors.minlength"
+                                                                   jhiTranslate="projectform.validate.goaltitle.short">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaltitle.errors.maxlength"
+                                                                   jhiTranslate="projectform.validate.goaltitle.long">
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 label-control" for="goaldescription"
+                                                           jhiTranslate="projectform.labels.goaldescription"></label>
+                                                    <div class="col-md-9">
+                                                            <textarea id="goaldescription" rows="5"
+                                                                      class="form-control border-primary"
+                                                                      name="goaldescription"
+                                                                      [(ngModel)]="goal.description"
+                                                                      #goaldescription="ngModel"
+                                                                      minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.goaldescription' | translate}}">
+                                                            </textarea>
+                                                        <div
+                                                            *ngIf="goaldescription.dirty && goaldescription.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaldescription.errors.required"
+                                                                   jhiTranslate="projectform.validate.goaldescription.required">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaldescription.errors.minlength"
+                                                                   jhiTranslate="projectform.validate.goaldescription.short">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="goaldescription.errors.maxlength"
+                                                                   jhiTranslate="projectform.validate.goaldescription.long">
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!isEmpty(goals)" class="col-lg-5 col-md-7 col-sm-11">
+                                                <div class="card">
+                                                    <div class="card-body border border-primary rounded">
+                                                        <div style="padding-top: 8px">
+                                                            <h6 style="text-align: center"
+                                                                jhiTranslate="projectform.assignedgoals"></h6>
+                                                        </div>
+
+                                                        <ng-template #content let-c="close" let-d="dismiss">
+                                                            <div class="modal-header px-4">
+                                                                <h4 class="modal-title"
+                                                                    jhiTranslate="projecttinfo.deleteconf">Delete
+                                                                    confirmation</h4>
+                                                                <button type="button" class="close" aria-label="Close"
+                                                                        (click)="d('Cross click')">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body px-4">
+                                                                <form role="form" class="form form-horizontal">
+                                                                    <div class="form-group row">
+                                                                        <div class="col-md-10">
+                                                                            <span
+                                                                                jhiTranslate="projecttinfo.confirmgoal"></span>
+                                                                            <span>{{delGoal.title}}</span> ?
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer px-4">
+                                                                <button jhiTranslate="projecttinfo.btncancel"
+                                                                        type="button" class="btn btn-outline-dark"
+                                                                        (click)="c('Close click')">Cancel
+                                                                </button>
+                                                                <button jhiTranslate="projecttinfo.btndelete"
+                                                                        type="button" class="btn btn-raised btn-danger"
+                                                                        (click)="c('Close click'); deleteGoal(delGoal)">
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </ng-template>
+
+                                                        <div *ngIf="!isEmpty(goals)">
+                                                            <ul *ngFor="let g of goals" class="list-group">
+                                                                <li class="list-group-item">
+                                                                    <button type="button" (click)="open(content, g)"
+                                                                            class="btn btn-sm btn-danger btn-raised float-right">
+                                                                        <i class="icon-trash"></i>
+                                                                    </button>
+                                                                    <button type="button" (click)="editAssign(g)"
+                                                                            class="mr-1 btn btn-sm btn-primary btn-raised float-right">
+                                                                        <i class="icon-pencil"></i>
+                                                                    </button>
+                                                                    <a><h6 style="margin: 0px; font-size: 15px">
+                                                                        {{g.title}}</h6></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button type="button"
+                                                    (click)="goal = {}; editGoal = false; createGoal = true"
+                                                    class="btn btn-outline-danger"
+                                                    jhiTranslate="projecttinfo.btncancel">
+                                                Cancel
+                                            </button>
+                                            <button *ngIf="editGoal" type="button" (click)="applyChanges()"
+                                                    [disabled]="(!goaltitle.value || !goaldescription.value || goaltitle.invalid || goaldescription.invalid)"
+                                                    class="btn btn-outline-primary"
+                                                    jhiTranslate="projecttinfo.btneditgoal">
+                                                Edit Goal
+                                            </button>
+                                            <button *ngIf="createGoal" type="button" (click)="saveGoal()"
+                                                    [disabled]="(!goaltitle.value || !goaldescription.value || goaltitle.invalid || goaldescription.invalid)"
+                                                    class="btn btn-outline-primary"
+                                                    jhiTranslate="projecttinfo.btnsavegoal">
+                                                Save goal
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9" style="margin: auto;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"
+                                jhiTranslate="projecttinfo.positioninfo"></h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div name="page-top" class="col-7">
+                                <div class="alert alert-success" *ngIf="psuccess"
+                                     jhiTranslate="projecttinfo.possuccess">
+                                </div>
+
+                                <div class="alert alert-success" *ngIf="psaved" jhiTranslate="projecttinfo.psaved">
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="maxPositions" jhiTranslate="projecttinfo.maxpos">
+                                </div>
+
+                                <div class="alert alert-success" *ngIf="delSuccessPos"
+                                     jhiTranslate="projecttinfo.delsuccess">
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="minPositions" jhiTranslate="projecttinfo.minpos">
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="amountError">
+                                    You can't reduce the amount of users for this position, there are users already
+                                    assigned to it.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="px-3">
+                                <form name="form" role="form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div style="display: inline-block" *ngFor="let pos of positions"
+                                                     class="col-lg-4 col-md-12">
+                                                    <div class="card">
+                                                        <div
+                                                            class="border border-primary rounded card-body">
+                                                            <ng-template #contentPosition let-c="close" let-d="dismiss">
+                                                                <div class="modal-header px-4">
+                                                                    <h4 class="modal-title"
+                                                                        jhiTranslate="projecttinfo.deleteconf">Delete
+                                                                        confirmation</h4>
+                                                                    <button type="button" class="close"
+                                                                            aria-label="Close"
+                                                                            (click)="d('Cross click')">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body px-4">
+                                                                    <form role="form" class="form form-horizontal">
+                                                                        <div class="form-group row">
+                                                                            <div class="col-md-10">
+                                                                                <span
+                                                                                    jhiTranslate="projecttinfo.confirmposition"></span>
+                                                                                <span>{{delPos.title}}</span> ?
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer px-4">
+                                                                    <button type="button" class="btn btn-outline-dark"
+                                                                            jhiTranslate="projecttinfo.btncancel"
+                                                                            (click)="c('Close click')">Cancel
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-raised btn-danger"
+                                                                            jhiTranslate="projecttinfo.btndelete"
+                                                                            (click)="c('Close click'); deletePosition(delPos)">
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
+                                                            </ng-template>
+                                                            <div class="card-block">
+                                                                <h6 style="font-size: 15px" class="card-title info">
+                                                                    {{pos.title}}</h6>
+                                                                <button type="button"
+                                                                        (click)="openPosition(contentPosition, pos)"
+                                                                        class="btn btn-sm btn-danger btn-raised float-right">
+                                                                    <i class="icon-trash"></i>
+                                                                </button>
+                                                                <button type="button"
+                                                                        (click)="editAssignPosition(pos)"
+                                                                        class="mr-1 btn btn-sm btn-primary btn-raised float-right">
+                                                                    <i class="icon-pencil"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 label-control" for="posdesc"
+                                                           jhiTranslate="projectform.labels.posdesc"></label>
+                                                    <div class="col-md-9">
+                                                            <textarea id="posdesc" rows="5"
+                                                                      class="form-control border-primary"
+                                                                      name="posdesc"
+                                                                      [(ngModel)]="position.description"
+                                                                      #posdesc="ngModel"
+                                                                      minlength="4" maxlength="500"
+                                                                      placeholder="{{'projectform.placeholders.posdesc' | translate}}">
+                                                            </textarea>
+                                                        <div
+                                                            *ngIf="posdesc.dirty && posdesc.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="posdesc.errors.required"
+                                                                   jhiTranslate="projectform.validate.posdesc.required">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="posdesc.errors.minlength"
+                                                                   jhiTranslate="projectform.validate.posdesc.short">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="posdesc.errors.maxlength"
+                                                                   jhiTranslate="projectform.validate.posdesc.long">
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ng-template #removeUser let-c="close" let-d="dismiss">
+                                                    <div class="modal-header px-4">
+                                                        <h4 class="modal-title" jhiTranslate="projecttinfo.conf">Accept
+                                                            confirmation</h4>
+                                                        <button type="button" class="close" aria-label="Close"
+                                                                (click)="d('Cross click')">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body px-4">
+                                                        <form role="form" class="form form-horizontal">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-11">
+                                                                    <span jhiTranslate="projectform.removeconf1">Are you sure you want to remove the user </span>
+                                                                    <span>{{remUser.login}}</span>
+                                                                    <span jhiTranslate="projectform.removeconf2">from the position </span>
+                                                                    <span>{{currentPos.title}} ?</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-2 label-control"
+                                                                           jhiTranslate="projecttinfo.reason">Message</label>
+                                                                    <div class="col-md-12">
+                                                                        <textarea id="removeTxt" rows="6"
+                                                                                  autocomplete="off"
+                                                                                  class="form-control col-md-12 border-primary"
+                                                                                  name="messageTxt"
+                                                                                  [(ngModel)]="removeMsg"
+                                                                                  #messageTxt="ngModel"
+                                                                                  maxlength="500" minlength="4">
+                                                                        </textarea>
+                                                                        <div
+                                                                            *ngIf="messageTxt.dirty && messageTxt.invalid">
+                                                                            <small *ngIf="messageTxt.errors.required"
+                                                                                   class="form-text text-danger"
+                                                                                   jhiTranslate="inbox.requiredMessageBody">
+                                                                                The message body is required.
+                                                                            </small>
+                                                                            <small *ngIf="messageTxt.errors.minlength"
+                                                                                   class="form-text text-danger"
+                                                                                   jhiTranslate="inbox.shortMessageBody">
+                                                                                The message body need at least 4
+                                                                                characters.
+                                                                            </small>
+                                                                            <small *ngIf="messageTxt.errors.maxlength"
+                                                                                   class="form-text text-danger"
+                                                                                   jhiTranslate="inbox.longMessageBody">
+                                                                                The message can't have more than 500
+                                                                                characters.
+                                                                            </small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer px-4">
+                                                        <button jhiTranslate="projecttinfo.btncancel"
+                                                                type="button" class="btn btn-outline-dark"
+                                                                (click)="c('Close click')">Cancel
+                                                        </button>
+                                                        <button type="button" class="btn btn-raised btn-danger"
+                                                                jhiTranslate="projectform.validate.buttons.remove"
+                                                                (click)="removeHired(); c('Close click')">
+                                                            Decline
+                                                        </button>
+                                                    </div>
+                                                </ng-template>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 label-control" jhiTranslate="projectform.labels.hired">Hired users</label>
+                                                    <div class="col-md-9">
+                                                        <div *ngIf="position.hiredUsers?.length > 0">
+                                                            <ul class="list-group">
+                                                                <li *ngFor="let hUser of position.hiredUsers">
+                                                                    <a routerLink="/public-profile/{{hUser.id}}">{{hUser.login}}</a>
+                                                                    <button
+                                                                        (click)="openRemove(removeUser, hUser, position)"
+                                                                        jhiTranslate="projectform.validate.buttons.remove"
+                                                                        class="btn btn-raised btn-sm btn-danger">Remove
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 form-control-label" for="goaltitle"
+                                                           jhiTranslate="projectform.labels.postitle">
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="postitle"
+                                                               autocomplete="off"
+                                                               class="form-control border-primary"
+                                                               [(ngModel)]="position.title"
+                                                               readonly #postitle
+                                                               name="postitle"
+                                                               placeholder="{{'projectform.placeholders.postitle' | translate}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5 form-control-label" for="amount"
+                                                           jhiTranslate="projectform.labels.amount">
+                                                        Amount
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="amount"
+                                                               autocomplete="off"
+                                                               class="form-control border-primary"
+                                                               [(ngModel)]="position.quantity"
+                                                               #amount="ngModel"
+                                                               name="amount"
+                                                               pattern="^[1-9][0-9]*$"
+                                                               placeholder="{{'projectform.placeholders.hired' | translate}}">
+                                                        <div
+                                                            *ngIf="amount.dirty && amount.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   jhiTranslate="projectform.hirederror"
+                                                                   *ngIf="amount.errors.pattern">
+                                                                You need at least 1 user for this position
+                                                            </small>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-8 label-control" for="skillsearch"
+                                                           jhiTranslate="projectform.labels.skillsearch"></label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control border-primary" id="skillsearch"
+                                                               autocomplete="off"
+                                                               type="text" #skillsearch
+                                                               (keyup)="searchSkillTypes(skillsearch.value)"
+                                                               placeholder="{{'projectform.placeholders.skillsearch' | translate}}"
+                                                               style="margin-bottom: 10px">
+                                                        <small class="form-text text-danger"
+                                                               jhiTranslate="projectform.validate.errors.maxskills"
+                                                               *ngIf="maxSkills">
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="isEq">
+                                                            <span
+                                                                jhiTranslate="projectform.validate.errors.iseq"></span><span> {{isEq}}</span>
+                                                        </small>
+                                                        <small class="form-text text-danger"
+                                                               *ngIf="isEmpty(position.skills)"
+                                                               jhiTranslate="projecttinfo.minskill">
+                                                        </small>
+                                                        <ul *ngIf="searchSkills">
+                                                            <button type="button"
+                                                                    *ngFor="let searchSkill of searchSkills | slice:0:9"
+                                                                    (click)="assignPosSkill(searchSkill); skillsearch.value=''"
+                                                                    class="btn btn-raised btn-round btn-info"
+                                                                    style="display: inline-block; margin-left: 4px; margin-right: 4px">
+                                                                {{ searchSkill.name }} +
+                                                            </button>
+                                                        </ul>
+                                                        <div class="col-md-9" *ngIf="position.skills">
+                                                            <div style="display: inline-block; margin: 4px"
+                                                                 *ngFor="let skill of position.skills">
+                                                                <span type="button"
+                                                                      class="badge badge-primary" style="color: white">{{skill.name}}<span
+                                                                    (click)="removeSkill(skill)"> X</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button type="button"
+                                                    (click)="resetPosition()"
+                                                    class="btn btn-outline-danger"
+                                                    jhiTranslate="projecttinfo.btncancel">
+                                                Cancel
+                                            </button>
+                                            <button *ngIf="editPosition" type="button" (click)="applyChangesPosition()"
+                                                    [disabled]="!posdesc.value || isEmpty(position.skills) || posdesc.invalid || !postitle.value || amount.invalid || !amount.value"
+                                                    class="btn btn-outline-primary"
+                                                    jhiTranslate="projecttinfo.btneditposition">
+                                                Edit Goal
+                                            </button>
+                                            <button *ngIf="createPosition" type="button" (click)="savePosition()"
+                                                    [disabled]="!posdesc.value || isEmpty(position.skills) || posdesc.invalid || !postitle.value"
+                                                    class="btn btn-outline-primary"
+                                                    jhiTranslate="projecttinfo.btnsaveposition">
+                                                Save goal
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!--Applications-->
+        <section *ngIf="currentPage === 'TimeLine' && applications?.length > 0">
+            <div class="row justify-content-md-center">
+                <div class="col-10">
+                    <div class="content-header text-center" jhiTranslate="apply.title">Skills</div>
+                    <div class="row justify-content-center">
+
+                        <div class="col-7">
+
+                            <div class="alert alert-danger" *ngIf="rejected" jhiTranslate="projecttinfo.rejected">
+                                The application has been rejected.
+                            </div>
+
+                            <div class="alert alert-success" *ngIf="accepted" jhiTranslate="projecttinfo.accepted">
+                                The applications has been accepted.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <ng-template #accept let-c="close" let-d="dismiss">
+                    <div class="modal-header px-4">
+                        <h4 class="modal-title" jhiTranslate="projecttinfo.conf">Accept
+                            confirmation</h4>
+                        <button type="button" class="close" aria-label="Close"
+                                (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-4">
+                        <form role="form" class="form form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-md-11">
+                                    <span jhiTranslate="projecttinfo.aconf">Are you sure you want to accept </span>
+                                    <span>{{confUser}}</span>
+                                    <span jhiTranslate="projecttinfo.for">for the positon</span>
+                                    <span>{{confPosition}}</span> ?
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer px-4">
+                        <button jhiTranslate="projecttinfo.btncancel"
+                                type="button" class="btn btn-outline-dark"
+                                (click)="c('Close click')">Cancel
+                        </button>
+                        <button type="button" class="btn btn-raised btn-success"
+                                jhiTranslate="projecttinfo.accept"
+                                (click)="acceptApp(); c('Close click')">
+                            Accept
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template #decline let-c="close" let-d="dismiss">
+                    <div class="modal-header px-4">
+                        <h4 class="modal-title" jhiTranslate="projecttinfo.conf">Accept
+                            confirmation</h4>
+                        <button type="button" class="close" aria-label="Close"
+                                (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-4">
+                        <form role="form" class="form form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-md-11">
+                                    <span jhiTranslate="projecttinfo.rconf">Are you sure you want to decline </span>
+                                    <span>{{confUser}}</span>
+                                    <span jhiTranslate="projecttinfo.for"></span><span>{{confPosition}}</span> ?
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-md-2 label-control"
+                                           jhiTranslate="projecttinfo.reason">Message</label>
+                                    <div class="col-md-12">
+                                    <textarea id="messageTxt" rows="6"
+                                              autocomplete="off"
+                                              class="form-control col-md-12 border-primary"
+                                              name="messageTxt"
+                                              [(ngModel)]="rejectMessage" #messageTxt="ngModel"
+                                              maxlength="500" minlength="4">
+                                    </textarea>
+                                        <div *ngIf="messageTxt.dirty && messageTxt.invalid">
+                                            <small *ngIf="messageTxt.errors.required" class="form-text text-danger"
+                                                   jhiTranslate="inbox.requiredMessageBody">
+                                                The message body is required.
+                                            </small>
+                                            <small *ngIf="messageTxt.errors.minlength" class="form-text text-danger"
+                                                   jhiTranslate="inbox.shortMessageBody">
+                                                The message body need at least 4 characters.
+                                            </small>
+                                            <small *ngIf="messageTxt.errors.maxlength" class="form-text text-danger"
+                                                   jhiTranslate="inbox.longMessageBody">
+                                                The message can't have more than 500 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer px-4">
+                        <button jhiTranslate="projecttinfo.btncancel"
+                                type="button" class="btn btn-outline-dark"
+                                (click)="c('Close click')">Cancel
+                        </button>
+                        <button type="button" class="btn btn-raised btn-danger"
+                                (click)="declineApp(); c('Close click')" jhiTranslate="projecttinfo.decline">
+                            Decline
+                        </button>
+                    </div>
+                </ng-template>
+
+                <div *ngFor="let app of applications" class="display-block col-12 col-md-8 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block text-center">
+                                <h4 class="mt-3 card-title">{{app.positionTitle}}</h4>
+                                <h6 *ngIf="getAmount(app.positionId) === 0" jhiTranslate="registerForm.fullpos">This position is full</h6>
+                                <h5>{{app.userLogin | uppercase}}</h5>
+                                <a routerLink="/public-profile/{{app.userId}}" class="mr-1" jhiTranslate="registerForm.profile">Profile</a>
+                                <a href="http://files.freelancr.me/{{getResume(app.userId)}}" class="mr-1" jhiTranslate="registerForm.cv">Resume</a>
+                                <a href="https://{{getPersonal(app.userId)}}" target="_blank" jhiTranslate="registerForm.weblink">Website</a>
+                                <div *ngFor="let msg of app.messages" class="category text-gray font-small-4">
+                                    <div [innerHTML]="msg.message">
+
+                                    </div>
+                                </div>
+                                <div class="row grey justify-content-md-center">
+                                    <div class="col-4">
+                                        <span jhiTranslate="projecttinfo.offer">Offer: </span><span
+                                        class="success display-block">${{app.bid}}</span>
+                                    </div>
+                                </div>
+                                <hr class="grey">
+                                <a class="btn btn-lg btn-raised btn-danger" (click)="openAccept(decline, app)"
+                                   jhiTranslate="projecttinfo.decline">Decline</a>
+                                <button *ngIf="!(getAmount(app.positionId) === 0)"
+                                        class="btn btn-lg btn-raised btn-success" (click)="openAccept(accept, app)"
+                                        jhiTranslate="projecttinfo.accept">Accept
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section *ngIf="currentPage === 'TimeLine' && !(applications?.length > 0)">
+            <div class="row justify-content-md-center">
+                <div class="col-10">
+                    <div class="text-center content-header" jhiTranslate="projecttinfo.noapps">You have no
+                        applications
+                    </div>
+                    <div class="row justify-content-center">
+
+                        <div class="col-7">
+
+                            <div class="alert alert-danger" *ngIf="rejected" jhiTranslate="projecttinfo.rejected">
+                                The application has been rejected.
+                            </div>
+
+                            <div class="alert alert-success" *ngIf="accepted" jhiTranslate="projecttinfo.accepted">
+                                The applications has been accepted.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Seccion de applications-->
+        <section *ngIf="currentPage === 'Status'">
+            <jhi-project-status></jhi-project-status>
+        </section>
+
+        <!--User's uploaded photos section starts-->
+        <!--User Profile Starts-->
+    </div>
+</div>

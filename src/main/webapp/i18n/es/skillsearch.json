@@ -1,0 +1,25 @@
+{
+    "skillsearch":{
+        "noskills":"No tienes habilidades asignadas",
+        "addskills":"Agregar habilidades",
+        "technical":"Habilidades técnicas",
+        "info":"Agrega o cambia tus habilidades",
+        "limit":"<strong>¡Límite alcanzado!</strong> 20 habilidades es el máximo que se puede agregar.",
+        "JUNIOR":"Junior",
+        "MID_LEVEL":"Mid",
+        "SENIOR":"Senior",
+        "SME":"SME",
+        "NO_EXPERIENCE":"Sin experiencia",
+        "addchangeskill":"Agregar o cambiar habilidad",
+        "add":"Agregar",
+        "searchskill": "Buscar tipo de habilidad",
+        "skilltype": "Tipo de habilidad",
+        "duplicated": "<strong>Habilidad duplicada!</strong> Ya agregaste: ",
+        "deleteconf":"Estas seguro/a que queires eliminar la habilidad: ",
+        "select":"Selecciona el nivel de habilidad",
+        "levelreq":"Tienes que seleccionar un nivel de habilidad",
+        "skill":"Habilidad",
+        "rate":"Califica tu conocimiento"
+    }
+}
+

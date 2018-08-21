@@ -1,0 +1,26 @@
+
+{
+    "freelancrApp": {
+        "subscriptionTier" : {
+            "home": {
+                "title": "Subscription Tiers",
+                "createLabel": "Create a new Subscription Tier",
+                "createOrEditLabel": "Create or edit a Subscription Tier",
+                "search": "Search for Subscription Tier"
+            },
+            "created": "A new Subscription Tier is created with identifier {{ param }}",
+            "updated": "A Subscription Tier is updated with identifier {{ param }}",
+            "deleted": "A Subscription Tier is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Subscription Tier {{ id }}?"
+            },
+            "detail": {
+                "title": "Subscription Tier"
+            },
+            "name": "Name",
+            "description": "Description",
+            "price": "Price",
+            "user": "User"
+        }
+    }
+}

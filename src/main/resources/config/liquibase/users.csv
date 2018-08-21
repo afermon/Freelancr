@@ -1,0 +1,10 @@
+id;login;password_hash;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by
+1;system;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;System;System;system@freelancr.me;https://robohash.org/sintliberoalias.png?size=50x50&set=set1;true;en;system;system
+2;anonymoususer;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Anonymous;User;anonymous@freelancr.me;https://robohash.org/corporissittenetur.png?size=50x50&set=set1;true;en;system;system
+3;admin;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Administrator;Administrator;admin@freelancr.me;https://robohash.org/assumendaundequi.png?size=50x50&set=set1;true;en;system;system
+4;frelancradmin;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Freelancr Admin;Freelancr;freelancradmin@freelancr.me;;true;en;system;system
+5;user;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;User;User;user@freelancr.me;https://robohash.org/necessitatibusutid.png?size=50x50&set=set1;true;en;system;system
+6;afernandezm;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Alex;Fernandez;afernandezm@ucenfotec.ac.cr;https://robohash.org/pariatureosnostrum.png?size=50x50&set=set1;true;en;system;system
+7;djimenezq;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Derek;Jimenez;djimenezq@ucenfotec.ac.cr;https://robohash.org/eacumqueet.png?size=50x50&set=set1;true;en;system;system
+8;czhangc;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Cherng Lii;Zhang Chen;czhangc@ucenfotec.ac.cr;https://robohash.org/inrerumporro.png?size=50x50&set=set1;true;en;system;system
+9;hsozam;$2a$10$6a7v7iOZ1E1inhaLncgnWOn25DqD0PlokKizA861iGYOC.Yn8QI9q;Heyner;Soza;hsozam@ucenfotec.ac.cr;https://robohash.org/sitcorporisest.png?size=50x50&set=set1;true;en;system;system

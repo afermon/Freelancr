@@ -1,0 +1,46 @@
+{
+    "profilepage":{
+        "about":"About",
+        "timelinea":"Timeline",
+        "feedback":"Feedback",
+        "projects":"Projects",
+        "message":"Message",
+        "participated":"Projects participated in",
+        "asadmin":"Published projects",
+        "start":"Start date:",
+        "finished":"End date:",
+        "offerposition":"Offer position",
+        "applications":"Applications",
+        "deadline":"Deadline",
+        "feed":"Feedback received",
+        "noapps":"No active applications to positions",
+        "profileinfo":{
+            "title":"Personal Information",
+            "aboutme":"About me:",
+            "user":"User name:",
+            "joined":"Joined:",
+            "address":"Lives in:",
+            "phonenumber":"Phone number:",
+            "weekly":"Weekly availability:",
+            "ranking":"Average ranking",
+            "git": "GitHub account:",
+            "birthday":"Birth day:",
+            "email":"Email:",
+            "hours":" hours per week"
+        },
+        "errors":{
+            "nodes":"This user has no description :(",
+            "norank":"This user has no ranking",
+            "notfound":"User profile not found :("
+
+        },
+        "offertitle":"Received offers",
+        "offered":"Offered",
+        "viewproject":"View project",
+        "project":"Project",
+        "resume":"Resume",
+        "link":"Website link",
+        "download":"Download",
+        "view":"View"
+    }
+}

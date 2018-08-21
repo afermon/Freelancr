@@ -1,0 +1,9 @@
+{
+    "freelancrApp": {
+        "UserStatus" : {
+            "null": "",
+            "ACTIVE": "ACTIVO",
+            "BANNED": "SUSPENDIDO"
+        }
+    }
+}

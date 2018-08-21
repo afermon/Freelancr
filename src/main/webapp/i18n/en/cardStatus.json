@@ -1,0 +1,12 @@
+{
+    "freelancrApp": {
+        "CardStatus" : {
+            "null": "",
+            "NEW": "NEW",
+            "IN_PROGRESS": "IN_PROGRESS",
+            "RESOLVED": "RESOLVED",
+            "CLOSED": "CLOSED",
+            "PAYED": "PAYED"
+        }
+    }
+}

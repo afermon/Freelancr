@@ -1,0 +1,258 @@
+/*
+*   Freelancr JDL model
+*/
+
+// Enums
+enum SkillLevel{
+    JUNIOR, MID_LEVEL, SENIOR, SME, NO_EXPERIENCE
+}
+
+enum UserStatus {
+    ACTIVE, BANNED
+}
+
+enum ProjectStatus {
+    PUBLISHED, IN_PROGRESS, FINISHED
+}
+
+enum CardStatus {
+    NEW, IN_PROGRESS, RESOLVED, CLOSED, PAYED
+}
+
+enum ApplicationStatus {
+    APPLIED, ACCEPTED, REJECTED, CANCELLED, OFFERED
+}
+
+enum MessageStatus {
+    NEW, READ
+}
+// Entities
+entity UserFreelancr {
+    description String minlength(4) maxlength(500),
+    phone String minlength(4) maxlength(25) pattern(/^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/), //phone
+    address String minlength(4) maxlength(150),
+    birthDate LocalDate,
+	weeklyAvailability Integer min(0) max(168),
+    ranking Integer min(0),
+    status UserStatus,
+    linkedInUser String minlength(4) maxlength(50) pattern(/^\S*$/), //No spaces
+    gitUser String maxlength(50) pattern(/^\S*$/), //No spaces
+    paypalAccount String minlength(4) maxlength(150) pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/), //Email validation
+    personalLink String minlength(4) maxlength(1000),
+    resumeLink String minlength(4) maxlength(1000)
+}
+
+entity Skill {
+    level SkillLevel required
+}
+
+entity SkillType{
+    name String required minlength(2) maxlength(100),
+    logo String minlength(1) maxlength(200)
+}
+
+entity Language {
+    name String required minlength(4) maxlength(50)
+}
+
+entity Project {
+    title String required minlength(4) maxlength(100),
+    description String required minlength(4) maxlength(2000),
+    status ProjectStatus,
+    deadline LocalDate required,
+    startDate LocalDate,
+    endDate LocalDate,
+    gitRepo String minlength(1) maxlength(100),
+    slackChannel String minlength(1) maxlength(100)
+}
+
+entity Goal {
+    title String required minlength(4) maxlength(100),
+    description String required minlength(4) maxlength(500)
+}
+
+entity Feedback {
+    timeStamp Instant required,
+    rating Integer required min(0) max(10),
+    comments String required  minlength(10) maxlength(250)
+}
+
+entity Card {
+    title String required minlength(4) maxlength(100),
+    description String required minlength(4) maxlength(500)
+    status CardStatus required
+    deadline LocalDate required,
+    budget Double required min(0)
+}
+
+entity Position {
+    title String required minlength(4) maxlength(100),
+    description String required minlength(4) maxlength(500),
+    quantity Integer min(1)
+}
+
+entity PositionType {
+    name String required minlength(1) maxlength(50)
+}
+
+entity Application {
+    status ApplicationStatus required
+    bid Double required min(0)
+}
+
+entity ApplicationMessage {
+    message String required minlength(4) maxlength(2000),
+    status MessageStatus required
+}
+
+entity Comment{
+    timestamp Instant,
+    comment String required minlength(4) maxlength(250)
+}
+
+entity Message {
+    timestamp Instant required,
+    topic String required minlength(4) maxlength(100),
+    message String required minlength(4) maxlength(2000),
+    status MessageStatus required
+}
+
+entity Notification {
+    timestamp Instant required,
+    message String required minlength(4) maxlength(250),
+    status MessageStatus required
+}
+
+entity SubscriptionTier {
+    name String required maxlength(50),
+    description String required minlength(4) maxlength(500),
+    price Double required min(0)
+}
+
+// Relationships
+relationship OneToOne {
+    UserFreelancr{user(login)} to User
+}
+
+relationship ManyToMany {
+    Language{user(login)} to User
+}
+
+relationship ManyToMany {
+    SubscriptionTier{user(login)} to User
+}
+
+relationship ManyToOne {
+    Project{user(login)} to User
+}
+
+relationship OneToMany {
+    Project to Position{project(title)}
+}
+
+relationship OneToMany {
+    Project to Card{project(title)}
+}
+
+relationship ManyToMany {
+    Position{skill(name)} to SkillType
+}
+
+relationship OneToMany {
+    Position to Application{position(title)}
+}
+
+relationship ManyToMany {
+    Position{hiredUsers(login)} to User
+}
+
+relationship ManyToOne {
+    Application{user(login)} to User
+}
+
+relationship ManyToOne {
+    Position{type(name)} to PositionType
+}
+
+relationship ManyToOne {
+    Feedback{user(login)} to User
+}
+
+relationship OneToMany {
+    Project to Feedback{project(title)}
+}
+
+relationship ManyToOne {
+    Notification{user(login)} to User
+}
+
+relationship ManyToMany {
+    Project{followers(login)} to User
+}
+
+relationship OneToMany {
+    Project to Comment{project(title)}
+}
+
+relationship OneToMany {
+    Project to Goal{project(title)}
+}
+
+relationship ManyToOne {
+    Comment{user(login)} to User
+}
+
+relationship ManyToOne {
+    Message{sender(login)} to User,
+    Message{receiver(login)} to User
+}
+
+relationship OneToOne {
+    Message{reply} to Message
+}
+
+relationship ManyToOne {
+    Skill{type(name)} to SkillType
+}
+
+relationship ManyToMany {
+    Skill{user(login)} to User
+}
+
+relationship ManyToOne {
+     ApplicationMessage{sender(login)} to User
+ }
+
+relationship ManyToOne {
+    ApplicationMessage{receiver(login)} to User
+}
+
+relationship OneToMany {
+    Application{messages} to ApplicationMessage
+}
+
+relationship OneToMany {
+    Position{card(title)} to Card
+}
+
+relationship ManyToOne {
+    Card{user(login)} to User
+}
+
+relationship ManyToOne {
+    Skill{type(name)} to SkillType
+}
+
+// Elastic search
+search UserFreelancr, Project, Position, Skill, SkillType with elasticsearch
+
+// Set pagination options
+paginate all with pagination
+
+dto * with mapstruct
+
+// Set service options
+service all with serviceClass
+
+// Set an angular suffix
+angularSuffix * with freelancr

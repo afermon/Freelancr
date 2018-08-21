@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+    <div class="container-fluid" *ngIf="application">
+        <h2><span jhiTranslate="freelancrApp.application.detail.title">Application</span> {{application.id}}</h2>
+        <hr>
+        <jhi-alert-error></jhi-alert-error>
+        <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="freelancrApp.application.status">Status</span></dt>
+            <dd>
+                <span jhiTranslate="{{'freelancrApp.ApplicationStatus.' + application.status}}">{{application.status}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.application.bid">Bid</span></dt>
+            <dd>
+                <span>{{application.bid}}</span>
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.application.user">User</span></dt>
+            <dd>
+                {{application.userLogin}}
+            </dd>
+            <dt><span jhiTranslate="freelancrApp.application.position">Position</span></dt>
+            <dd>
+                <div *ngIf="application.positionId">
+                    <a [routerLink]="['/position-freelancr', application.positionId]">{{application.positionTitle}}</a>
+                </div>
+            </dd>
+        </dl>
+
+        <button type="submit"
+                (click)="previousState()"
+                class="btn btn-info btn-raised">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        </button>
+
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'cms/application-freelancr/'+ application.id + '/edit'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge"
+                class="btn btn-primary btn-raised">
+            <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
+    </div>
+</div>

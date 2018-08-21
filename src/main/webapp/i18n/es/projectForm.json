@@ -1,0 +1,94 @@
+{
+    "projectform": {
+        "info":"Información básica",
+        "title": "Publica un nuevo proyecto",
+        "registerInfo": "Publica tu idea de proyecto, asigna los objetivos que quieres alcanzar y describe el tipo de personas que quieres contratar. Toda la información es requerida",
+        "objetctives":"Objetivos que quieres alcanzar con tu proyecto (al menos 1 requerido)",
+        "position":"Puestos para el proyecto (al menos 1 requerido)",
+        "assignedgoals":"Objetivos asignados",
+        "assignedpositions":"Puestos asignados",
+        "confirm":"¿Estás seguro/a que quieres registrar un proyecto con esta información?",
+        "hirederror":"Necesitas al menos 1 usuario para este puestp",
+        "removeconf1":"¿ Estás seguro/a que quieres remover al usuario  ",
+        "removeconf2":" del puesto ",
+        "labels":{
+            "title":"Título",
+            "deadline":"Fecha límite",
+            "description":"Descripción",
+            "goaltitle":"Título del objetivo",
+            "goaldescription":"Descripción del objetivo",
+            "postitle":"Puesto",
+            "posdesc":"Descripción del puesto",
+            "possearch":"Buscar tipos de puestos",
+            "skillsearch":"Buscar habilidades técnicas",
+            "amount":"Cantidad",
+            "hired":"Usuarios contratados",
+            "available":"Disponibles"
+        },
+        "placeholders":{
+            "title":"Título del proyecto",
+            "description":"Describe tu idea de proyecto",
+            "goaltitle":"Título del objetivo",
+            "goaldescription":"Describe lo que quieres alcanzar",
+            "postitle":"Título del puesto",
+            "posdesc":"Describe el tipo de personas que buscas para este puesto",
+            "possearch":"e.g. Front End, Back End, Full Stack",
+            "skillsearch":"e.g. Java, Angular, Node, Mongo ",
+            "hired":"Cantidad de usuarios para esta posición"
+        },
+        "validate":{
+            "title":{
+                "required":"El título es requerido.",
+                "short":"Se requiere que el título tenga por lo menos 4 caracteres.",
+                "long":"El título no puede tener más de 100 caracteres."
+            },
+            "deadline":{
+                "required":"La fecha límite es requerida."
+            },
+            "description":{
+                "required":"La descripción es requerida.",
+                "short":"Se requiere que la descripción tenga por lo menos 4 caracteres.",
+                "long":"La descripción no puede tener más de 500 caracteres."
+            },
+            "goaltitle":{
+                "required":"El título es requerido.",
+                "short":"Se requiere que el título tenga por lo menos 4 caracteres.",
+                "long":"El título no puede tener más de 100 caracteres.",
+                "maxGoals":"No se pueden asignar más de 4 objetivos"
+            },
+            "goaldescription":{
+                "required":"La descripción es requerida.",
+                "short":"Se requiere que la descripción tenga por lo menos 4 caracteres.",
+                "long":"La descripción no puede tener más de 500 caracteres."
+            },
+            "postitle":{
+                "required":"El título es requerido.",
+                "short":"Se requiere que el título tenga por lo menos 4 caracteres.",
+                "long":"El título no puede tener más de 100 caracteres."
+            },
+            "posdesc":{
+                "required":"La descripción es requerida.",
+                "short":"Se requiere que la descripción tenga por lo menos 4 caracteres.",
+                "long":"La descripción no puede tener más de 500 caracteres."
+            },
+            "buttons":{
+                "assigngoal":"Asignar objetivo",
+                "assignposition":"Asignar puesto",
+                "register":"Registrar proyecto",
+                "next":"Siguiente",
+                "previous":"Anterior",
+                "remove":"Remover"
+            },
+            "errors":{
+                "invaliddate":"<strong>Fecha invalida!</strong> La fecha límite debe de ser al menos una semana a partir de hoy",
+                "nogoals":"<strong>No hay objetivos!</strong> Tienes que asignar al menos 1 objetivo al proyecto",
+                "nopositions":"<strong>No hay puestos!</strong> Tienes que asignar al menos 1 puesto al proyecto",
+                "maxgoals":"No se pueden asignar más de 4 objetivos",
+                "maxskills":"No se pueden asignar más de 1o habilidades por puesto",
+                "maxpositions":"No se pueden asignar más de 5 puestos",
+                "iseq":"Ya tienes asignada la habilidad"
+
+            }
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<div class="row match-height justify-content-md-center " >
+    <div class="col-md-10">
+        <div *ngIf="freelancrAccount">
+            <section>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 jhiTranslate="offerposition.offerpositionto">Offer position to: </h4><h4>{{currentAccount.firstName+' '+currentAccount.lastName}}</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="px-3">
+                                    <form class="form"#applicationformValidate="ngForm" (ngSubmit)="sendApplication()">
+                                        <div class="form-body">
+                                            <div *ngIf="projects">
+                                                <h4 class="form-section" jhiTranslate="offerposition.project">Project</h4>
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label for="slctProject" jhiTranslate="offerposition.project">Project</label>
+                                                            <select id="slctProject" class="form-control" #selectElem (change)="setProject(selectElem.value)">
+                                                                <option *ngIf="projects.length>0" jhiTranslate="offerposition.selectproject">Select a project</option>
+                                                                <option *ngIf="projects.length===0" jhiTranslate="offerposition.noprojectnfound">You do not have any project at the moment.</option>
+                                                                <option *ngFor="let project of projects" [value]="project.id">
+                                                                    {{project.title}}
+                                                                </option>
+                                                            </select>
+                                                            <div *ngIf="positions">
+                                                                <label for="slctPosition" jhiTranslate="offerposition.position">Position</label>
+                                                                <select id="slctPosition" class="form-control" #selectElem (change)="setPosition(selectElem.value)">
+                                                                    <option jhiTranslate="offerposition.selectposition">Select a position to offer</option>
+                                                                    <option *ngFor="let position of positions" [value]="position.id">
+                                                                        {{position.title}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 *ngIf="selectedPosition"  class="form-section" jhiTranslate="offerposition.amoutoffer">Amount to offer</h4>
+                                            <div *ngIf="selectedPosition" class="row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <label for="bid"jhiTranslate="offerposition.amount">Amount</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">$</span>
+                                                                </div>
+                                                                <input currencyMask
+                                                                       [(ngModel)]="application.bid"
+                                                                       [options]="{ prefix: ' ', thousands: '.', decimal: ',', align: 'left' }"
+                                                                       class="form-control border-primary" id="bid" autocomplete="off"
+                                                                       name="bid" #bid="ngModel" required>
+                                                                <div *ngIf="bid.dirty && bid.invalid">
+                                                                    <small class="form-text text-danger"
+                                                                           *ngIf="bid.errors.required"
+                                                                           jhiTranslate="apply.bidrequired">
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="appmessage" jhiTranslate="offerposition.message">Message</label>
+                                                        <textarea id="appmessage" rows="5"
+                                                                  class="form-control border-primary"
+                                                                  name="appmessage"
+                                                                  [(ngModel)]="applicationMessage.message"
+                                                                  #appmessage="ngModel"
+                                                                  required minlength="4" maxlength="250"
+                                                                  placeholder="{{'apply.msgplaceholder' | translate}}">
+                                                        </textarea>
+                                                        <div *ngIf="appmessage.dirty && appmessage.invalid">
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="appmessage.errors.required"
+                                                                   jhiTranslate="apply.msgreq">
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="appmessage.errors.minlength"
+                                                                   jhiTranslate="apply.short">
+                                                                Min length
+                                                            </small>
+                                                            <small class="form-text text-danger"
+                                                                   *ngIf="appmessage.errors.maxlength"
+                                                                   jhiTranslate="apply.long">
+                                                                Max length
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-danger btn-raised"
+                                                (click)="redirectCancel()"
+                                                    jhiTranslate="offerposition.cancel">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn btn-outline-primary"
+                                                    [disabled]="applicationformValidate.form.invalid"
+                                                    jhiTranslate="offerposition.sendoffer">
+                                                Send offer
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div *ngIf="!freelancrAccount" class="row align-items-center justify-content-center">
+            <div class="col-sm-6 col-sm-offset-3">
+                <br><br>
+                <h2 style="color:#d63031" jhiTranslate="profilepage.errors.notfound"></h2>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>

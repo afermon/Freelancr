@@ -1,0 +1,10 @@
+{
+    "freelancrApp": {
+        "ProjectStatus" : {
+            "null": "",
+            "PUBLISHED": "Publicado",
+            "IN_PROGRESS": "En progreso",
+            "FINISHED": "Terminado"
+        }
+    }
+}

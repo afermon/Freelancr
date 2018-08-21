@@ -1,0 +1,32 @@
+{
+    "board": {
+        "title": "Tablero de tareas ",
+        "filter": "Filtrar (por prefijo)",
+        "table": {
+            "prefix": "Prefijo",
+            "properties": "Propiedades"
+        },
+        "adminmsg": "Este es el tablero del proyecto donde puedes administrar todas las tareas que deben completarse. <br> Las tarjetas se pueden arrastrar a otras listas cuando se cumplan las condiciones. <br> Posiciona el cursor sobre cada lista para obtener más información.",
+        "usermsg": "Este es el tablero del proyecto donde puede ver todas las tareas que deben ser completadas. <br> Aquí puedes mover a otras listas las tarjetas que el administrador del proyecto te haya asignado. <br> Posiciona el cursor sobre cada lista para obtener más información.",
+        "created": "<strong>Éxito!</strong> Una nueva tarjeta ha sido creada.",
+        "edited": "<strong>Éxito!</strong> La tarjeta ha sido editada.",
+        "deleted": "<strong>Success!</strong> La tarjeta ha sido eliminada.",
+        "todo":" Por hacer",
+        "tooltip1":"Esta lista es donde se colocan todas las tarjetas nuevas, todas las tarjetas que no están en desarrollo se deben colocar aquí",
+        "progress":" En progreso",
+        "tooltip2":"Cualquier tarjeta en la que se este tranajando va aquí. El freelancr asignado/a para trabajar la tarea la mueve a este tablero cuando esté listo para iniciar",
+        "verify":"Por revisar",
+        "tooltip3":"Todas las tarjetas que están terminadas pero que necesiten ser revisadas van aquí",
+        "resolved":"Resueltas",
+        "tooltip4":"Todas las tarjetas que han sido revisadas van aquí. Solo los administradores del proyecto pueden mover tarjetas a esta lista",
+        "adminerror":"Solo los administradores de proyectos tienen permitido mover tarjetas aquí",
+        "modaltitle":"Crear o editar una tarjeta. Todos los campos son requeridos",
+        "confirmcard":"¿Seguro/a que quieres eliminar la tarjeta: ",
+        "ptitle":"Título de la tarjeta",
+        "pdesc":"Descripción de la tarjeta",
+        "pdeadline":"Fecha límite de la tarjeta",
+        "assigned":"Asignar posición",
+        "usertitle":"Asignar usuario"
+
+    }
+}

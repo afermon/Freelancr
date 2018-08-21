@@ -1,0 +1,67 @@
+{
+    "home": {
+        "title": "Freelancr, todos tus recursos en una sola aplicación!",
+        "subtitle": "Tu idea de la imaginación a la realidad dentro de su presupuesto.",
+        "login": "Iniciar sesión",
+        "register": "Únete a nosotros",
+        "about": {
+            "title": "Sobre Freelancer",
+            "text": "Proporcionamos una plataforma en la que los usuarios pueden contratar y contratar de una manera rentable, <br> pero también agregar las herramientas que necesita en su proyecto de principio a fin.",
+            "topics": {
+                "software" : {
+                    "title": "Desarrollo de software",
+                    "text": "Encuentre los Freelancrs más habilidosos para su web o proyectos de desarrollo de software nativos."
+                },
+                "mobile" : {
+                    "title": "Desarrollo móvil",
+                    "text": "¿Necesita un equipo de desarrollo para la aplicación / juego de su empresa? ¡Encuéntrelo aquí!"
+                },
+                "support" : {
+                    "title": "Apoyo en su proyecto",
+                    "text": "Mantenimiento de código o soporte en sus proyectos existentes"
+                }
+            }
+        },
+        "purchase": {
+            "btn": "Únete ahora",
+            "muted": "Estás en el paso correcto",
+            "title": "¡Regístrese ahora y <br> empiece a trabajar!"
+        },
+        "features": {
+            "title": "Características principales",
+            "desc": "Proporcionamos e integramos las herramientas estándar de la industria necesarias para tener éxito en su proyecto."
+        },
+        "parallax": {
+            "title": "Freelancr",
+            "header": "Desarrolle aplicaciones rapidamente con nuestra ayuda.",
+            "desc": "Esta es, por mucho, la plataforma más rentable y bien estructurada para contratar y ser contratado en proyectos independientes."
+        },
+        "pricing": {
+            "title": "Patrocine sus proyectos",
+            "desc": "¡Obtenga sus recursos más rápido!",
+            "basic": {
+                "title": "Básico",
+                "s1": "Acceso completo",
+                "s2": "2 días top result",
+                "s3": "Soporte por correo electrónico",
+                "s4": "Acceso al centro de ayuda"
+            },
+            "advanced": {
+                "title": "Avanzado",
+                "s1": "Acceso completo",
+                "s2": "10 días top result",
+                "s3": "Soporte por correo electrónico",
+                "s4": "Acceso al centro de ayuda"
+            }
+        },
+        "customer": "Amado por más de 1000 Freelancrs",
+        "reviews": {
+            "title": "Lo que la gente dice",
+            "r1": "Muy buena aplicación + buena documentación. Tuve algunos problemas, pero corregí muy rápido gracias al increíble equipo. Nuestro proyecto estara en marcha en 2 semanas y se ve muy bien !!",
+            "r2": "10 estrellas. Una plataforma única con diseño moderno y gran calidad. Simplemente me encantó ... Simplemente increíble. Ustedes son genios. He publicado muchos proyectos hasta ahora, pero este es el mejor entre ellos. Saludos.",
+            "r3": "El mejor sitio con diseño increíble, componentes, código cohesivo y soporte rápido. Muchas opciones para usar y atención a cada detalle. ¡De todas las plataformas que he usado, solo puedo recomendar esta!",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+}

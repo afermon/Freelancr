@@ -1,0 +1,7 @@
+diff a/src/main/java/org/cosmicode/freelancr/repository/GoalRepository.java b/src/main/java/org/cosmicode/freelancr/repository/GoalRepository.java	(rejected hunks)
+@@ -13,4 +13,5 @@
+ @Repository
+ public interface GoalRepository extends JpaRepository<Goal, Long> {
+ 
++    List<Goal> findByProjectId(long id);
+ }

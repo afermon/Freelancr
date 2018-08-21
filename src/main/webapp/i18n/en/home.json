@@ -1,0 +1,67 @@
+{
+    "home": {
+        "title": "Freelancr, all your resources in a single application!",
+        "subtitle": "Get your idea from imagination to reality on a budget.",
+        "login": "Login",
+        "register": "Join Us",
+        "about": {
+            "title": "About Freelancr",
+            "text": "We provide a platform in which users can hire and get hire in a cost-effective way <br> but also add the tools you need on your project from start to finish.",
+            "topics": {
+                "software" : {
+                    "title": "Software Development",
+                    "text": "Find the most skilled Freelancrs for your web or native software development projects."
+                },
+                "mobile" : {
+                    "title": "Mobile Development",
+                    "text": "Do you need a dev team for your company App/Game? Find it here!"
+                },
+                "support" : {
+                    "title": "Project support",
+                    "text": "Code maintenance or project support on your existent projects."
+                }
+            }
+        },
+        "purchase": {
+            "btn": "Join Now",
+            "muted": "You are at the right step now",
+            "title": "Register now and <br> start working!"
+        },
+        "features": {
+            "title": "Core Features",
+            "desc": "We provide and integrate with industry standard tools you need to succeed on your project."
+        },
+        "parallax": {
+            "title": "Freelancr",
+            "header": "Make applications in No-Time with our help.",
+            "desc": "This is by far the most cost-effective and well structured platform to hire and get hire on freelance projects."
+        },
+        "pricing": {
+            "title": "Sponsor your projects",
+            "desc": "Get your resources faster!",
+            "basic": {
+                "title": "Basic",
+                "s1": "Full access",
+                "s2": "2 days top result",
+                "s3": "Email support",
+                "s4": "Help center access"
+            },
+            "advanced": {                "s1": "Full access",
+
+                "title": "Advanced",
+                "s2": "10 days top result",
+                "s3": "Email support",
+                "s4": "Help center access"
+            }
+        },
+        "customer": "Loved by 1000+ Freelancrs",
+        "reviews": {
+            "title": "What People Say",
+            "r1": "Very nice app + good documentation. I had some issues, but fixed very quickly thanks to the amazing team. Our project is going live in 2 weeks and it looks very nice!!",
+            "r2": "10 Star. A unique platform with modern design and great quality. Just loved it... Simply awesome. You guys are genius. I have published so many project so far, but this the best among them. Cheers.",
+            "r3": "The best site out there with awesome design, components, cohesive code and quick support. Many options to use and attention to every detail. Of all platforms I have used can only recommend this one!!",
+            "next": "Next",
+            "previous": "Previous"
+        }
+    }
+}

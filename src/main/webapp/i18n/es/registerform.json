@@ -1,0 +1,40 @@
+{
+    "registerForm": {
+        "title":"Registrar una cuenta Freelancr",
+        "registerInfo":"Bienvenido a Freelancr, para crear una cuenta necesitas un usuario de GitHub que funcionará como el nombre de usuario del sitio. Todos los campos marcados con (*) son requeridos.",
+        "info": "Información de usuario",
+        "contact":"Información de contacto",
+        "wevbsite":"Enlace al sitio",
+        "websiteph":"Sitio personal o portafolio",
+        "upload":"Subir currículum",
+        "download":"Descargar currículum",
+        "change":"Cambiar archivo",
+        "weberror1":"Se requiere que el enlace tenga por lo menos 4 caracteres",
+        "weberror2":"El enlace ingresado es inválido",
+        "cv":"Currículum",
+        "profile":"Perfil",
+        "fullpos":"Este puesto está ocupado",
+        "weblink":"Sitio web",
+        "labels":{
+            "firstname":"Nombre*",
+            "lastname":"Apellidos*",
+            "github":"Usuario GitHub*",
+            "birthdate":"Fecha de nacimiento*",
+            "password":"Contraseña*",
+            "passwordconfirm":"Confirmar contraseña*",
+            "email":"Correo electrónico*",
+            "address":"Dirección",
+            "bio":"Acerca de ti",
+            "phone": "Número telefónico",
+            "hours": "Disponibilidad de tiempo"
+        },
+        "success":{
+            "saved":"Registro exitoso!",
+            "message":"Gracias por crear una cuenta en Freelancr. Ingresa a tu correo electrónico para finalizar el registro."
+        },
+        "notificactions":{
+            "under15":"Tienes que ser mayor de 15 años para crear una cuenta.",
+            "invaliddate":"La fecha ingresada es invalida."
+        }
+    }
+}

@@ -1,0 +1,40 @@
+
+<div *ngIf="comment">
+    <h2><span jhiTranslate="freelancrApp.comment.detail.title">Comment</span> {{comment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.comment.timestamp">Timestamp</span></dt>
+        <dd>
+            <span>{{comment.timestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.comment.comment">Comment</span></dt>
+        <dd>
+            <span>{{comment.comment}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.comment.user">User</span></dt>
+        <dd>
+            {{comment.userLogin}}
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.comment.project">Project</span></dt>
+        <dd>
+            <div *ngIf="comment.projectId">
+                <a [routerLink]="['/project-freelancr', comment.projectId]">{{comment.projectTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'comment-freelancr/'+ comment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

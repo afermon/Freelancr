@@ -1,0 +1,18 @@
+{
+    "freelancrApp": {
+        "search" : {
+            "search": "Búsqueda",
+            "title": "Búsqueda, vamos a trabajar!",
+            "searchPlaceholder": "Ingrese Habilidades, tecnologías o nombres y luego presione enter.",
+            "projects": "Proyectos",
+            "xtime": "¿Cuanto tiempo tienes?",
+            "xskills": "¿Buscas los proyectos que se adecúen a tus habilidades?",
+            "results": "Cerca de {{ count }} resultados.",
+            "noResultsA": "Ops! Su consulta no arrojó ningún resultado.",
+            "noResultsB": "No tenemos ningún registro que coincida con su consulta, intente de nuevo con un término de búsqueda diferente.",
+            "positions": "Posiciones",
+            "followers": "Seguidores",
+            "owner": "Propietario"
+        }
+    }
+}

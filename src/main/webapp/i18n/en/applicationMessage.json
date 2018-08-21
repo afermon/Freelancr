@@ -1,0 +1,27 @@
+
+{
+    "freelancrApp": {
+        "applicationMessage" : {
+            "home": {
+                "title": "Application Messages",
+                "createLabel": "Create a new Application Message",
+                "createOrEditLabel": "Create or edit a Application Message",
+                "search": "Search for Application Message"
+            },
+            "created": "A new Application Message is created with identifier {{ param }}",
+            "updated": "A Application Message is updated with identifier {{ param }}",
+            "deleted": "A Application Message is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Application Message {{ id }}?"
+            },
+            "detail": {
+                "title": "Application Message"
+            },
+            "message": "Message",
+            "status": "Status",
+            "application": "Application",
+            "sender": "Sender",
+            "receiver": "Receiver"
+        }
+    }
+}

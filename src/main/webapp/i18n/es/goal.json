@@ -1,0 +1,25 @@
+
+{
+    "freelancrApp": {
+        "goal" : {
+            "home": {
+                "title": "Objetivos",
+                "createLabel": "Crear nuevo objetivo",
+                "createOrEditLabel": "Crear o editar objetivo",
+                "search": "Buscar objetivos"
+            },
+            "created": "Un nuevo objetivo ha sido creado con el identificador {{ param }}",
+            "updated": "Un objetivo ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un objetivo ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el objetivo {{ id }}?"
+            },
+            "detail": {
+                "title": "Objetivo"
+            },
+            "title": "Título",
+            "description": "Descripción",
+            "project": "Proyecto"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+
+{
+    "freelancrApp": {
+        "project" : {
+            "home": {
+                "title": "Proyectos",
+                "createLabel": "Crear nuevo proyecto",
+                "createOrEditLabel": "Crear o editar proyecto",
+                "search": "Buscar proyecto"
+            },
+            "created": "Un nuevo proyecto ha sido creado con el identificador {{ param }}",
+            "updated": "Un proyecto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un proyecto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el proyecto {{ id }}?"
+            },
+            "detail": {
+                "title": "Proyecto"
+            },
+            "title": "Título",
+            "description": "Descripción",
+            "status": "Estado",
+            "deadline": "Fecha límite",
+            "startDate": "Fecha de inicio",
+            "endDate": "Fecha de finalización",
+            "gitRepo": "Repositorio de Git",
+            "slackChannel": "Canal de slack",
+            "position": "Puesto",
+            "card": "Tarjeta",
+            "feedback": "Calificación",
+            "comment": "Comentario",
+            "goal": "Objetivo",
+            "user": "Usuario",
+            "followers": "Seguidores"
+        }
+    }
+}

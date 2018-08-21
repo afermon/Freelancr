@@ -1,0 +1,188 @@
+{
+    "global": {
+        "title": "Freelancr",
+        "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+        "menu": {
+            "home": "Home",
+            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "entities": {
+                "main": "Entities",
+                "userFreelancrFreelancr": "User Freelancr",
+                "skillFreelancr": "Skill",
+                "skillTypeFreelancr": "Skill Type",
+                "languageFreelancr": "Language",
+                "projectFreelancr": "Project",
+                "goalFreelancr": "Goal",
+                "feedbackFreelancr": "Feedback",
+                "cardFreelancr": "Card",
+                "positionFreelancr": "Position",
+                "positionTypeFreelancr": "Position Type",
+                "applicationFreelancr": "Application",
+                "applicationMessageFreelancr": "Application Message",
+                "commentFreelancr": "Comment",
+                "messageFreelancr": "Message",
+                "notificationFreelancr": "Notification",
+                "subscriptionTierFreelancr": "Subscription Tier",
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+            },
+            "account": {
+                "main": "Account",
+                "settings": "Settings",
+                "password": "Password",
+                "sessions": "Sessions",
+                "login": "Sign in",
+                "logout": "Sign out",
+                "register": "Register",
+                "profile":"Profile"
+
+            },
+            "admin": {
+                "main": "Administration",
+                "userManagement": "User management",
+                "tracker": "User tracker",
+                "metrics": "Metrics",
+                "health": "Health",
+                "configuration": "Configuration",
+                "logs": "Logs",
+                "audits": "Audits",
+                "apidocs": "API",
+                "database": "Database",
+                "elasticsearch-reindex": "Reindex Elasticsearch",
+                "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+            },
+            "language": "Language"
+        },
+        "form": {
+            "username": "Username",
+            "username.placeholder": "Your username",
+            "name.placeholder": "Your first name",
+            "lastname.placeholder":"Your last name",
+            "newpassword": "Password",
+            "newpassword.placeholder": "Password",
+            "confirmpassword": "Confirm password",
+            "confirmpassword.placeholder": "Confirm the new password",
+            "email": "Email",
+            "email.placeholder": "Your email",
+            "birthdate.placeholder": "Your birth date",
+            "address.placeholder": "Your address",
+            "bio.placeholder": "Tell us a little about yourself",
+            "phone.placeholder": "Your phone number",
+            "hours.placeholder":"Hours per week"
+        },
+        "messages": {
+            "info": {
+                "authenticated": {
+                    "prefix": "If you want to ",
+                    "link": "sign in",
+                    "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+                },
+                "register": {
+                    "noaccount": "You don't have an account yet?",
+                    "link": "New User?"
+                }
+            },
+            "error": {
+                "dontmatch": "The password and its confirmation do not match!",
+                "gitinvalid": "The GitHub username does not exist."
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 8 characters.",
+                    "maxlength": "Your password cannot be longer than 50 characters.",
+                    "pattern": "Your password must contain at least one letter and one number.",
+                    "strength": "Password strength:"
+                },
+                "confirmpassword": {
+                    "required": "Your confirmation password is required."
+                },
+                "email": {
+                    "required": "Your email is required.",
+                    "invalid": "Your email is invalid.",
+                    "minlength": "Your email is required to be at least 5 characters.",
+                    "maxlength": "Your email cannot be longer than 100 characters."
+                },
+                "firstname": {
+                    "required": "Your first name is required.",
+                    "minlength": "Your first name is required to be at least 1 character.",
+                    "maxlength": "Your first name cannot be longer than 50 characters.",
+                    "onlyletters": "Your first name can only contain letters"
+                },
+                "lastname": {
+                    "required": "Your last name is required.",
+                    "minlength": "Your last name is required to be at least 1 character.",
+                    "maxlength": "Your last name cannot be longer than 50 characters.",
+                    "onlyletters": "Your last name can only contain letters"
+                },
+                "birthdate": {
+                    "required": "Your birth date is required."
+                },
+                "address": {
+                    "minlength": "Your address is required to be at least 5 character.",
+                    "maxlength": "Your address cannot be longer than 250 characters."
+                },
+                "phone":{
+                    "pattern":"Sorry that format is not supported, your phone number must be at least 4 characters long and can contain area codes and hyphens.",
+                    "maxlength": "Your phone number cannot be longer than 25 characters."
+
+                },
+                "hours":{
+                    "pattern":"You can only enter numbers"
+                }
+
+
+            }
+        },
+        "field": {
+            "id": "ID"
+        },
+        "ribbon": {
+            "dev":"Development"
+        },
+        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
+    },
+    "entity": {
+        "action": {
+            "addblob": "Add blob",
+            "addimage": "Add image",
+            "back": "Back",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "edit": "Edit",
+            "open": "Open",
+            "save": "Save",
+            "view": "View"
+        },
+        "detail": {
+            "field": "Field",
+            "value": "Value"
+        },
+        "delete": {
+            "title": "Confirm delete operation"
+        },
+        "validation": {
+            "required": "This field is required.",
+            "minlength": "This field is required to be at least {{ min }} characters.",
+            "maxlength": "This field cannot be longer than {{ max }} characters.",
+            "min": "This field should be at least {{ min }}.",
+            "max": "This field cannot be more than {{ max }}.",
+            "minbytes": "This field should be at least {{ min }} bytes.",
+            "maxbytes": "This field cannot be more than {{ max }} bytes.",
+            "pattern": "This field should follow pattern for {{ pattern }}.",
+            "number": "This field should be a number.",
+            "datetimelocal": "This field should be a date and time.",
+            "patternLogin": "This field can only contain letters, digits and e-mail addresses."
+        }
+    },
+    "error": {
+        "internalServerError": "Internal server error",
+        "server.not.reachable": "Server not reachable",
+        "url.not.found": "Not found",
+        "NotNull": "Field {{ fieldName }} cannot be empty!",
+        "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+        "userexists": "Login name already used!",
+        "emailexists": "Email is already in use!",
+        "idexists": "A new {{ entityName }} cannot already have an ID"
+    },
+    "footer": "This is your footer"
+}

@@ -1,0 +1,32 @@
+{
+    "ProjectStart" : {
+        "title": "Estado del proyecto",
+        "start": {
+            "question": "¿Le gustaría iniciar este proyecto?",
+            "description": "Este proyecto no ha sido iniciado. El siguiente proceso creará un repositorio GitHub y un canal Slack para el equipo. Se agregarán también a todos los usuarios contratados.",
+            "link": "Iniciar Proyecto"
+        },
+        "finish": {
+            "question": "¿Te gustaría terminar este proyecto?",
+            "description": "Esto eliminará el acceso de los colaboradores de los repositorios Slack y GitHub. Realice esta acción solo cuando el proyecto esté completamente terminado.",
+            "link": "Finalizar Proyecto"
+        },
+        "workspace": {
+            "title": "Area de trabajo",
+            "slack": "Canal de Slack",
+            "github": "Repositorio Github"
+        },
+        "working": "Trabajando..",
+        "slackMessages": "Últimos mensajes de Slack",
+        "repoEmpty": "El repositorio está vacío. ",
+        "slackEmpty": "El canal está vacío.",
+        "Feedback" : "Retroalimentación",
+        "GiveFeedback" : "Dar Retroalimentación",
+        "requiredFeedback":"La retroalimentación es requerida.",
+        "shortFeedback":"Se requiere que la retroalimentación tenga por lo menos 4 caracteres.",
+        "longFeedback":"la retroalimentación no puede tener más de 250 caracteres.",
+        "feedbackInfo":"Califica a los usuarios que participaron en este proyecto, puedes calificarlos de una a cinco estrellas y enviar un comentario con tu opinión sobre cómo trabajó.",
+        "feedbackSuccess":"<strong>Éxito!</strong> Retroalimentación enviada.",
+        "send":"Enviar"
+    }
+}

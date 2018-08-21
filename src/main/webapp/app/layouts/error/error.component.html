@@ -1,0 +1,24 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-5 pt-5" matchHeight ="card">
+            <div class="col-lg-4 offset-lg-4 offset-md-3 col-md-6 col-sm-12">
+                <div class="card box-shadow-0 text-center">
+                    <div class="card-body">
+                        <div class="card-block pt-3">
+                            <div class="row d-flex">
+                                <div class="col align-self-center">
+                                    <img src="../../../content/images/pages/robot-error.png" alt="Error" alt="element 01" width="190">
+                                </div>
+                                <div class="col align-self-center">
+                                    <h4 class="card-title mt-3" jhiTranslate="error.title">Error Page!</h4>
+                                    <p class="card-text"  [hidden]="!errorMessage">{{errorMessage}}</p>
+                                    <p class="card-text" [hidden]="!error403">You are not authorized to access this page.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

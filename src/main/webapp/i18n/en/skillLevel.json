@@ -1,0 +1,12 @@
+{
+    "freelancrApp": {
+        "SkillLevel" : {
+            "null": "",
+            "JUNIOR": "Junior",
+            "MID_LEVEL": "Mid level",
+            "SENIOR": "Senior",
+            "SME": "SME",
+            "NO_EXPERIENCE": "No experience"
+        }
+    }
+}

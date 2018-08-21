@@ -1,0 +1,35 @@
+{
+    "dashboard": {
+        "title": "Bienvenido a Freelancr, ¡todo lo que ocupas en un solo lugar!",
+        "welcome": "Bienvenido {{username}}!",
+        "question": "¿Qué te gustaría hacer hoy?",
+        "search": "Buscar!",
+        "stats": {
+            "projects": "Proyectos activos",
+            "messages": "Mensajes",
+            "cards": "Tarjetas asignadas",
+            "feedback": "Retroalimentación recibida"
+        },
+        "daily": {
+            "title": "¿Qué hay en tu lista?",
+            "new": {
+                "header": "¿Tuviste una idea?",
+                "desc": "Hazla realidad fácilmente.",
+                "button": "Nuevo proyecto"
+            },
+            "project": {
+                "header": "Proyectos activos",
+                "headerOwn": "Tus proyectos",
+                "desc": "Estos son los proyectos en los cuales participa actualmente.",
+                "descOwn": "Proyectos en los que usted es el administrador.",
+                "no": "Sin proyectos en este punto. Usa nuestra búsqueda!"
+            },
+            "support": {
+                "header": "¿Hay algo con lo que podamos ayudar?",
+                "desc": "Envíanos un mensaje cada vez que tengas un problema o te gustaría enviar comentarios.",
+                "button": "Enviar correo"
+            },
+            "more":"Ver más"
+        }
+    }
+}

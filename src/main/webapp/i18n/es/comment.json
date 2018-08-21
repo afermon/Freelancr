@@ -1,0 +1,26 @@
+
+{
+    "freelancrApp": {
+        "comment" : {
+            "home": {
+                "title": "Comentarios",
+                "createLabel": "Crear nuevo comentario",
+                "createOrEditLabel": "Crear o editar comentario",
+                "search": "Buscar comentarios"
+            },
+            "created": "Un nuevo comentario ha sido creado con el identificador {{ param }}",
+            "updated": "Un comentario ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un comentario ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el comentario {{ id }}?"
+            },
+            "detail": {
+                "title": "Comentario"
+            },
+            "timestamp": "Fecha de publicación",
+            "comment": "Comentario",
+            "user": "Usuario",
+            "project": "Proyecto"
+        }
+    }
+}

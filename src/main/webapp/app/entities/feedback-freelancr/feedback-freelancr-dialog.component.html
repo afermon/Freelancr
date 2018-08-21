@@ -1,0 +1,98 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFeedbackLabel" jhiTranslate="freelancrApp.feedback.home.createOrEditLabel">Create or edit a Feedback</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!feedback.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="feedback.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.feedback.timeStamp" for="field_timeStamp">Time Stamp</label>
+            <div class="d-flex">
+                <input id="field_timeStamp" type="datetime-local" class="form-control" name="timeStamp" [(ngModel)]="feedback.timeStamp"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.timeStamp?.dirty && editForm.controls.timeStamp?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.timeStamp?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.timeStamp?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.feedback.rating" for="field_rating">Rating</label>
+            <input type="number" class="form-control" name="rating" id="field_rating"
+                [(ngModel)]="feedback.rating" required min="0" max="10"/>
+            <div [hidden]="!(editForm.controls.rating?.dirty && editForm.controls.rating?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rating?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rating?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rating?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 10 }">
+                    This field cannot be more than 10.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rating?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.feedback.comments" for="field_comments">Comments</label>
+            <input type="text" class="form-control" name="comments" id="field_comments"
+                [(ngModel)]="feedback.comments" required minlength="10" maxlength="250"/>
+            <div [hidden]="!(editForm.controls.comments?.dirty && editForm.controls.comments?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comments?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comments?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 10 }">
+                   This field is required to be at least 10 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comments?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 250 }">
+                   This field cannot be longer than 250 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.feedback.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="feedback.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="freelancrApp.feedback.project" for="field_project">Project</label>
+            <select class="form-control" id="field_project" name="project" [(ngModel)]="feedback.projectId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="projectOption.id" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-raised">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

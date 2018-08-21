@@ -1,0 +1,27 @@
+
+{
+    "freelancrApp": {
+        "feedback" : {
+            "home": {
+                "title": "Calificaciones",
+                "createLabel": "Crear una nueva calificación",
+                "createOrEditLabel": "Crear o editar una calificación",
+                "search": "Buscar por calificaciones"
+            },
+            "created": "Una nueva calificación ha sido creada con el identificador {{ param }}",
+            "updated": "Una calificación ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una calificación ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar la calificación {{ id }}?"
+            },
+            "detail": {
+                "title": "Calificación"
+            },
+            "timeStamp": "Fecha",
+            "rating": "Valoración",
+            "comments": "Comentarios",
+            "user": "Usuario",
+            "project": "Proyecto"
+        }
+    }
+}

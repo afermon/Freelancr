@@ -1,0 +1,74 @@
+
+<div *ngIf="userFreelancr">
+    <h2><span jhiTranslate="freelancrApp.userFreelancr.detail.title">User Freelancr</span> {{userFreelancr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.description">Description</span></dt>
+        <dd>
+            <span>{{userFreelancr.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.phone">Phone</span></dt>
+        <dd>
+            <span>{{userFreelancr.phone}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.address">Address</span></dt>
+        <dd>
+            <span>{{userFreelancr.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.birthDate">Birth Date</span></dt>
+        <dd>
+            <span>{{userFreelancr.birthDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.weeklyAvailability">Weekly Availability</span></dt>
+        <dd>
+            <span>{{userFreelancr.weeklyAvailability}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.ranking">Ranking</span></dt>
+        <dd>
+            <span>{{userFreelancr.ranking}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'freelancrApp.UserStatus.' + userFreelancr.status}}">{{userFreelancr.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.linkedInUser">Linked In User</span></dt>
+        <dd>
+            <span>{{userFreelancr.linkedInUser}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.gitUser">Git User</span></dt>
+        <dd>
+            <span>{{userFreelancr.gitUser}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.paypalAccount">Paypal Account</span></dt>
+        <dd>
+            <span>{{userFreelancr.paypalAccount}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.personalLink">Personal Link</span></dt>
+        <dd>
+            <span>{{userFreelancr.personalLink}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.resumeLink">Resume Link</span></dt>
+        <dd>
+            <span>{{userFreelancr.resumeLink}}</span>
+        </dd>
+        <dt><span jhiTranslate="freelancrApp.userFreelancr.user">User</span></dt>
+        <dd>
+            {{userFreelancr.userLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-freelancr-freelancr/'+ userFreelancr.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

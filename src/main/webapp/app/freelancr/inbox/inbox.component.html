@@ -1,0 +1,251 @@
+<div class="content-wrapper" jhiLoadScript [script]="'/content/inbox.js'">
+    <div class="container-fluid">
+        <div class="email-application">
+            <div class="email-app-sidebar float-left d-none d-xl-block">
+                <div class="email-app-sidebar-content">
+                    <div class="email-app-menu">
+                        <div class="form-group form-group-compose text-center">
+                            <button type="button" class="btn btn-raised btn-danger btn-block my-2" (click)="refresh()">
+                                <span jhiTranslate="inbox.refresh">Refresh</span>
+                            </button>
+                        </div>
+                        <h6 class="text-muted text-bold-500 mb-1" jhiTranslate="inbox.messages">Messages</h6>
+                        <div class="list-group list-group-messages">
+                            <a class="list-group-item list-group-item-action no-border" [ngClass]="{active: index === 0}" (click)="inboxMenu(0)" (click)="hideMessage()" (click)="loadAllMessagesByReceiver()">
+                                <i class="ft-inbox mr-1" ></i>
+                                <span jhiTranslate="inbox.direct">Direct</span>
+                                <span class="badge badge-dark badge-pill float-right"></span>
+                            </a>
+                            <a class="list-group-item list-group-item-action no-border" [ngClass]="{active: index === 1}" (click)="inboxMenu(1)" (click)="hideMessage()" (click)="loadAllMessagesSent()">
+                                <i class="fa fa-paper-plane-o mr-1"></i>
+                                <span jhiTranslate="inbox.sent">Sent</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="email-app-content row">
+                <div class="email-app-list-mails p-0">
+                    <div class="email-app-list">
+                        <div id="users-list">
+                            <div class="list-group">
+                                <div class="users-list-padding">
+                                    <div *ngIf="indexMessageList === 0">
+                                        <div *ngFor="let msg of messages">
+                                            <a class="list-group-item list-group-item-action no-border" (click)="showMessage(msg)">
+                                                <span class="media">
+                                                    <span class="avatar avatar-md mr-2">
+                                                        <span class="media-object rounded-circle text-circle d-flex mr-2 justify-content-center align-items-center bg-info">{{msg.senderLogin.charAt(0)}}</span>
+                                                    </span>
+                                                    <div *ngIf="msg.status.toString() === 'NEW'" class="media-body" (click)="updateStatus(msg)">
+                                                        <h6 class="list-group-item-heading">{{msg.senderLogin}}
+                                                            <span class="float-right">
+                                                                <span class="font-small-2 primary">{{getFormatedDate(msg)}}</span>
+                                                            </span>
+                                                        </h6>
+                                                        <p  class="list-group-item-text text-truncate text-bold-500">{{msg.topic}}</p>
+                                                    </div>
+                                                    <div *ngIf="msg.status.toString() === 'READ'" class="media-body">
+                                                        <h6 class="list-group-item-heading">{{msg.senderLogin}}
+                                                            <span class="float-right">
+                                                                <span class="font-small-2 primary">{{getFormatedDate(msg)}}</span>
+                                                            </span>
+                                                        </h6>
+                                                        <p class="list-group-item-text text-truncate">{{msg.topic}}</p>
+                                                    </div>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div  *ngIf="indexMessageList === 1">
+                                        <div *ngFor="let msgSent of messages">
+                                            <a class="list-group-item list-group-item-action no-border" (click)="showMessage(msgSent)">
+                                                <span class="media">
+                                                    <span class="avatar avatar-md mr-2">
+                                                        <span class="media-object rounded-circle text-circle d-flex mr-2 justify-content-center align-items-center bg-info">{{msgSent.receiverLogin.charAt(0)}}</span>
+                                                    </span>
+                                                    <div class="media-body">
+                                                        <h6 class="list-group-item-heading">{{msgSent.receiverLogin}}
+                                                            <span class="float-right">
+                                                                <span class="font-small-2 primary">{{getFormatedDate(msgSent)}}</span>
+                                                            </span>
+                                                        </h6>
+                                                        <p *ngIf="msgSent.status.toString() === 'NEW'" class="list-group-item-text text-truncate text-bold-500">{{msgSent.topic}}</p>
+                                                        <p *ngIf="msgSent.status.toString() === 'READ'" class="list-group-item-text text-truncate">{{msgSent.topic}}</p>
+                                                    </div>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="message" class="email-app-mail-content">
+                    <div class="email-app-mail-content-detail">
+                        <div class="email-app-options card-block">
+                            <div class="row d-md-none">
+                                <button class="btn btn-raised btn-primary ml-2 back-to-inbox"><i class="fa fa-angle-left"></i> Back to inbox</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <button  *ngIf="index === 0" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top" data-original-title="Replay" (click)="openReply(content)">
+                                        <i class="fa fa-reply"></i>
+                                    </button>
+                                    <button type="submit"
+                                            [routerLink]="['/', { outlets: { popup: 'cms/message-freelancr/'+ message.id + '/delete'} }]"
+                                            replaceUrl="true"
+                                            queryParamsHandling="merge"
+                                            class="btn btn-sm btn-outline-secondary"
+                                            data-original-title="Delete">
+                                        <i class="ft-trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="email-app-title card-block">
+                            <h3 class="list-group-item-heading">{{message.topic}}</h3>
+                        </div>
+
+                        <div *ngIf="message.replyId !== null">
+                            <div id="headingCollapse1" class="card-header p-0">
+                                <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                    <div class="email-app-sender list-group-item list-group-item-action no-border bg-blue-grey bg-lighten-5">
+                                    <span class="media">
+                                        <span class="avatar avatar-md mr-2">
+                                            <span class="media-object rounded-circle text-circle d-flex mr-2 justify-content-center align-items-center bg-info">{{messageReply.senderLogin.charAt(0)}}</span>
+                                        </span>
+                                        <div class="media-body">
+                                            <h6 class="list-group-item-heading">{{messageReply.senderLogin}}</h6>
+                                            <p class="list-group-item-text">{{messageReply.topic}}</p>
+                                        </div>
+                                    </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                <div class="card-body">
+                                    <div class="card-block">
+                                        <p>
+                                            {{messageReply.message}}
+                                        <p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="headingCollapse2" class="card-header p-0">
+                            <a (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1" aria-controls="collapseExample1">
+                                <div class="email-app-sender list-group-item list-group-item-action no-border">
+                                    <div class="media">
+                                <span class="avatar avatar-md mr-2">
+                                    <span class="media-object rounded-circle text-circle d-flex mr-2 justify-content-center align-items-center bg-info">{{message.senderLogin.charAt(0)}}</span>
+                                </span>
+                                        <div class="media-body">
+                                            <h6 class="list-group-item-heading">{{message.senderLogin}}</h6>
+                                            <p class="list-group-item-text" jhiTranslate="inbox.tome">to me
+                                                <span>{{getFormatedDate(message)}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div id="collapseExample1" [ngbCollapse]="isCollapsed1">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="email-app-text card-block col-md-6">
+                                        <div class="email-app-message " >
+                                            <p>{{message.message}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="email-app-text-action card-block">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header px-4">
+                    <h4 class="modal-title"  jhiTranslate="inbox.composeEmail">Compose message</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body px-4">
+                    <form role="form" class="form form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-md-2 label-control" jhiTranslate="inbox.to">To </label>
+                            <div class="col-md-10">
+                                <div *ngIf="newMessage.receiverLogin === ''; else reply">
+                                    <input type="text" id="Receiver"
+                                           class="form-control border-primary"
+                                           [(ngModel)]="newMessage.receiverLogin"
+                                           name="sender" #messageSender="ngModel"
+                                           required minlength="4" maxlength="100">
+                                </div>
+                                <ng-template #reply>
+                                    <label>{{newMessage.receiverLogin}}</label>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 label-control" jhiTranslate="inbox.subject">Subject </label>
+                            <div class="col-md-10">
+                                <input type="text" id="subject"
+                                       class="form-control border-primary"
+                                       [(ngModel)]="newMessage.topic"
+                                       autocomplete="off"
+                                       name="subject" #messageSubject="ngModel"
+                                       required minlength="4" maxlength="100">
+                                <div *ngIf="messageSubject.dirty && messageSubject.invalid">
+                                    <small *ngIf="messageSubject.errors.required" class="form-text text-danger" jhiTranslate="inbox.requiredSubject">
+                                        The subject is required.
+                                    </small>
+                                    <small *ngIf="messageSubject.errors.minlength" class="form-text text-danger" jhiTranslate="inbox.shortSubject">
+                                        The subject need at least 4 characters.
+                                    </small>
+                                    <small *ngIf="messageSubject.errors.maxlength" class="form-text text-danger" jhiTranslate="inbox.longSubject">
+                                        The subject can't have more than 100 characters.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 label-control" jhiTranslate="inbox.message" >Message</label>
+                            <div class="col-md-10">
+                                <textarea id="messageTxt" rows="6" required
+                                          class="ql-editor ql-blank col-md-12" name="messageTxt"
+                                          [(ngModel)]="newMessage.message" #messageTxt="ngModel"
+                                          autocomplete="off"
+                                          maxlength="500" minlength="4">
+                                </textarea>
+                                <div *ngIf="messageTxt.dirty && messageTxt.invalid">
+                                    <small *ngIf="messageTxt.errors.required" class="form-text text-danger" jhiTranslate="inbox.requiredMessageBody">
+                                        The message body is required.
+                                    </small>
+                                    <small *ngIf="messageTxt.errors.minlength" class="form-text text-danger" jhiTranslate="inbox.shortMessageBody">
+                                        The message body need at least 4 characters.
+                                    </small>
+                                    <small *ngIf="messageTxt.errors.maxlength" class="form-text text-danger" jhiTranslate="inbox.longdMessageBody">
+                                        The message can't have more than 500 characters.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <p>{{text}}</p>
+                <div class="modal-footer px-4">
+                    <button type="button" class="btn btn-outline-dark" (click)="cleanNewMessage()" (click)="c('Close click')">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-primary" [disabled]="messageTxt.invalid || messageSubject.invalid " (click)="createReply()"  (click)="c('Close click')">Send</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

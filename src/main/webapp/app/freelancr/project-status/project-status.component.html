@@ -1,0 +1,189 @@
+<div class="row justify-content-md-center">
+    <jhi-alert></jhi-alert>
+</div>
+<div *ngIf="currentProject">
+    <div class="row justify-content-md-center"
+         *ngIf="currentProject && (currentProject.status.toString() === 'IN_PROGRESS' || currentProject.status.toString() === 'FINISHED')">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                    <h4 style="text-align: center;" jhiTranslate="ProjectStart.workspace.title">Workspace</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="row justify-content-md-center mt-2 overflow-hidden">
+                        <span style="width: 240px" class="mr-1 mt-2 text-center float-left">
+                            <a href="https://freelancr-prod.slack.com/messages/{{currentProject.slackChannel}}"
+                               target="_blank">
+                                <i class="fa fa-slack primary font-large-2 active"></i>
+                                <div class="mt-2" jhiTranslate="ProjectStart.workspace.slack">Slack Channel</div>
+                                {{currentProject.gitRepo}}
+                            </a>
+                        </span>
+                            <span style="width: 240px" class="mr-1 mt-2 text-center float-left">
+                            <a href="https://github.com/afermon/{{currentProject.gitRepo}}" target="_blank">
+                                <i class="fa fa-github primary font-large-2 active"></i>
+                                <div class="mt-2" jhiTranslate="ProjectStart.workspace.github">Github Repository</div>
+                                {{currentProject.gitRepo}}
+                            </a>
+                        </span>
+                            <span style="width: 240px" class="mr-1 mt-2 text-center float-left">
+                            <a [routerLink]="['/board', currentProject.id ]">
+                                <i class="fa fa-trello primary font-large-2 active"></i>
+                                <div class="mt-2">Kanban</div>
+                            </a>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-md-center" *ngIf="slackMessages">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="card-block">
+                        <h4 class="card-title success" jhiTranslate="ProjectStart.slackMessages">Latest Slack
+                            Messages</h4>
+                        <p class="card-text">Last 10 messages</p>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngIf="slackMessages.length < 1"
+                            jhiTranslate="ProjectStart.slackEmpty">Channel is empty.
+                        </li>
+                        <li class="list-group-item" *ngFor="let message of slackMessages">
+                            <span class="badge badge-pill badge-success text-white float-right">{{message.ts * 1000 | date}}</span>
+                            {{ message.text }}
+                        </li>
+                    </ul>
+                    <div class="card-block">
+                        <a class="card-link success"
+                           href="https://freelancr-prod.slack.com/messages/{{currentProject.slackChannel}}"
+                           target="_blank">See more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="githubCommits">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="card-block">
+                        <h4 class="card-title danger">Latest GitHub Commits</h4>
+                        <p class="card-text">Last 20 commits</p>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngIf="githubCommits.length < 1"
+                            jhiTranslate="ProjectStart.repoEmpty">Repo is empty.
+                        </li>
+                        <li class="list-group-item" *ngFor="let commit of githubCommits">
+                            {{commit.message}}
+                        </li>
+                    </ul>
+                    <div class="card-block">
+                        <a class="card-link danger" href="https://github.com/afermon/{{currentProject.gitRepo}}"
+                           target="_blank">See more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-md-center"
+         *ngIf="currentProject && (currentProject.status.toString() === 'IN_PROGRESS' || currentProject.status.toString() === 'PUBLISHED')">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                    <h4 style="text-align: center;" jhiTranslate="ProjectStart.title">Project Status</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block" *ngIf="currentProject.status.toString() === 'PUBLISHED'">
+                        <div class="row d-flex">
+                            <div class="col-md-8 align-self-center text-center">
+                                <h4 class="card-title mt-3" jhiTranslate="ProjectStart.start.question">Would you like to
+                                    start this project?</h4>
+                                <p class="card-text" jhiTranslate="ProjectStart.start.description">This project has not
+                                    been started. The process below will create a GitHub repository and Slack channel
+                                    for the team. All current hired users will be added to them as well.</p>
+                                <a *ngIf="!working" class="btn btn-outline-success btn-round"
+                                   jhiTranslate="ProjectStart.start.link" (click)="startProject()">Start project</a>
+                            </div>
+                            <div class="col-md-4 align-self-center">
+                                <img src="../../../content/images/pages/robot-happy.png" alt="Contact" alt="element 01"
+                                     width="190">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block" *ngIf="currentProject.status.toString() === 'IN_PROGRESS'">
+                        <div class="row d-flex">
+                            <div class="col-md-8 align-self-center text-center">
+                                <h4 class="card-title mt-3" jhiTranslate="ProjectStart.finish.question">Would you like
+                                    to finish this project?</h4>
+                                <p class="card-text" jhiTranslate="ProjectStart.finish.description">This will remove
+                                    collaborators access from Slack and GitHub repositories. Please perform this action
+                                    only when the project is completely finished.</p>
+                                <a *ngIf="!working" class="btn btn-outline-danger btn-round"
+                                   jhiTranslate="ProjectStart.finish.link" (click)="finishProject()">Finish project</a>
+                            </div>
+                            <div class="col-md-4 align-self-center">
+                                <img src="../../../content/images/pages/robot-mad.png" alt="Contact" alt="element 01"
+                                     width="190">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block" *ngIf="working">
+                        <ngb-progressbar type="success" [value]="100" [striped]="true" [animated]="true"><i
+                            jhiTranslate="ProjectStart.working">Working</i></ngb-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center" *ngIf="feedbackActive">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="mb-3 gradient-indigo-dark-blue white text-center p-2 card-header">
+                    <h4 style="text-align: center;" jhiTranslate="ProjectStart.GiveFeedback">Give feedback</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div name="page-top" class="col-7">
+
+                            <div class="alert alert-success" *ngIf="succesFeedback"
+                                 jhiTranslate="ProjectStart.feedbackSuccess">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <p class="text-center pb-1" jhiTranslate="ProjectStart.feedbackInfo"></p>
+                        <form role="form" class="col-md-6 display-inline-block justify-content-md-center text-center" style="vertical-align: top" (ngSubmit)="sendFeedback(f)" *ngFor="let f of feedback">
+                            <div class="form-group">
+                                <h6>{{f.userLogin | uppercase}}</h6>
+                                <ngb-rating class="display-block pb-1" [(rate)]="f.rating" max="5">
+                                    <ng-template let-fill="fill">
+                                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                    </ng-template>
+                                </ngb-rating>
+                                <textarea rows="5" title="Comment" class="form-control border-primary col-sm-12" [(ngModel)]="f.comments"
+                                          autocomplete="off" maxlength="500" minlength="4" name="{{f.userLogin}}"></textarea>
+                                <small class="form-text text-danger"
+                                       *ngIf="f.comments?.length > 0 && f.comments?.length < 10"
+                                       jhiTranslate="entity.validation.minlength" translateValues="{ min: 10 }">
+                                </small>
+                            </div>
+                            <div class="form-actions center">
+                                <button type="submit" class="btn btn btn-outline-primary"
+                                        [disabled]="(f.comments?.length >= 0 && f.comments?.length < 10)"
+                                        jhiTranslate="ProjectStart.send">
+                                    Feedback
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

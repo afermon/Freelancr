@@ -1,0 +1,35 @@
+
+{
+    "freelancrApp": {
+        "userFreelancr" : {
+            "home": {
+                "title": "User Freelancrs",
+                "createLabel": "Create a new User Freelancr",
+                "createOrEditLabel": "Create or edit a User Freelancr",
+                "search": "Search for User Freelancr"
+            },
+            "created": "A new User Freelancr is created with identifier {{ param }}",
+            "updated": "A User Freelancr is updated with identifier {{ param }}",
+            "deleted": "A User Freelancr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Freelancr {{ id }}?"
+            },
+            "detail": {
+                "title": "User Freelancr"
+            },
+            "description": "Description",
+            "phone": "Phone",
+            "address": "Address",
+            "birthDate": "Birth Date",
+            "weeklyAvailability": "Weekly Availability",
+            "ranking": "Ranking",
+            "status": "Status",
+            "linkedInUser": "Linked In User",
+            "gitUser": "GitHub User",
+            "paypalAccount": "Paypal Account",
+            "personalLink": "Personal Link",
+            "resumeLink": "Resume Link",
+            "user": "User"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+
+{
+    "freelancrApp": {
+        "message" : {
+            "home": {
+                "title": "Mensajes",
+                "createLabel": "Crear nuevo mensaje",
+                "createOrEditLabel": "Crear o editar mensaje",
+                "search": "Buscar mensajes"
+            },
+            "created": "Un nuevo mensaje ha sido creado con el identificador {{ param }}",
+            "updated": "Un mensaje ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un mensaje ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Message?"
+            },
+            "detail": {
+                "title": "Mensaje"
+            },
+            "timestamp": "Fecha de publicación",
+            "message": "Mensaje",
+            "status": "Estado",
+            "sender": "Remitente",
+            "receiver": "Destinatario",
+            "topic": "Tema",
+            "reply": "Respuesta a"
+        }
+    }
+}

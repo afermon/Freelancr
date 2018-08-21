@@ -1,0 +1,95 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h2>
+            <span jhiTranslate="freelancrApp.feedback.home.title">Feedbacks</span>
+            <button class="btn btn-outline-primary float-right jh-create-entity create-feedback-freelancr" [routerLink]="['/', { outlets: { popup: 'cms/feedback-freelancr-new' } }]">
+                <span class="fa fa-plus"></span>
+                <span class="hidden-sm-down"  jhiTranslate="freelancrApp.feedback.home.createLabel">
+                Create new Feedback
+                </span>
+            </button>
+        </h2>
+        <jhi-alert></jhi-alert>
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'freelancrApp.feedback.home.search' | translate }}">
+                        <button class="input-group-append btn btn-info btn-raised" (click)="search(currentSearch)">
+                            <span class="fa fa-search"></span>
+                        </button>
+                        <button class="input-group-append btn btn-danger btn-raised" (click)="clear()" *ngIf="currentSearch">
+                            <span class="fa fa-trash-o"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br/>
+        <div class="table-responsive" *ngIf="feedbacks">
+            <table class="table table-striped">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="timeStamp"><span jhiTranslate="freelancrApp.feedback.timeStamp">Time Stamp</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="rating"><span jhiTranslate="freelancrApp.feedback.rating">Rating</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="comments"><span jhiTranslate="freelancrApp.feedback.comments">Comments</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="userLogin"><span jhiTranslate="freelancrApp.feedback.user">User</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="projectTitle"><span jhiTranslate="freelancrApp.feedback.project">Project</span> <span class="fa fa-sort"></span></th>
+                <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let feedback of feedbacks ;trackBy: trackId">
+                    <td><a [routerLink]="['../feedback-freelancr', feedback.id ]">{{feedback.id}}</a></td>
+                    <td>{{feedback.timeStamp | date:'medium'}}</td>
+                    <td>{{feedback.rating}}</td>
+                    <td>{{feedback.comments}}</td>
+                    <td>
+                        {{feedback.userLogin}}
+                    </td>
+                    <td>
+                        <div *ngIf="feedback.projectId">
+                            <a [routerLink]="['../project-freelancr', feedback.projectId  ]" >{{feedback.projectTitle}}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    [routerLink]="['../feedback-freelancr', feedback.id ]"
+                                    class="btn btn-info btn-sm btn-raised">
+                                <span class="fa fa-eye"></span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'cms/feedback-freelancr/'+ feedback.id + '/edit'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-primary btn-sm btn-raised">
+                                <span class="fa fa-pencil"></span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'cms/feedback-freelancr/'+ feedback.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm btn-raised">
+                                <span class="fa fa-remove"></span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="feedbacks && feedbacks.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

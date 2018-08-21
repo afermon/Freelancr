@@ -1,0 +1,29 @@
+{
+    "inbox": {
+        "title": "Mis mensajes",
+        "filter": "Filtrar (por prefijo)",
+        "compose": "Enviar",
+        "messages": "Mensajes",
+        "projects": "Proyectos",
+        "feedback": "Calificaciones",
+        "direct": "Directos",
+        "tome": "A mí",
+        "to": "Para",
+        "subject": "Asunto",
+        "message": "Mensaje",
+        "sent": "Enviado",
+        "reply": "Responder",
+        "refresh": "Refrescar",
+        "requiredSubject": "El asunto es requerido.",
+        "shortSubject": "Se requiere que el asunto tenga por lo menos 4 caracteres.",
+        "longSubject": "El asunto no puede tener más de 100 caracteres.",
+        "requiredMessageBody": "El mensaje es requerido.",
+        "shortMessageBody": "Se requiere que el mensaje tenga por lo menos 4 caracteres.",
+        "longMessageBody": "El mensaje no puede tener más de 500 caracteres.",
+        "composeEmail": "Redactar mensaje",
+        "table": {
+            "prefix": "Prefijo",
+            "properties": "Propiedades"
+        }
+    }
+}

@@ -1,0 +1,423 @@
+<div *ngIf="freelancrAccount" class="content-wrapper">
+    <div class="container-fluid">
+        <!--User Profile Starts-->
+        <!--Basic User Details Starts-->
+        <section id="user-profile">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card profile-with-cover">
+                        <div class="card-img-top img-fluid bg-cover height-300"></div>
+                        <div class="media profil-cover-details row">
+                            <div class="col-5">
+                                <div class="align-self-start halfway-fab pl-3 pt-2">
+                                    <div class="text-left">
+                                        <h3 class="card-title white">{{currentAccount.firstName+' '+currentAccount.lastName}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="align-self-center halfway-fab text-center">
+                                    <a class="profile-image">
+                                        <img [src]="currentAccount.imageUrl"
+                                             class="rounded-circle img-border gradient-summer width-100"
+                                             alt="Card image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="media-body halfway-fab align-self-end">
+                                    <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                        <!--<button-->
+                                            <!--[routerLink]="['../../offerPosition', freelancrAccount.userId]"-->
+                                            <!--jhiTranslate="profilepage.offerposition"-->
+                                            <!--class="btn btn-primary btn-raised">Offer position-->
+                                        <!--</button>-->
+                                        <button type="button" class="btn btn-success btn-raised mr-3"
+                                                jhiTranslate="profilepage.message" (click)="open(content)"><i
+                                            class="fa fa-dashcube"></i> Message
+                                        </button>
+                                    </div>
+                                    <div class="text-right d-block d-sm-block d-md-block d-lg-none">
+                                        <button type="button" class="btn btn-success btn-raised mr-3"><i
+                                            class="fa fa-dashcube"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 ">
+                                    <ul class="profile-menu no-list-style">
+                                        <li>
+                                            <a (click)="showPage('About')"
+                                               [ngClass]="currentPage === 'About' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'"
+                                               jhiTranslate="profilepage.about">About</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2 col-md-2 text-center">
+                                    <span class="font-medium-2 text-uppercase">{{currentAccount.firstName+' '+currentAccount.lastName}}</span>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <ul class="profile-menu no-list-style">
+                                        <li>
+                                            <a (click)="showPage('Friends')"
+                                               [ngClass]="currentPage === 'Friends' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'"
+                                               jhiTranslate="profilepage.feedback">Feedback</a>
+                                        </li>
+                                        <li>
+                                            <a (click)="showPage('Photos')"
+                                               [ngClass]="currentPage === 'Photos' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'"
+                                               jhiTranslate="profilepage.projects">Projects</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Basic User Details Ends-->
+
+        <!--About section starts-->
+        <section id="about" *ngIf="currentPage === 'About'">
+            <div class="row">
+                <div class="col-12">
+                    <div class="content-header" jhiTranslate="profilepage.about">About</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 jhiTranslate="profilepage.profileinfo.title">Personal Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="mb-3">
+                                    <span class="text-bold-500 primary" jhiTranslate="profilepage.profileinfo.aboutme">About Me:</span>
+                                    <span *ngIf="freelancrAccount.description" class="display-block overflow-hidden">{{freelancrAccount.description}}</span>
+                                    <span *ngIf="!freelancrAccount.description" class="display-block overflow-hidden"
+                                          jhiTranslate="profilepage.errors.nodes"></span>
+
+                                </div>
+                                <hr>
+                                <div class="row justify-content-md-center">
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <ul class="no-list-style">
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.user"><a><i
+                                                    class="icon-present font-small-3"></i></a></span>
+                                                <span
+                                                    class="display-block overflow-hidden">{{currentAccount.login}}</span>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.birthday"><a><i
+                                                    class="icon-present font-small-3"></i></a></span>
+                                                <span class="display-block overflow-hidden">{{getFormatedDate(freelancrAccount.birthDate)}}</span>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.address"><a><i
+                                                    class="ft-map-pin font-small-3"></i></a></span>
+                                                <span *ngIf="freelancrAccount.address"
+                                                      class="display-block overflow-hidden">{{freelancrAccount.address}}</span>
+                                                <span *ngIf="!freelancrAccount.address"
+                                                      class="display-block overflow-hidden">-</span>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary" jhiTranslate="profilepage.resume">Resume</span>
+                                                <span *ngIf="freelancrAccount.resumeLink"
+                                                      class="display-block overflow-hidden"><a href="http://files.freelancr.me/{{freelancrAccount.resumeLink}}" jhiTranslate="profilepage.download">Download</a></span>
+                                                <span *ngIf="!freelancrAccount.resumeLink"
+                                                      class="display-block overflow-hidden">-</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <ul class="no-list-style">
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.git"><a><i
+                                                    class="ft-user font-small-3"></i>GitHub:</a></span>
+                                                <a [href]="getGithubLink()" class="display-block overflow-hidden">{{freelancrAccount.gitUser}}</a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.email"><a><i
+                                                    class="ft-mail font-small-3"></i> Email:</a></span>
+                                                <span
+                                                    class="display-block overflow-hidden">{{currentAccount.email}}</span>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.ranking"><a><i
+                                                    class="ft-monitor font-small-3"></i> Ranking:</a></span>
+                                                <span *ngIf="freelancrAccount.ranking"
+                                                      class="display-block overflow-hidden">
+                                                    <ngb-rating [readonly]="true" class="display-block" [rate]="rating" max="5">
+                                                        <ng-template let-fill="fill">
+                                                            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                                        </ng-template>
+                                                    </ngb-rating>
+                                                </span>
+                                                <span *ngIf="!freelancrAccount.ranking"
+                                                      class="display-block overflow-hidden"
+                                                      jhiTranslate="profilepage.errors.norank"></span>
+
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary" jhiTranslate="profilepage.link">Website link</span>
+                                                <span *ngIf="freelancrAccount.personalLink"
+                                                      class="display-block overflow-hidden"><a href="https://{{freelancrAccount.personalLink}}" jhiTranslate="profilepage.view">Website</a></span>
+                                                <span *ngIf="!freelancrAccount.personalLink"
+                                                      class="display-block overflow-hidden">-</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <ul class="no-list-style">
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.phonenumber"><a><i
+                                                    class="ft-globe font-small-3"></i></a></span>
+                                                <span *ngIf="freelancrAccount.phone"
+                                                      class="display-block overflow-hidden">{{freelancrAccount.phone}}</span>
+                                                <span *ngIf="!freelancrAccount.phone"
+                                                      class="display-block overflow-hidden">-</span>
+                                            </li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.weekly"><a><i
+                                                    class="ft-briefcase font-small-3"></i> Weekly availability:</a></span>
+                                                <span *ngIf="freelancrAccount.weeklyAvailability"
+                                                      class="display-block overflow-hidden">{{freelancrAccount.weeklyAvailability}} <span
+                                                    jhiTranslate="profilepage.profileinfo.hours"> hours per week</span></span>
+                                                <span *ngIf="!freelancrAccount.weeklyAvailability"
+                                                      class="display-block overflow-hidden">-</span></li>
+                                            <li class="mb-2">
+                                                <span class="text-bold-500 primary"
+                                                      jhiTranslate="profilepage.profileinfo.joined"><a><i
+                                                    class="ft-book font-small-3"></i> Joined:</a></span>
+                                                <span class="display-block overflow-hidden">{{getFormatedDate(currentAccount.createdDate)}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div *ngIf="skills?.length > 0" class="mb-3">
+                                    <span class="text-bold-500 primary" jhiTranslate="skillsearch.technical">Technical skills:</span>
+                                    <div class="mt-2 skill-search-block">
+                                        <div class="col-md-2 mb-3 display-inline-block" *ngFor="let skill of skills">
+                                            <div>
+                                                <div class="skill-name">
+                                                    <span
+                                                        class="mb-2 text-center btn-primary btn-lg btn-block btn-raised">{{skill.typeName}}</span>
+                                                    <ngb-rating [readonly]="true" class="display-block text-center" [rate]="toStars(skill)" max="5">
+                                                        <ng-template let-fill="fill">
+                                                            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                                                        </ng-template>
+                                                    </ngb-rating>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--About section ends-->
+
+        <!--User Timeline section starts-->
+        <section *ngIf="currentPage === 'TimeLine'">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <div class="content-header text-center" jhiTranslate="projectProfile.notimeline">This user hasn't participated in any project</div>
+                </div>
+            </div>
+        </section>
+        <!--User Timeline section ends-->
+
+        <!--User's friend section starts-->
+        <section id="friends" *ngIf="currentPage === 'Friends'">
+            <div *ngIf="feedbacks.length===0">
+                <div class="row justify-content-md-center">
+                    <div class="col-12">
+                        <div class="content-header text-center" jhiTranslate="projectProfile.nofeed">This user hasn't participated in any project</div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="feedbacks.length>0">
+                <jhi-user-feedback [feedbacks]="feedbacks"></jhi-user-feedback>
+            </div>
+        </section>
+        <!--User's friend section starts-->
+        <section *ngIf="currentPage === 'Photos'">
+            <div  *ngIf="projects?.length === 0 && projectAdmin?.length === 0" class="row justify-content-md-center">
+                <div class="col-12">
+                    <div class="content-header text-center" jhiTranslate="projectProfile.notimeline">This user hasn't participated in any project</div>
+                </div>
+            </div>
+            <div *ngIf="projectPosition?.length > 0">
+                <div *ngIf="projects?.length > 0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="content-header" jhiTranslate="profilepage.participated">About</div>
+                        </div>
+                    </div>
+                    <div *ngFor="let project of projects" class="display-inline-block col-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block text-center">
+                                    <h4 class="mt-3 card-title">{{project.title}}</h4>
+                                    <h6>{{getPositionOfProject(project.id).title}}</h6>
+                                    <div style="display: inline-block" *ngFor="let skill of getPositionOfProject(project.id).skills">
+                                        <span style="margin: 4px; color: white;"
+                                              class="badge badge-primary">{{skill.name}}</span>
+                                    </div>
+                                    <div class="row grey justify-content-md-center">
+                                        <div *ngIf="project.endDate" class="col-4">
+                                            <span jhiTranslate="profilepage.finished">End date: </span><span class="display-block primary">{{project.endDate}}</span>
+                                        </div>
+                                        <div *ngIf="!project.endDate" class="col-4">
+                                            <span jhiTranslate="profilepage.start">Start date: </span><span class="display-block danger">{{project.deadline}}</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span class="display-block" jhiTranslate="apply.status">Status: </span>
+                                            <span class="info darken-2"
+                                                  jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}"></span>
+                                        </div>
+                                    </div>
+                                    <hr class="grey">
+                                    <button
+                                        class="btn btn-raised btn-primary"
+                                        routerLink="/project-info/{{project.id}}"
+                                        jhiTranslate="projectProfile.viewbtn">Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="projectAdmin?.length > 0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content-header" jhiTranslate="profilepage.asadmin">About</div>
+                    </div>
+                </div>
+                <div *ngFor="let project of projectAdmin" class="display-inline-block col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block text-center">
+                                <h4 class="mt-3 card-title">{{project.title}}</h4>
+                                <p>{{project.description}}</p>
+                                <div class="row grey justify-content-md-center">
+                                    <div *ngIf="project.endDate" class="col-4">
+                                        <span jhiTranslate="profilepage.finished">End date: </span><span class="display-block primary">{{project.endDate}}</span>
+                                    </div>
+                                    <div *ngIf="!project.endDate" class="col-4">
+                                        <span jhiTranslate="profilepage.deadline">Start date: </span><span class="display-block danger">{{project.deadline}}</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="display-block" jhiTranslate="apply.status">Status: </span>
+                                        <span class="info darken-2"
+                                              jhiTranslate="{{'freelancrApp.ProjectStatus.' + project.status}}"></span>
+                                    </div>
+                                </div>
+                                <hr class="grey">
+                                <button
+                                    class="btn btn-raised btn-primary"
+                                    routerLink="/project-info/{{project.id}}"
+                                    jhiTranslate="projectProfile.viewbtn">Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+<div *ngIf="!freelancrAccount" class="row align-items-center justify-content-center">
+    <div class="col-sm-6 col-sm-offset-3">
+        <br><br>
+        <h2 style="color:#d63031" jhiTranslate="profilepage.errors.notfound"></h2>
+        <br><br>
+    </div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header px-4">
+        <h4 class="modal-title" jhiTranslate="inbox.composeEmail">Compose message</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body px-4">
+        <form role="form" class="form form-horizontal">
+            <div class="form-group row">
+                <label class="col-md-2 label-control" jhiTranslate="inbox.to">To </label>
+                <div class="col-md-10">
+                    <label>{{currentAccount.firstName+' '+currentAccount.lastName}}</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 label-control" jhiTranslate="inbox.subject">Subject </label>
+                <div class="col-md-10">
+                    <input type="text" id="subject"
+                           autocomplete="off"
+                           class="form-control border-primary"
+                           [(ngModel)]="message.topic"
+                           name="subject" #messageSubject="ngModel"
+                           required minlength="4" maxlength="100">
+                    <div *ngIf="messageSubject.dirty && messageSubject.invalid">
+                        <small *ngIf="messageSubject.errors.required" class="form-text text-danger" jhiTranslate="inbox.requiredSubject">
+                            The subject is required.
+                        </small>
+                        <small *ngIf="messageSubject.errors.minlength" class="form-text text-danger" jhiTranslate="inbox.shortSubject">
+                            The subject need at least 4 characters.
+                        </small>
+                        <small *ngIf="messageSubject.errors.maxlength" class="form-text text-danger" jhiTranslate="inbox.longSubject">
+                            The subject can't have more than 100 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 label-control" jhiTranslate="inbox.message">Message</label>
+                <div class="col-md-10">
+                    <textarea id="messageTxt" rows="6"
+                              autocomplete="off"
+                              class="ql-editor ql-blank col-md-12" name="messageTxt"
+                              [(ngModel)]="message.message" #messageTxt="ngModel"
+                              required maxlength="500" minlength="4">
+                    </textarea>
+                    <div *ngIf="messageTxt.dirty && messageTxt.invalid">
+                        <small *ngIf="messageTxt.errors.required" class="form-text text-danger" jhiTranslate="inbox.requiredMessageBody">
+                            The message body is required.
+                        </small>
+                        <small *ngIf="messageTxt.errors.minlength" class="form-text text-danger" jhiTranslate="inbox.shortMessageBody">
+                            The message body need at least 4 characters.
+                        </small>
+                        <small *ngIf="messageTxt.errors.maxlength" class="form-text text-danger" jhiTranslate="inbox.longMessageBody">
+                            The message can't have more than 500 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer px-4">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
+        <button type="button" class="btn btn-raised btn-primary" [disabled]="messageTxt.invalid || messageSubject.invalid " (click)="sendMessage()"  (click)="c('Close click')">Send</button>
+    </div>
+</ng-template>
